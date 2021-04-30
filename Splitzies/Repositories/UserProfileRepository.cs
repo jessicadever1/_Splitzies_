@@ -181,10 +181,7 @@ namespace Splitzies.Repositories
         }
 
 
-        /* 
-         
-        -In preparation for Version 2.0-
-         
+        
         public void Deactivate(int id)
         {
             using (var conn = Connection)
@@ -204,6 +201,6 @@ namespace Splitzies.Repositories
             }
         }
 
-       */
+
     }
 }

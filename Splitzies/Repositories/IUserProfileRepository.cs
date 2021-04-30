@@ -9,12 +9,7 @@ namespace Splitzies.Repositories
         List<UserProfile> GetAllUserProfiles();
         UserProfile GetByFirebaseId(string firebaseId);
         UserProfile GetById(int id);
-       
-        /* 
-        
-        -in preparation for Version 2.0-
-
         void Deactivate(int id);
-       */
+      
     }
 }
