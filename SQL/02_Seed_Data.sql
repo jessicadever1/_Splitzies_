@@ -1,3 +1,16 @@
+USE [Splitzies]
+GO
+
+SET IDENTITY_INSERT [Category] ON
+INSERT INTO [Category]
+  ([Id], [CategoryName])
+VALUES 
+  (1, 'Transportation'),
+  (2, 'Food'),
+  (3, 'Tour'),
+  (4, 'Lodging');
+SET IDENTITY_INSERT [Category] OFF
+
 SET IDENTITY_INSERT [UserProfile] ON
 INSERT INTO [UserProfile]
   ([Id], [FirebaseId], [FirstName], [LastName], [DisplayName], [Email], [ProfilePic])
@@ -10,16 +23,18 @@ VALUES
   (6, 'TBD6', 'Heather', 'Moh', 'heatherMoh1', 'heatherMoh1@email.com', 'https://scontent-atl3-1.xx.fbcdn.net/v/t1.18169-9/10351573_835106766500234_5576815135466811313_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=-FlWCvHm9KcAX_9Qi-R&_nc_ht=scontent-atl3-1.xx&oh=ce0692fa615d8f49f0f1e412bcd40cbc&oe=60AF5926'),
   (7, 'TBD7', 'Christy', 'Rich', 'christyRich1', 'christyRich1@email.com', 'https://scontent-atl3-1.xx.fbcdn.net/v/t31.18172-8/26240147_10215159227399064_3265403966548555266_o.jpg?_nc_cat=106&ccb=1-3&_nc_sid=cdbe9c&_nc_ohc=CkqN5KW8lLUAX85unqB&_nc_ht=scontent-atl3-1.xx&oh=e7a259e93bec2e28851f59cdc84bb2b4&oe=60B0CE64');
 SET IDENTITY_INSERT [UserProfile] OFF
+
 SET IDENTITY_INSERT [Splitz] ON
 INSERT INTO [Splitz]
-  ([Id], [SplitzName], [Date], [SplitzDetails], [UserSplitzId], [SplitzExpenseId], [IsDeleted])
+  ([Id], [SplitzName], [Date], [SplitzDetails], [DeletedDate])
 VALUES 
-  (1, 'Atlanta Getaway', '04-23-2018', 'This was a weekend getaway to get out of town. Stayed with Hollys parents. Went to Marietta Diner and Park.', 1, 1, 0),
-  (2, 'Hollys B-Day', '03-30-2019', 'Celebrated Holly with a dinner at Uncle Julios.', 3, 2, 0),
-  (3, 'Vanessas Bach Weekend', '03-30-2020', 'Went to Louisville to do some dancing, adventuring and hanging out. V and Jess dominated in flip cup. Obviously.', 5, 3, 0),
-  (4, '4th of July in Destin', '07-04-2019', 'Celebrated Jess turning 30 in sunny FL! Heli ride, dinner out, beaching.', 9, 4, 0),
-  (5, 'Sushi Night', '04-01-2021', 'Night of sushi and hanging out!', 12, 5, 0);
+  (1, 'Atlanta Getaway', '04-23-2018', 'This was a weekend getaway to get out of town. Stayed with Hollys parents. Went to Marietta Diner and Park.', NULL),
+  (2, 'Hollys B-Day', '03-30-2019', 'Celebrated Holly with a dinner at Uncle Julios.', NULL),
+  (3, 'Vanessas Bach Weekend', '03-30-2020', 'Went to Louisville to do some dancing, adventuring and hanging out. V and Jess dominated in flip cup. Obviously.', NULL),
+  (4, '4th of July in Destin', '07-04-2019', 'Celebrated Jess turning 30 in sunny FL! Heli ride, dinner out, beaching.', NULL),
+  (5, 'Sushi Night', '04-01-2021', 'Night of sushi and hanging out!', NULL);
 SET IDENTITY_INSERT [Splitz] OFF
+
 SET IDENTITY_INSERT [UserSplitz] ON
 INSERT INTO [UserSplitz]
   ([Id], [UserProfileId], [SplitzId])
@@ -38,28 +53,33 @@ VALUES
   (12, 1, 5),
   (13, 7, 5);
 SET IDENTITY_INSERT [UserSplitz] OFF
+
 SET IDENTITY_INSERT [Expense] ON
 INSERT INTO [Expense]
-  ([Id], [ExpenseName], [CategoryId], [Amount], [UserWhoPaidId], [SplitzId], [IsDeleted])
+  ([Id], [ExpenseName], [CategoryId], [Amount], [UserWhoPaidId], [SplitzId], [DeletedDate])
 VALUES
-  (1, 'Gas', 1, 30, 2, 1, 0),
-  (2, 'Gas', 1, 25, 1, 1, 0),
-  (3, 'Dinner', 2, 40, 4, 2, 0),
-  (4, 'Ice Cream', 2, 20, 1, 2, 0),
-  (5, 'Gas', 1, 30, 2, 3, 0),
-  (6, 'Cave Adventure', 3, 50, 6, 3, 0),
-  (7, 'Air BnB', 4, 500, 6, 3, 0),
-  (8, 'Gas', 1, 150, 2, 4, 0),
-  (9, 'Air BnB', 4, 500, 1, 4, 0),
-  (10, 'Heli Ride', 3, 250, 3, 4, 0),
-  (11, 'Sushi', 2, 40, 7, 5, 0);
+  (1, 'Gas', 1, 30, 2, 1, NULL),
+  (2, 'Gas', 1, 25, 1, 1, NULL),
+  (3, 'Dinner', 2, 40, 4, 2, NULL),
+  (4, 'Ice Cream', 2, 20, 1, 2, NULL),
+  (5, 'Gas', 1, 30, 2, 3, NULL),
+  (6, 'Cave Adventure', 3, 50, 6, 3, NULL),
+  (7, 'Air BnB', 4, 500, 6, 3, NULL),
+  (8, 'Gas', 1, 150, 2, 4, NULL),
+  (9, 'Air BnB', 4, 500, 1, 4, NULL),
+  (10, 'Heli Ride', 3, 250, 3, 4, NULL),
+  (11, 'Sushi', 2, 40, 7, 5, NULL);
 SET IDENTITY_INSERT [Expense] OFF
-SET IDENTITY_INSERT [Category] ON
-INSERT INTO [Category]
-  ([Id], [CategoryName])
-VALUES 
-  (1, 'Transportation'),
-  (2, 'Food'),
-  (3, 'Tour'),
-  (4, 'Lodging');
-SET IDENTITY_INSERT [Category] OFF
+
+SET IDENTITY_INSERT [Owed] ON
+INSERT INTO [Owed]
+  ([Id], [ExpenseId], [UserThatOwesId], [Amount], [Paid])
+VALUES
+  (1, 1, 1, 30, 0),
+  (2, 2, 2, 25, 0),
+  (3, 3, 1, 40, 0),
+  (4, 6, 1, 50, 0),
+  (5, 6, 2, 50, 0),
+  (6, 6, 5, 50, 0),
+  (7, 11, 1, 40, 0);
+SET IDENTITY_INSERT [Owed] OFF

@@ -6,12 +6,12 @@ GO
 USE [Splitzies]
 GO
 
-DROP TABLE IF EXISTS [UserProfile];
-DROP TABLE IF EXISTS [Splitz];
 DROP TABLE IF EXISTS [UserSplitz];
-DROP TABLE IF EXISTS [Expenses];
 DROP TABLE IF EXISTS [Owed];
+DROP TABLE IF EXISTS [Splitz];
+DROP TABLE IF EXISTS [Expense];
 DROP TABLE IF EXISTS [Category];
+DROP TABLE IF EXISTS [UserProfile];
 
 CREATE TABLE [Category] (
   [Id] integer PRIMARY KEY identity NOT NULL,
@@ -26,7 +26,9 @@ CREATE TABLE [UserProfile] (
   [LastName] nvarchar(255),
   [DisplayName] nvarchar(255) NOT NULL,
   [Email] nvarchar(255) NOT NULL,
-  [ProfilePic] nvarchar
+  [ProfilePic] nvarchar (255),
+
+  CONSTRAINT UQ_FirebaseId UNIQUE(FirebaseId)
 )
 GO
 
@@ -35,16 +37,17 @@ CREATE TABLE [Splitz] (
   [SplitzName] nvarchar(255) NOT NULL,
   [Date] datetime NOT NULL,
   [SplitzDetails] nvarchar(2550),
-  [UserSplitzId] integer NOT NULL,
-  [SplitzExpenseId] integer NOT NULL,
-  [IsDeleted] bit NOT NULL
+  [DeletedDate] datetime,
 )
 GO
 
 CREATE TABLE [UserSplitz] (
   [Id] integer PRIMARY KEY identity NOT NULL,
   [UserProfileId] integer NOT NULL,
-  [SplitzId] integer NOT NULL
+  [SplitzId] integer NOT NULL,
+
+  CONSTRAINT [FK_UserSplitz_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id]),
+  CONSTRAINT [FK_UserSplitz_Splitz] FOREIGN KEY ([SplitzId]) REFERENCES [Splitz] ([Id])
 )
 GO
 
@@ -55,7 +58,10 @@ CREATE TABLE [Expense] (
   [Amount] integer NOT NULL,
   [UserWhoPaidId] integer NOT NULL,
   [SplitzId] integer NOT NULL,
-  [IsDeleted] bit NOT NULL
+  [DeletedDate] date,
+
+  CONSTRAINT [FK_Expense_Category] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id]),
+  CONSTRAINT [FK_Expense_Splitz] FOREIGN KEY ([SplitzId]) REFERENCES [Splitz] ([Id])
 )
 GO
 
@@ -64,26 +70,9 @@ CREATE TABLE [Owed] (
   [ExpenseId] integer NOT NULL,
   [UserThatOwesId] integer NOT NULL,
   [Amount] integer NOT NULL,
-  [Paid] bit NOT NULL
+  [Paid] bit NOT NULL,
+
+  CONSTRAINT [FK_Owed_Expense] FOREIGN KEY ([ExpenseId]) REFERENCES [Expense] ([Id]),
+  CONSTRAINT [FK_Owed_User] FOREIGN KEY ([UserThatOwesId]) REFERENCES [UserProfile] ([Id])
 )
-GO
-
-
-ALTER TABLE [Expense] ADD FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id])
-GO
-ALTER TABLE [Expense] ADD FOREIGN KEY ([UserWhoPaidId]) REFERENCES [UserProfile] ([Id])
-GO
-ALTER TABLE [Expense] ADD FOREIGN KEY ([SplitzId]) REFERENCES [Splitz] ([Id])
-GO
-ALTER TABLE [Splitz] ADD FOREIGN KEY ([UserSplitzId]) REFERENCES [UserSplitz] ([Id])
-GO
-ALTER TABLE [Splitz] ADD FOREIGN KEY ([SplitzExpenseId]) REFERENCES [Expense] ([Id])
-GO
-ALTER TABLE [UserSplitz] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
-GO
-ALTER TABLE [UserSplitz] ADD FOREIGN KEY ([SplitzId]) REFERENCES [Splitz] ([Id])
-GO
-ALTER TABLE [Owed] ADD FOREIGN KEY ([ExpenseId]) REFERENCES [Expense] ([Id])
-GO
-ALTER TABLE [Owed] ADD FOREIGN KEY ([UserThatOwesId]) REFERENCES [UserProfile] ([Id])
 GO
