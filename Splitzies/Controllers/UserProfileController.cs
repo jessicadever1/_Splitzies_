@@ -9,7 +9,7 @@ namespace Splitzies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+    [Authorize]
     public class UserProfileController : ControllerBase
     {
         private readonly IUserProfileRepository _userProfileRepository;
@@ -50,6 +50,14 @@ namespace Splitzies.Controllers
             return NoContent();
         }
 
-        
+        [HttpPost]
+        public IActionResult Post(UserProfile userProfile)
+        {
+            _userProfileRepository.Add(userProfile);
+            return CreatedAtAction(
+                nameof(GetUserProfile),
+                new { firebaseId = userProfile.FirebaseId },
+                userProfile);
+        }
     }
 }
