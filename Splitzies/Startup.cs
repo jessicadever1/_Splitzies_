@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Splitzies.Repositories;
 
 namespace Splitzies
 {
@@ -21,6 +22,7 @@ namespace Splitzies
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
