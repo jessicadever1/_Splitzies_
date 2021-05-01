@@ -4,9 +4,10 @@ import { UserProfileProvider } from "./components/providers/UserProfileProvider"
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 
-function App() {
+export const App = () => {
   return (
     <Router>
+      Hello.
       <UserProfileProvider>
         <Header />
         <ApplicationViews />

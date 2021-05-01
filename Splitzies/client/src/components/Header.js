@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { NavLink as RRNavLink, useHistory } from "react-router-dom";
+import { NavLink as RRNavLink } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -28,14 +28,14 @@ export default function Header() {
                         {isLoggedIn &&
                             <NavItem className="nav-items">
                                 <NavLink tag={RRNavLink} to="/">Splitz</NavLink>
-                                <NavLink tag={RRNavLink} to="/create">+</NavLink>
-                                <NavLink tag={RRNavLink} to="/balance">Balance</NavLink>
+                                <NavLink tag={RRNavLink} to="">+</NavLink>
+                                <NavLink tag={RRNavLink} to="">Balance</NavLink>
                             </NavItem>
                         }
-                        {isLoggedIn && userProfile.userTypeId == 1 &&
+                        {isLoggedIn && userProfile.userTypeId === 1 &&
                             <NavItem className="nav-items">
-                                <NavLink tag={RRNavLink} to="/tag">Tag Management</NavLink>
-                                <NavLink tag={RRNavLink} to="/userProfiles">User Profiles</NavLink>
+                                <NavLink tag={RRNavLink} to="">Tag Management</NavLink>
+                                <NavLink tag={RRNavLink} to="">User Profiles</NavLink>
                             </NavItem>
                         }
                     </Nav>
