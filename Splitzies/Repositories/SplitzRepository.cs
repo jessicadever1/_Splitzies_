@@ -9,7 +9,7 @@ using Splitzies.Utils;
 
 namespace Splitzies.Repositories
 {
-    public class SplitzRepository : BaseRepository
+    public class SplitzRepository : BaseRepository, ISplitzRepository
     {
         public SplitzRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -24,14 +24,22 @@ namespace Splitzies.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT US.SplitzId,
-                            US.UserProfileId,
-                            S.SplitzName,
-                            S.Id,
-                            S.SplitzDetails,
-                            S.[Date],
-                            S.DeletedDate,
-                            UP.DisplayName
+                        SELECT  US.SplitzId,
+                                US.UserProfileId,
+                                
+                                S.SplitzName,
+                                S.Id,
+                                S.SplitzDetails,
+                                S.[Date],
+                                S.DeletedDate,
+
+                                UP.DisplayName,
+                                UP.FirstName,
+                                UP.LastName,
+                                UP.Email,
+                                UP.FirebaseId,
+                                UP.ProfilePic
+
                     FROM UserSplitz US
                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
                         LEFT JOIN UserProfile UP ON US.UserProfileId = UP.ID
@@ -41,11 +49,11 @@ namespace Splitzies.Repositories
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    List<Splitz> posts = new List<Splitz>();
+                    List<Splitz> splitzies = new List<Splitz>();
 
                     while (reader.Read())
                     {
-                        Splitz post = new Splitz()
+                        Splitz splitz = new Splitz()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             SplitzName = DbUtils.GetString(reader, "SplitzName"),
@@ -55,34 +63,70 @@ namespace Splitzies.Repositories
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                FirebaseId = DbUtils.GetString(reader, "FirebaseId"),
                                 DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                 FirstName = DbUtils.GetString(reader, "FirstName"),
                                 LastName = DbUtils.GetString(reader, "LastName"),
                                 Email = DbUtils.GetString(reader, "Email"),
-                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-
+                                ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
                             },
                             UserSplitz = new UserSplitz()
                             {
                                 Id = DbUtils.GetInt(reader, "CategoryId"),
-                                Name = DbUtils.GetString(reader, "Category")
+                                SplitzId = DbUtils.GetInt(reader, "SplitzId"),
+                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
                             }
                         };
 
-                        post.userProfile = new UserProfile()
+                        splitz.UserProfile = new UserProfile()
                         {
                             DisplayName = reader.GetString(reader.GetOrdinal("DisplayName"))
                         };
 
 
-                        posts.Add(post);
+                        splitzies.Add(splitz);
                     }
                     reader.Close();
-                    return posts;
+                    return splitzies;
 
                 }
             }
         }
+
+
+
+        public void Add(Splitz splitz)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO Splitz  (SplitzName, 
+                                             SplitzDetails, 
+                                             DeletedDate, 
+                                             Date)
+
+                               OUTPUT INSERTED.ID
+                        VALUES (@splitzName, 
+                                @splitzDetails, 
+                                @deletedDate, 
+                                @date)";
+
+                    DbUtils.AddParameter(cmd, "@splitzName", splitz.SplitzName);
+                    DbUtils.AddParameter(cmd, "@splitzDetails", splitz.SplitzDetails);
+                    DbUtils.AddParameter(cmd, "@deletedDate", splitz.DeletedDate);
+                    DbUtils.AddParameter(cmd, "@date", splitz.Date);
+
+                    splitz.Id = (int)cmd.ExecuteScalar();
+
+                }
+            }
+        }
+
+
+
 
     }
 }
