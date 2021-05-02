@@ -11,6 +11,7 @@ namespace Splitzies.Repositories
         public UserProfileRepository(IConfiguration configuration) : base(configuration) { }
 
 
+
         public List<UserProfile> GetAllUserProfiles()
         {
             using (var conn = Connection)
@@ -19,11 +20,16 @@ namespace Splitzies.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                         SELECT up.Id as UserProfileId, up.FirebaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId AS UserProfileTypeId, up.IsDeleted,
-                                                ut.Id as UserTypeId, ut.Name AS UserTypeName
+                                         SELECT up.Id as UserProfileId, 
+                                                up.FirebaseId, 
+                                                up.DisplayName, 
+                                                up.FirstName, 
+                                                up.LastName, 
+                                                up.Email, 
+                                                up.ProfilePic
+                                              
                                          FROM UserProfile up
-                                         JOIN UserType ut on up.UserTypeId = ut.Id
-                                         WHERE up.IsDeleted = 0
+                                         
                                          ORDER BY up.DisplayName";
 
                     var reader = cmd.ExecuteReader();
@@ -33,19 +39,12 @@ namespace Splitzies.Repositories
                         userProfiles.Add(new UserProfile()
                         {
                             Id = DbUtils.GetInt(reader, "UserProfileId"),
-                            FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
+                            FirebaseId = DbUtils.GetString(reader, "FirebaseId"),
                             DisplayName = DbUtils.GetString(reader, "DisplayName"),
                             FirstName = DbUtils.GetString(reader, "FirstName"),
                             LastName = DbUtils.GetString(reader, "LastName"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserProfileTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UsertypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            ProfilePic = DbUtils.GetString(reader, "ProfilePic")
                         });
                     }
                     reader.Close();
@@ -53,6 +52,7 @@ namespace Splitzies.Repositories
                 }
             }
         }
+
 
 
         public UserProfile GetById(int id)
@@ -63,10 +63,16 @@ namespace Splitzies.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        SELECT up.Id as UserProfileId, up.FirebaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId AS UserProfileTypeId,
-                                                ut.Id as UserTypeId, ut.Name AS UserTypeName
+                                        SELECT up.Id as UserProfileId, 
+                                               up.FirebaseId, 
+                                               up.DisplayName, 
+                                               up.FirstName, 
+                                               up.LastName, 
+                                               up.Email, 
+                                               up.ProfilePic
+
                                          FROM UserProfile up
-                                         JOIN UserType ut on up.UserTypeId = ut.Id
+                                         
                                         WHERE up.Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
@@ -78,19 +84,12 @@ namespace Splitzies.Repositories
                         userProfile = new UserProfile()
                         {
                             Id = DbUtils.GetInt(reader, "UserProfileId"),
-                            FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
+                            FirebaseId = DbUtils.GetString(reader, "FirebaseId"),
                             DisplayName = DbUtils.GetString(reader, "DisplayName"),
                             FirstName = DbUtils.GetString(reader, "FirstName"),
                             LastName = DbUtils.GetString(reader, "LastName"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserProfileTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UsertypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            ProfilePic = DbUtils.GetString(reader, "ProfilePic")
                         };
                     }
                     reader.Close();
@@ -100,7 +99,7 @@ namespace Splitzies.Repositories
         }
 
 
-        public UserProfile GetByFirebaseUserId(string firebaseUserId)
+        public UserProfile GetByFirebaseId(string firebaseId)
         {
             using (var conn = Connection)
             {
@@ -108,14 +107,19 @@ namespace Splitzies.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, Up.FirebaseUserId, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                         WHERE FirebaseUserId = @FirebaseuserId";
+                        SELECT up.Id, 
+                               up.FirebaseId, 
+                               up.FirstName, 
+                               up.LastName, 
+                               up.DisplayName, 
+                               up.Email, 
+                               up.ProfilePic 
 
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
+                          FROM UserProfile up
+                               
+                         WHERE FirebaseId = @FirebaseId";
+
+                    DbUtils.AddParameter(cmd, "@FirebaseId", firebaseId);
 
                     UserProfile userProfile = null;
 
@@ -125,19 +129,12 @@ namespace Splitzies.Repositories
                         userProfile = new UserProfile()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
-                            FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
+                            FirebaseId = DbUtils.GetString(reader, "FirebaseId"),
                             FirstName = DbUtils.GetString(reader, "FirstName"),
                             LastName = DbUtils.GetString(reader, "LastName"),
                             DisplayName = DbUtils.GetString(reader, "DisplayName"),
                             Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            ProfilePic = DbUtils.GetString(reader, "ProfilePic")
                         };
                     }
                     reader.Close();
@@ -147,6 +144,8 @@ namespace Splitzies.Repositories
             }
         }
 
+
+
         public void Add(UserProfile userProfile)
         {
             using (var conn = Connection)
@@ -154,19 +153,27 @@ namespace Splitzies.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, FirstName, LastName, DisplayName, 
-                                                                 Email, CreateDateTime, ImageLocation, UserTypeId)
+                    cmd.CommandText = @"INSERT INTO UserProfile 
+                                            (FirebaseId, 
+                                             FirstName, 
+                                             LastName, 
+                                             DisplayName, 
+                                             Email, 
+                                             ProfilePic)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@FirebaseUserId, @FirstName, @LastName, @DisplayName, 
-                                                @Email, @CreateDateTime, @ImageLocation, @UserTypeId)";
-                    DbUtils.AddParameter(cmd, "@FirebaseUserId", userProfile.FirebaseUserId);
+                                        VALUES 
+                                            (@FirebaseId, 
+                                             @FirstName, 
+                                             @LastName, 
+                                             @DisplayName, 
+                                             @Email, 
+                                             @ProfilePic)";
+                    DbUtils.AddParameter(cmd, "@FirebaseId", userProfile.FirebaseId);
                     DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
                     DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
                     DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
                     DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
-                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
+                    DbUtils.AddParameter(cmd, "@ProfilePic", userProfile.ProfilePic);
 
                     userProfile.Id = (int)cmd.ExecuteScalar();
                 }
@@ -174,6 +181,7 @@ namespace Splitzies.Repositories
         }
 
 
+        
         public void Deactivate(int id)
         {
             using (var conn = Connection)
@@ -193,19 +201,6 @@ namespace Splitzies.Repositories
             }
         }
 
-        /*
-        public UserProfile GetByFirebaseUserId(string firebaseUserId)
-        {
-            return _context.UserProfile
-                       .Include(up => up.UserType) 
-                       .FirstOrDefault(up => up.FirebaseUserId == firebaseUserId);
-        }
 
-        public void Add(UserProfile userProfile)
-        {
-            _context.Add(userProfile);
-            _context.SaveChanges();
-        }
-        */
     }
 }

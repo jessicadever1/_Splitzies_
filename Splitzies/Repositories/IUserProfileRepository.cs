@@ -6,9 +6,10 @@ namespace Splitzies.Repositories
     public interface IUserProfileRepository
     {
         void Add(UserProfile userProfile);
-        void Deactivate(int id);
         List<UserProfile> GetAllUserProfiles();
-        UserProfile GetByFirebaseUserId(string firebaseUserId);
+        UserProfile GetByFirebaseId(string firebaseId);
         UserProfile GetById(int id);
+        void Deactivate(int id);
+      
     }
 }
