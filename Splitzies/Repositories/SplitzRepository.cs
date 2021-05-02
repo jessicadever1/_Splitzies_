@@ -15,7 +15,7 @@ namespace Splitzies.Repositories
 
 
 
-        public List<Splitz> GetSplitzByUserProfileId(int userProfileId)
+        public List<Splitz> GetSplitzByFirebaseId(string firebaseId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -43,9 +43,10 @@ namespace Splitzies.Repositories
                     FROM UserSplitz US
                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
                         LEFT JOIN UserProfile UP ON US.UserProfileId = UP.ID
-                    WHERE US.UserProfileId = @userProfileId;";
+                    WHERE UP.FirebaseId = @firebaseId
+                    ORDER BY S.Date DESC";
 
-                    cmd.Parameters.AddWithValue("@userProfileId", userProfileId);
+                    cmd.Parameters.AddWithValue("@userProfileId", firebaseId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -53,13 +54,13 @@ namespace Splitzies.Repositories
 
                     while (reader.Read())
                     {
-                        Splitz splitz = new Splitz()
+                        splitzies.Add(new Splitz()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             SplitzName = DbUtils.GetString(reader, "SplitzName"),
                             SplitzDetails = DbUtils.GetString(reader, "SplitzDetails"),
                             Date = DbUtils.GetDateTime(reader, "Date"),
-                            DeletedDate = DbUtils.GetDateTime(reader, "DeletedDate"),
+                            DeletedDate = (DateTime)DbUtils.GetNullableDateTime(reader, "DeletedDate"),
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
@@ -76,15 +77,8 @@ namespace Splitzies.Repositories
                                 SplitzId = DbUtils.GetInt(reader, "SplitzId"),
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
                             }
-                        };
+                        });
 
-                        splitz.UserProfile = new UserProfile()
-                        {
-                            DisplayName = reader.GetString(reader.GetOrdinal("DisplayName"))
-                        };
-
-
-                        splitzies.Add(splitz);
                     }
                     reader.Close();
                     return splitzies;

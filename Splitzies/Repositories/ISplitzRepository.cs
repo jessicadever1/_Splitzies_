@@ -6,6 +6,6 @@ namespace Splitzies.Repositories
     public interface ISplitzRepository
     {
         void Add(Splitz splitz);
-        List<Splitz> GetSplitzByUserProfileId(int userProfileId);
+        List<Splitz> GetSplitzByFirebaseId(string firebaseId);
     }
 }
