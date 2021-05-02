@@ -7,7 +7,6 @@ import ApplicationViews from "./components/ApplicationViews";
 export const App = () => {
   return (
     <Router>
-      Hello.
       <UserProfileProvider>
         <Header />
         <ApplicationViews />

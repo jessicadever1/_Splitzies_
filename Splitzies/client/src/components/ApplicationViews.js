@@ -12,7 +12,7 @@ export default function ApplicationViews() {
             <Switch>
 
                 <Route path="/" exact>
-                    Hello.
+
                 </Route>
 
                 <Route exact path="/login">

@@ -1,3 +1,8 @@
+### Learn As I Go:
+
+1. The .env file needs to be at the same level as the package.json file
+2. SQL: make sure to get the info you need, starting from the join table
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

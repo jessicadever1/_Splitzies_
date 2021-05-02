@@ -10,6 +10,7 @@ import {
     NavLink
 } from 'reactstrap';
 import { UserProfileContext } from "./providers/UserProfileProvider";
+import './header.css'
 
 export default function Header() {
     const { isLoggedIn, logout } = useContext(UserProfileContext);
@@ -19,17 +20,17 @@ export default function Header() {
 
     return (
         <div>
-            <Navbar color="light" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/">Tabloid</NavbarBrand>
+            <Navbar className="pink" light expand="md">
+                <NavbarBrand tag={RRNavLink} to="/" id="textColorWhite">Splitzies</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         { /* When isLoggedIn === true, we will render the Home and Post links */}
                         {isLoggedIn &&
-                            <NavItem className="nav-items">
-                                <NavLink tag={RRNavLink} to="/">Splitz</NavLink>
-                                <NavLink tag={RRNavLink} to="">+</NavLink>
-                                <NavLink tag={RRNavLink} to="">Balance</NavLink>
+                            <NavItem className="nav-items pink">
+                                <NavLink id="textColorWhite" tag={RRNavLink} to="/">Splitz</NavLink>
+                                <NavLink id="textColorWhite" tag={RRNavLink} to="">+</NavLink>
+                                <NavLink id="textColorWhite" tag={RRNavLink} to="">Balance</NavLink>
                             </NavItem>
                         }
                         {isLoggedIn && userProfile.userTypeId === 1 &&
