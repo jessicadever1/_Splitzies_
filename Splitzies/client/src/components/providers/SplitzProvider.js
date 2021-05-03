@@ -13,7 +13,7 @@ export const SplitzProvider = (props) => {
 
         return getToken()
             .then((token) =>
-                fetch("/api/splitz/MySplitz", {
+                fetch("/api/Splitz/MySplitz", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,

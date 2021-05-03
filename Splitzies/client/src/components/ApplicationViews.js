@@ -13,7 +13,7 @@ export default function ApplicationViews() {
             <Switch>
 
                 <Route path="/" exact>
-
+                    <SplitzList />
                 </Route>
 
                 <Route exact path="/login">

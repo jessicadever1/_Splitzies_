@@ -7,6 +7,7 @@ export const SplitzList = () => {
 
     useEffect(() => {
         getMySplitzies();
+        console.log("List of Splitzies:", splitzies)
     }, []);
 
     return (
