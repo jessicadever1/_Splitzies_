@@ -28,7 +28,7 @@ export default function Header() {
                         { /* When isLoggedIn === true, we will render the Home and Post links */}
                         {isLoggedIn &&
                             <NavItem className="nav-items pink">
-                                <NavLink id="textColorWhite" tag={RRNavLink} to="/">Splitz</NavLink>
+                                <NavLink id="textColorWhite" tag={RRNavLink} to="/mySplitz">Splitz</NavLink>
                                 <NavLink id="textColorWhite" tag={RRNavLink} to="">+</NavLink>
                                 <NavLink id="textColorWhite" tag={RRNavLink} to="">Balance</NavLink>
                             </NavItem>

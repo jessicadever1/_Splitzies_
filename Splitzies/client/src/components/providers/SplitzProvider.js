@@ -9,7 +9,7 @@ export const SplitzProvider = (props) => {
     const [splitz, setSplitz] = useState({});
     const [searchTerms, setSearchTerms] = useState("");
 
-    const getMySplitz = () => {
+    const getMySplitzies = () => {
 
         return getToken()
             .then((token) =>
@@ -26,7 +26,7 @@ export const SplitzProvider = (props) => {
     return (
         <SplitzContext.Provider
             value={{
-                getMySplitz,
+                getMySplitzies,
                 splitzies,
                 setSplitzies,
                 splitz,
