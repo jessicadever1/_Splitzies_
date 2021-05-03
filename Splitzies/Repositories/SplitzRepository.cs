@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Splitzies.Models;
@@ -32,7 +29,7 @@ namespace Splitzies.Repositories
                                 S.Id,
                                 S.SplitzDetails,
                                 S.[Date],
-                               
+                                S.DeletedDate,
 
                                 UP.DisplayName,
                                 UP.FirstName,
@@ -61,7 +58,7 @@ namespace Splitzies.Repositories
                             SplitzName = DbUtils.GetString(reader, "SplitzName"),
                             SplitzDetails = DbUtils.GetString(reader, "SplitzDetails"),
                             Date = DbUtils.GetDateTime(reader, "Date"),
-                            
+                            DeletedDate = DbUtils.IsDbNull(reader, "DeletedDate") ? null : DbUtils.GetDateTime(reader, "DeletedDate"),
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
@@ -78,12 +75,11 @@ namespace Splitzies.Repositories
                                 SplitzId = DbUtils.GetInt(reader, "SplitzId"),
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
                             }
+                    
                         });
-
                     }
                     reader.Close();
                     return splitzies;
-
                 }
             }
         }

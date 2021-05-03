@@ -8,7 +8,7 @@ namespace Splitzies.Models
         public string SplitzName { get; set; }
         public DateTime Date { get; set; }
         public string SplitzDetails { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public DateTime ? DeletedDate { get; set; }
         public UserProfile UserProfile { get; set; }
         public UserSplitz UserSplitz { get; set; }
     }

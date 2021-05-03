@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Splitzies.Repositories;
 using System.Security.Claims;
 using Splitzies.Models;
@@ -33,7 +29,7 @@ namespace Splitzies.Controllers
         {
             string firebaseUserProfileId = GetCurrentFirebaseUserProfileId();
             var splitzies = _splitzRepository.GetSplitzByFirebaseId(firebaseUserProfileId);
-            return Ok(splitzies);
+            return Ok(splitzies); 
         }
 
         private string GetCurrentFirebaseUserProfileId()
