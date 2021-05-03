@@ -6,7 +6,6 @@ export const SplitzContext = React.createContext();
 export const SplitzProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const [splitzies, setSplitzies] = useState([]);
-    const [splitz, setSplitz] = useState({});
     const [searchTerms, setSearchTerms] = useState("");
 
     const getMySplitzies = () => {
@@ -29,8 +28,6 @@ export const SplitzProvider = (props) => {
                 getMySplitzies,
                 splitzies,
                 setSplitzies,
-                splitz,
-                setSplitz,
                 searchTerms,
                 setSearchTerms
             }}

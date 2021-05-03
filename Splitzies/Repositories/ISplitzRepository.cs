@@ -7,5 +7,6 @@ namespace Splitzies.Repositories
     {
         void Add(Splitz splitz);
         List<Splitz> GetSplitzByFirebaseId(string firebaseId);
+        void Update(Splitz splitz);
     }
 }

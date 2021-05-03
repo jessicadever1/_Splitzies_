@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { UserProfileContext, UserProfileProvider } from "./providers/UserProfileProvider";
+import { UserProfileContext } from "./providers/UserProfileProvider";
 import Login from "./Login/Login"
 import Register from "./Login/Register"
 import SplitzList from "./Splitz/SplitzList";
@@ -13,18 +13,18 @@ export default function ApplicationViews() {
         <main>
             <Switch>
 
-                <Route path="/" exact>
-                    <SplitzProvider>
-                        {isLoggedIn ? <SplitzList /> : <Redirect to="/login" />}
-                    </SplitzProvider>
-                </Route>
-
                 <Route exact path="/login">
                     <Login />
                 </Route>
 
                 <Route exact path="/register">
                     <Register />
+                </Route>
+
+                <Route path="/" exact>
+                    <SplitzProvider>
+                        {isLoggedIn ? <SplitzList /> : <Redirect to="/login" />}
+                    </SplitzProvider>
                 </Route>
 
                 <Route exact path="/mySplitz">

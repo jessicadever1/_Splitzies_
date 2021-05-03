@@ -24,14 +24,15 @@ namespace Splitzies.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT  US.SplitzId,
+                        SELECT  US.Id AS UserSplitzId,
+                                US.SplitzId,
                                 US.UserProfileId,
                                 
                                 S.SplitzName,
                                 S.Id,
                                 S.SplitzDetails,
                                 S.[Date],
-                                S.DeletedDate,
+                               
 
                                 UP.DisplayName,
                                 UP.FirstName,
@@ -46,7 +47,7 @@ namespace Splitzies.Repositories
                     WHERE UP.FirebaseId = @firebaseId
                     ORDER BY S.Date DESC";
 
-                    cmd.Parameters.AddWithValue("@userProfileId", firebaseId);
+                    cmd.Parameters.AddWithValue("@firebaseId", firebaseId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -60,7 +61,7 @@ namespace Splitzies.Repositories
                             SplitzName = DbUtils.GetString(reader, "SplitzName"),
                             SplitzDetails = DbUtils.GetString(reader, "SplitzDetails"),
                             Date = DbUtils.GetDateTime(reader, "Date"),
-                            DeletedDate = (DateTime)DbUtils.GetNullableDateTime(reader, "DeletedDate"),
+                            
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
@@ -73,7 +74,7 @@ namespace Splitzies.Repositories
                             },
                             UserSplitz = new UserSplitz()
                             {
-                                Id = DbUtils.GetInt(reader, "CategoryId"),
+                                Id = DbUtils.GetInt(reader, "UserSplitzId"),
                                 SplitzId = DbUtils.GetInt(reader, "SplitzId"),
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
                             }
@@ -119,6 +120,28 @@ namespace Splitzies.Repositories
             }
         }
 
+
+
+        public void Update(Splitz splitz)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Splitz
+                            SET Splitz = @splitzName,
+                                
+                            WHERE Id = @id";
+
+                 
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
 
 
 

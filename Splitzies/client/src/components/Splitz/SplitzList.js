@@ -15,7 +15,7 @@ export const SplitzList = () => {
             <div className="row justify-content-center">
                 <div className="cards-column">
                     {splitzies.map((splitz) => {
-
+                        console.log(splitz.splitzName)
                         return <Splitz key={splitz.id} splitz={splitz} />
                     })}
                 </div>

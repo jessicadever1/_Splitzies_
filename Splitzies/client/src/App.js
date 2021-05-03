@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { UserProfileProvider } from "./components/providers/UserProfileProvider";
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
+import SplitzProvider from './components/providers/SplitzProvider';
 
 export const App = () => {
   return (
