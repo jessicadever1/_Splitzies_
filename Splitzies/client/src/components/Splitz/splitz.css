@@ -5,3 +5,12 @@
 .blue {
     color:rgb(58, 134, 255)
 }
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.listPic {
+    padding: 0 .5rem 0 .5rem;
+}
