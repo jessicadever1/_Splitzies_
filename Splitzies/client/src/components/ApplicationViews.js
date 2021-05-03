@@ -4,6 +4,7 @@ import { UserProfileContext, UserProfileProvider } from "./providers/UserProfile
 import Login from "./Login/Login"
 import Register from "./Login/Register"
 import SplitzList from "./Splitz/SplitzList";
+import SplitzProvider from "./providers/SplitzProvider";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
@@ -13,7 +14,9 @@ export default function ApplicationViews() {
             <Switch>
 
                 <Route path="/" exact>
-                    <SplitzList />
+                    <SplitzProvider>
+                        {isLoggedIn ? <SplitzList /> : <Redirect to="/login" />}
+                    </SplitzProvider>
                 </Route>
 
                 <Route exact path="/login">
@@ -25,7 +28,9 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/mySplitz">
-                    <SplitzList />
+                    <SplitzProvider>
+                        {isLoggedIn ? <SplitzList /> : <Redirect to="/login" />}
+                    </SplitzProvider>
                 </Route>
 
             </Switch>

@@ -4,10 +4,10 @@ import Splitz from "./SplitzCard";
 
 export const SplitzList = () => {
     const { splitzies, getMySplitzies } = useContext(SplitzContext);
+    console.log("List of Splitzies:", splitzies)
 
     useEffect(() => {
         getMySplitzies();
-        console.log("List of Splitzies:", splitzies)
     }, []);
 
     return (
