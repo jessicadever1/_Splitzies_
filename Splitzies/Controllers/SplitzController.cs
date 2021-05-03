@@ -13,7 +13,7 @@ namespace Splitzies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+    [Authorize]
     public class SplitzController : ControllerBase
     {
         private readonly ISplitzRepository _splitzRepository;
