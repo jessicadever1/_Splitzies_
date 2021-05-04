@@ -70,3 +70,27 @@ SELECT up.Id as UserProfileId,
 
 ALTER TABLE Splitz 
 ADD splitzPic nvarchar (2055);
+
+
+SELECT  US.Id AS UserSplitzId,
+        US.SplitzId,
+        US.UserProfileId,
+                                
+        S.SplitzName,
+        S.Id,
+        S.SplitzDetails,
+        S.[Date],
+        S.DeletedDate,
+
+        UP.DisplayName,
+        UP.FirstName,
+        UP.LastName,
+        UP.Email,
+        UP.FirebaseId,
+        UP.ProfilePic
+
+FROM UserSplitz US
+    LEFT JOIN Splitz S ON US.SplitzId = S.Id
+    LEFT JOIN UserProfile UP ON US.UserProfileId = UP.ID
+WHERE UP.FirebaseId = VfL1t0g0O2eV3Lyttnj3b54ydu82
+ORDER BY S.Date DESC

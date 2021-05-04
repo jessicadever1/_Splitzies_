@@ -7,7 +7,11 @@ import { faRoute } from '@fortawesome/free-solid-svg-icons'
 import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons'
 
 export const Splitz = ({ splitz }) => {
-    console.log(splitz.splitzName)
+    console.log(splitz.userProfiles)
+
+    let usersOnSplitz = splitz.userProfiles
+
+
 
     return (
         <Card className="m-4">
@@ -19,6 +23,17 @@ export const Splitz = ({ splitz }) => {
                 <div>
                     <Link to="">{splitz.splitzName}</Link>
                     <p>{splitz.date}</p>
+                    <div>
+                        {usersOnSplitz.map((user) => {
+
+                            return (
+                                <>
+                                    <img key={user.id} className="a" src={user.profilePic}></img>
+                                </>
+                            )
+                        })}
+
+                    </div>
                 </div>
                 <FontAwesomeIcon icon={faCommentsDollar} />
             </CardBody>

@@ -14,3 +14,9 @@
 .listPic {
     padding: 0 .5rem 0 .5rem;
 }
+
+.a {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+}

@@ -22,27 +22,26 @@ namespace Splitzies.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT  US.Id AS UserSplitzId,
-                                US.SplitzId,
-                                US.UserProfileId,
+                            US.SplitzId AS SplitzId,
+                            US.UserProfileId,
                                 
-                                S.SplitzName,
-                                S.Id,
-                                S.SplitzDetails,
-                                S.[Date],
-                                S.DeletedDate,
+                            S.SplitzName,
+                            S.Id AS Id,
+                            S.SplitzDetails,
+                            S.[Date],
+                            S.DeletedDate,
 
-                                UP.DisplayName,
-                                UP.FirstName,
-                                UP.LastName,
-                                UP.Email,
-                                UP.FirebaseId,
-                                UP.ProfilePic
-
+                            UP.DisplayName,
+                            UP.FirstName,
+                            UP.LastName,
+                            UP.Email,
+                            UP.FirebaseId,
+                            UP.ProfilePic
                     FROM UserSplitz US
+                        LEFT JOIN UserProfile UP ON US.UserProfileId = UP.Id
                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
-                        LEFT JOIN UserProfile UP ON US.UserProfileId = UP.ID
-                    WHERE UP.FirebaseId = @firebaseId
-                    ORDER BY S.Date DESC";
+                    
+                    ORDER  BY S.Date DESC";
 
                     cmd.Parameters.AddWithValue("@firebaseId", firebaseId);
 
@@ -80,6 +79,7 @@ namespace Splitzies.Repositories
                                 },
                                 UserProfiles = new List<UserProfile>()
                             };
+                            existingSplitz.Date.ToString("MMMM dd yyyy");
                             splitzies.Add(existingSplitz);
                         }
                         if (DbUtils.IsNotDbNull(reader, "UserProfileId"))
