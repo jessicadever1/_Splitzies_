@@ -67,3 +67,6 @@ SELECT up.Id as UserProfileId,
                                             LEFT JOIN UserProfile up ON us.UserProfileId = up.Id
                                             LEFT JOIN Splitz s ON us.SplitzId = s.Id
                                          WHERE UserSplitz.SplitzId = 5
+
+ALTER TABLE Splitz 
+ADD splitzPic nvarchar (2055);

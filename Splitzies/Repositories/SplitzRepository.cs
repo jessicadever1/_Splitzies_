@@ -4,14 +4,13 @@ using Microsoft.Extensions.Configuration;
 using Splitzies.Models;
 using Splitzies.Utils;
 using System;
+using System.Linq;
 
 namespace Splitzies.Repositories
 {
     public class SplitzRepository : BaseRepository, ISplitzRepository
     {
         public SplitzRepository(IConfiguration configuration) : base(configuration) { }
-
-
 
         public List<Splitz> GetSplitzByFirebaseId(string firebaseId)
         {
@@ -50,34 +49,49 @@ namespace Splitzies.Repositories
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     List<Splitz> splitzies = new List<Splitz>();
-
                     while (reader.Read())
                     {
-                        splitzies.Add(new Splitz()
+                        var splitzId = DbUtils.GetInt(reader, "SplitzId");
+                        var existingSplitz = splitzies.FirstOrDefault(s => s.Id == splitzId);
+                        if (existingSplitz == null)
+                        { 
+                            existingSplitz = new Splitz()
+                            {
+                                Id = splitzId,
+                                SplitzName = DbUtils.GetString(reader, "SplitzName"),
+                                SplitzDetails = DbUtils.GetString(reader, "SplitzDetails"),
+                                Date = DbUtils.GetDateTime(reader, "Date"),
+                                DeletedDate = DbUtils.IsDbNull(reader, "DeletedDate") ? null : DbUtils.GetDateTime(reader, "DeletedDate"),
+                                UserProfile = new UserProfile()
+                                {
+                                    Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                    FirebaseId = DbUtils.GetString(reader, "FirebaseId"),
+                                    DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                    FirstName = DbUtils.GetString(reader, "FirstName"),
+                                    LastName = DbUtils.GetString(reader, "LastName"),
+                                    Email = DbUtils.GetString(reader, "Email"),
+                                    ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
+                                },
+                                UserSplitz = new UserSplitz()
+                                {
+                                    Id = DbUtils.GetInt(reader, "UserSplitzId"),
+                                    SplitzId = DbUtils.GetInt(reader, "SplitzId"),
+                                    UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
+                                },
+                                UserProfiles = new List<UserProfile>()
+                            };
+                            splitzies.Add(existingSplitz);
+                        }
+                        if (DbUtils.IsNotDbNull(reader, "UserProfileId"))
                         {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            SplitzName = DbUtils.GetString(reader, "SplitzName"),
-                            SplitzDetails = DbUtils.GetString(reader, "SplitzDetails"),
-                            Date = DbUtils.GetDateTime(reader, "Date"),
-                            DeletedDate = DbUtils.IsDbNull(reader, "DeletedDate") ? null : DbUtils.GetDateTime(reader, "DeletedDate"),
-                            UserProfile = new UserProfile()
+                            existingSplitz.UserProfiles.Add(new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                FirebaseId = DbUtils.GetString(reader, "FirebaseId"),
-                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                                FirstName = DbUtils.GetString(reader, "FirstName"),
-                                LastName = DbUtils.GetString(reader, "LastName"),
-                                Email = DbUtils.GetString(reader, "Email"),
                                 ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
-                            },
-                            UserSplitz = new UserSplitz()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserSplitzId"),
-                                SplitzId = DbUtils.GetInt(reader, "SplitzId"),
-                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
-                            }
+                                DisplayName = DbUtils.GetString(reader, "DisplayName")
+                            });
                             
-                        });
+                        }
                     }
                     reader.Close();
                     return splitzies;

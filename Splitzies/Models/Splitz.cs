@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Splitzies.Models
 {
@@ -10,6 +11,7 @@ namespace Splitzies.Models
         public string SplitzDetails { get; set; }
         public DateTime ? DeletedDate { get; set; }
         public UserProfile UserProfile { get; set; }
+        public List<UserProfile> UserProfiles { get; set; }
         public UserSplitz UserSplitz { get; set; }
     }
 }
