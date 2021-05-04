@@ -9,6 +9,7 @@ namespace Splitzies.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
   
     public class UserProfileController : ControllerBase
     {

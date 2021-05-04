@@ -22,6 +22,16 @@ export const SplitzProvider = (props) => {
             .then(setSplitzies);
     };
 
+    const addSplitz = (splitz) => {
+        return fetch("/api/splitz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(splitz),
+        })
+    };
+
     return (
         <SplitzContext.Provider
             value={{
@@ -29,7 +39,8 @@ export const SplitzProvider = (props) => {
                 splitzies,
                 setSplitzies,
                 searchTerms,
-                setSearchTerms
+                setSearchTerms,
+                addSplitz
             }}
         >
             {props.children}

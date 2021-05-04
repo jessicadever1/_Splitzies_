@@ -38,5 +38,12 @@ namespace Splitzies.Controllers
             return id;
         }
 
+        [HttpPost]
+        public IActionResult Post(Splitz splitz)
+        {
+            _splitzRepository.Add(splitz);
+            return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
+        }
+
     }
 }

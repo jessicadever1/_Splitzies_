@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Splitzies.Models;
 using Splitzies.Utils;
+using System;
 
 namespace Splitzies.Repositories
 {
@@ -75,7 +76,7 @@ namespace Splitzies.Repositories
                                 SplitzId = DbUtils.GetInt(reader, "SplitzId"),
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
                             }
-                    
+                            
                         });
                     }
                     reader.Close();
