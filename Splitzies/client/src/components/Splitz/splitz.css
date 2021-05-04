@@ -1,0 +1,22 @@
+.pink {
+    color: rgb(255, 0, 110);
+}
+
+.blue {
+    color:rgb(58, 134, 255)
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.listPic {
+    padding: 0 .5rem 0 .5rem;
+}
+
+.a {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+}

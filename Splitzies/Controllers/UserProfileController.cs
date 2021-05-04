@@ -10,6 +10,7 @@ namespace Splitzies.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+  
     public class UserProfileController : ControllerBase
     {
         private readonly IUserProfileRepository _userProfileRepository;

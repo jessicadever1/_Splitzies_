@@ -10,5 +10,6 @@ namespace Splitzies.Models
         public int Id { get; set; }
         public int UserProfileId { get; set; }
         public int SplitzId { get; set; }
+        public UserProfile UserProfile { get; set; }
     }
 }

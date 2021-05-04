@@ -21,25 +21,10 @@ export default function Header() {
     return (
         <div>
             <Navbar className="pink" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/" id="textColorWhite">Splitzies</NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/" id="textColorWhite" className="center">Splitzies</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
-                        { /* When isLoggedIn === true, we will render the Home and Post links */}
-                        {isLoggedIn &&
-                            <NavItem className="nav-items pink">
-                                <NavLink id="textColorWhite" tag={RRNavLink} to="/">Splitz</NavLink>
-                                <NavLink id="textColorWhite" tag={RRNavLink} to="">+</NavLink>
-                                <NavLink id="textColorWhite" tag={RRNavLink} to="">Balance</NavLink>
-                            </NavItem>
-                        }
-                        {isLoggedIn && userProfile.userTypeId === 1 &&
-                            <NavItem className="nav-items">
-                                <NavLink tag={RRNavLink} to="">Tag Management</NavLink>
-                                <NavLink tag={RRNavLink} to="">User Profiles</NavLink>
-                            </NavItem>
-                        }
-                    </Nav>
+
                     <Nav navbar>
                         {isLoggedIn &&
                             <>
