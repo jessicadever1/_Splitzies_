@@ -3,6 +3,9 @@ using Splitzies.Repositories;
 using System.Security.Claims;
 using Splitzies.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace Splitzies.Controllers
 {
@@ -12,19 +15,12 @@ namespace Splitzies.Controllers
     public class UserSplitzController : ControllerBase
     {
         private readonly IUserSplitzRepository _userSplitzRepository;
-        private readonly ISplitzRepository _splitzRepository;
-        private readonly IUserProfileRepository _userProfileRepository;
+       
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet]
+        public IActionResult Get(int splitzId)
         {
-            var userSplitz = _userSplitzRepository.GetUserProfilesByUserSplitzId(id);
-            if (userSplitz == null)
-            {
-                return NotFound();
-            }
-            return Ok(userSplitz);
-
+            return Ok(_userSplitzRepository.GetUserProfilesByUserSplitzId(splitzId));
         }
     }
 }

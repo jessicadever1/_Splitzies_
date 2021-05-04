@@ -9,7 +9,7 @@ namespace Splitzies.Repositories
     {
         public UserSplitzRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<UserProfile> GetUserProfilesByUserSplitzId(int id)
+        public List<UserProfile> GetUserProfilesByUserSplitzId(int splitzId)
         {
             using (var conn = Connection)
             {
@@ -18,6 +18,7 @@ namespace Splitzies.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT  UserSplitz.Id,
+                                                UserSplitz.splitzId AS splitzId,
                                                 UserProfileId,
                                                 UserProfile.DisplayName,
                                                 UserProfile.ProfilePic,
@@ -27,7 +28,7 @@ namespace Splitzies.Repositories
                                         WHERE UserSplitz.SplitzId = @Id
                                         ORDER BY up.DisplayName";
 
-                    DbUtils.AddParameter(cmd, "@Id", id);
+                    DbUtils.AddParameter(cmd, "@splitzId", splitzId);
 
                     var reader = cmd.ExecuteReader();
                     var userProfiles = new List<UserProfile>();

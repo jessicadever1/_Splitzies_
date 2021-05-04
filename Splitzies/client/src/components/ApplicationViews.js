@@ -5,6 +5,8 @@ import Login from "./Login/Login"
 import Register from "./Login/Register"
 import SplitzList from "./Splitz/SplitzList";
 import SplitzProvider from "./providers/SplitzProvider";
+import './appViews.css';
+import FooterMenu from "./Footer";
 
 export default function ApplicationViews() {
     const { isLoggedIn } = useContext(UserProfileContext);
