@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Splitzies.Repositories;
 using System.Security.Claims;
 using Splitzies.Models;
+using System.Collections.Generic;
 
 namespace Splitzies.Controllers
 {
@@ -27,9 +28,17 @@ namespace Splitzies.Controllers
         [HttpGet("MySplitz")]
         public IActionResult MySplitz()
         {
-            string firebaseUserProfileId = GetCurrentFirebaseUserProfileId();
-            var splitzies = _splitzRepository.GetSplitzByFirebaseId(firebaseUserProfileId);
+            var userProfile = GetCurrentUserProfile();
+            var id = userProfile.Id;
+            var splitzies = _splitzRepository.GetSplitzByFirebaseId(id);
+            
             return Ok(splitzies); 
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseId(firebaseUserId);
         }
 
         private string GetCurrentFirebaseUserProfileId()

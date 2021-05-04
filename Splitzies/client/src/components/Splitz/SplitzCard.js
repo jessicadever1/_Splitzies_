@@ -11,8 +11,6 @@ export const Splitz = ({ splitz }) => {
 
     let usersOnSplitz = splitz.userProfiles
 
-
-
     return (
         <Card className="m-4">
             <CardBody className="row">
@@ -28,11 +26,11 @@ export const Splitz = ({ splitz }) => {
 
                             return (
                                 <>
-                                    <img key={user.id} className="a" src={user.profilePic}></img>
+
+                                    <img className="a" src={user.profilePic}></img>
                                 </>
                             )
                         })}
-
                     </div>
                 </div>
                 <FontAwesomeIcon icon={faCommentsDollar} />

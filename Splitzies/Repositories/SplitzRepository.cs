@@ -12,7 +12,7 @@ namespace Splitzies.Repositories
     {
         public SplitzRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Splitz> GetSplitzByFirebaseId(string firebaseId)
+        public List<Splitz> GetSplitzByFirebaseId(int userProfileId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -40,10 +40,13 @@ namespace Splitzies.Repositories
                     FROM UserSplitz US
                         LEFT JOIN UserProfile UP ON US.UserProfileId = UP.Id
                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
-                    
-                    ORDER  BY S.Date DESC";
+                    WHERE S.Id IN (
+                    SELECT US.SplitzId
+                    FROM UserSplitz US
+                    WHERE US.UserProfileId = @userProfileId )
+                    ORDER BY S.Date DESC";
 
-                    cmd.Parameters.AddWithValue("@firebaseId", firebaseId);
+                    cmd.Parameters.AddWithValue("@userProfileId", userProfileId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
