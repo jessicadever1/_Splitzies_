@@ -20,3 +20,26 @@
     width: 30px;
     height: 30px;
 }
+
+.b, .b:hover {
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+    font-size: 9px;
+    max-height: 2rem;
+}
+
+.picSize {
+    max-width: 5rem;
+    max-height: 5rem;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}

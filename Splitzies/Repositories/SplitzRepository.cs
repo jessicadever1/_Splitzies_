@@ -12,7 +12,7 @@ namespace Splitzies.Repositories
     {
         public SplitzRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<Splitz> GetSplitzByFirebaseId(int userProfileId)
+        public List<Splitz> GetSplitzByUserProfileId(int userProfileId)
         {
             using (SqlConnection conn = Connection)
             {
@@ -105,7 +105,7 @@ namespace Splitzies.Repositories
 
 
 
-        public Splitz GetById(int splitzId)
+        public Splitz GetById(int splitzId, int userProfileId)
         {
             using (var conn = Connection)
             {
@@ -113,7 +113,7 @@ namespace Splitzies.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT 
-                                            s.Id AS Id
+                                            s.Id AS splitzId,
                                             s.splitzName, 
                                             s.splitzDetails, 
                                             s.date,
@@ -131,9 +131,11 @@ namespace Splitzies.Repositories
                                        FROM UserSplitz US 
                                         LEFT JOIN UserProfile UP ON US.UserProfileId = UP.Id
                                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
-                                       WHERE US.SplitzId = @splitzId;";
+                                       WHERE US.SplitzId = @splitzId
+                                       AND UP.Id = @userProfileId;";
 
-                    DbUtils.AddParameter(cmd, "@Id", splitzId);
+                    DbUtils.AddParameter(cmd, "@splitzId", splitzId);
+                    DbUtils.AddParameter(cmd, "@userProfileId", userProfileId);
 
                     var reader = cmd.ExecuteReader();
                     Splitz splitz = null;
@@ -141,7 +143,7 @@ namespace Splitzies.Repositories
                     {
                         splitz = new Splitz()
                         {
-                            Id = DbUtils.GetInt(reader, "splitzId"),
+                            Id = splitzId,
                             SplitzName = DbUtils.GetString(reader, "splitzName"),
                             SplitzDetails = DbUtils.GetString(reader, "splitzDetails"),
                             Date = DbUtils.GetDateTime(reader, "date"),
@@ -151,7 +153,7 @@ namespace Splitzies.Repositories
                                 DbUtils.GetDateTime(reader, "deletedDate"),
                             UserProfile = new UserProfile()
                             {
-                                Id = DbUtils.GetInt(reader, "userProfileId"),
+                                Id = userProfileId,
                                 DisplayName = DbUtils.GetString(reader, "displayName"),
                                 FirstName = DbUtils.GetString(reader, "firstName"),
                                 LastName = DbUtils.GetString(reader, "lastName"),

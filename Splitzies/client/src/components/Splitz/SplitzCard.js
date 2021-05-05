@@ -7,7 +7,6 @@ import { faRoute } from '@fortawesome/free-solid-svg-icons'
 import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons'
 
 export const Splitz = ({ splitz }) => {
-    console.log(splitz.userProfiles)
 
     let usersOnSplitz = splitz.userProfiles
 

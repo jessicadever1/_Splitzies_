@@ -30,7 +30,7 @@ namespace Splitzies.Controllers
         {
             var userProfile = GetCurrentUserProfile();
             var id = userProfile.Id;
-            var splitzies = _splitzRepository.GetSplitzByFirebaseId(id);
+            var splitzies = _splitzRepository.GetSplitzByUserProfileId(id);
             
             return Ok(splitzies); 
         }
@@ -50,14 +50,19 @@ namespace Splitzies.Controllers
         [HttpPost]
         public IActionResult Post(Splitz splitz)
         {
+            
             _splitzRepository.Add(splitz);
             return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(int splitzId)
         {
-            var splitz = _splitzRepository.GetById(id);
+            var userProfile = GetCurrentUserProfile();
+            var userProfileId = userProfile.Id;
+
+
+            var splitz = _splitzRepository.GetById(splitzId, userProfileId);
             if (splitz == null)
             {
                 return NotFound();
