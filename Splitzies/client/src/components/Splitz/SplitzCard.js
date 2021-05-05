@@ -2,13 +2,15 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./splitz.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRoute } from '@fortawesome/free-solid-svg-icons'
-import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRoute } from '@fortawesome/free-solid-svg-icons';
+import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
+import dateFormat from 'dateformat';
 
 export const Splitz = ({ splitz }) => {
 
     let usersOnSplitz = splitz.userProfiles
+    const date = dateFormat(splitz.date, "mmmm dS, yyyy")
 
     return (
         <Card className="m-4">
@@ -19,7 +21,7 @@ export const Splitz = ({ splitz }) => {
 
                 <div>
                     <Link to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
-                    <p>{splitz.date}</p>
+                    <p>{date}</p>
                     <div>
                         {usersOnSplitz.map((user) => {
 

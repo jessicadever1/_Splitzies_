@@ -82,7 +82,7 @@ namespace Splitzies.Repositories
                                 },
                                 UserProfiles = new List<UserProfile>()
                             };
-                            existingSplitz.Date.ToString("MMMM dd yyyy");
+                           
                             splitzies.Add(existingSplitz);
                         }
                         if (DbUtils.IsNotDbNull(reader, "UserProfileId"))
@@ -120,14 +120,16 @@ namespace Splitzies.Repositories
                                             s.splitzPic, 
                                             s.deletedDate, 
 
-                                            up.Id AS userProfileId, 
+                                            up.Id AS userProfileId,
+                                            up.firebaseId
                                             up.displayName, 
                                             up.firstName, 
                                             up.lastName, 
                                             up.email, 
                                             up.profilePic,
                 
-                                            us.Id AS userSplitzId
+                                            us.Id AS userSplitzId,
+                                            us.splitzId
                                        FROM UserSplitz US 
                                         LEFT JOIN UserProfile UP ON US.UserProfileId = UP.Id
                                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
@@ -141,26 +143,48 @@ namespace Splitzies.Repositories
                     Splitz splitz = null;
                     while (reader.Read())
                     {
-                        splitz = new Splitz()
+                        
+                        if (splitz == null)
                         {
-                            Id = splitzId,
-                            SplitzName = DbUtils.GetString(reader, "splitzName"),
-                            SplitzDetails = DbUtils.GetString(reader, "splitzDetails"),
-                            Date = DbUtils.GetDateTime(reader, "date"),
-                            SplitzPic = DbUtils.IsDbNull(reader, "splitzPic") ? null :
-                                DbUtils.GetString(reader, "splitzPic"),
-                            DeletedDate = DbUtils.IsDbNull(reader, "deletedDate") ? null :
-                                DbUtils.GetDateTime(reader, "deletedDate"),
-                            UserProfile = new UserProfile()
+                            splitz = new Splitz()
                             {
-                                Id = userProfileId,
-                                DisplayName = DbUtils.GetString(reader, "displayName"),
-                                FirstName = DbUtils.GetString(reader, "firstName"),
-                                LastName = DbUtils.GetString(reader, "lastName"),
-                                Email = DbUtils.GetString(reader, "email"),
-                                ProfilePic = DbUtils.GetString(reader, "profilePic")
-                            },
-                        };
+                                Id = splitzId,
+                                SplitzName = DbUtils.GetString(reader, "SplitzName"),
+                                SplitzDetails = DbUtils.GetString(reader, "SplitzDetails"),
+                                Date = DbUtils.GetDateTime(reader, "Date"),
+                                SplitzPic = DbUtils.IsDbNull(reader, "SplitzPic") ? null : DbUtils.GetString(reader, "SplitzPic"),
+                                DeletedDate = DbUtils.IsDbNull(reader, "DeletedDate") ? null : DbUtils.GetDateTime(reader, "DeletedDate"),
+                                UserProfile = new UserProfile()
+                                {
+                                    Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                    FirebaseId = DbUtils.GetString(reader, "FirebaseId"),
+                                    DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                    FirstName = DbUtils.GetString(reader, "FirstName"),
+                                    LastName = DbUtils.GetString(reader, "LastName"),
+                                    Email = DbUtils.GetString(reader, "Email"),
+                                    ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
+                                },
+                                UserSplitz = new UserSplitz()
+                                {
+                                    Id = DbUtils.GetInt(reader, "UserSplitzId"),
+                                    SplitzId = DbUtils.GetInt(reader, "SplitzId"),
+                                    UserProfileId = DbUtils.GetInt(reader, "UserProfileId")
+                                },
+                                UserProfiles = new List<UserProfile>()
+                            };
+
+                            
+                        }
+                        if (DbUtils.IsNotDbNull(reader, "UserProfileId"))
+                        {
+                            splitz.UserProfiles.Add(new UserProfile()
+                            {
+                                Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName")
+                            });
+
+                        }
                     }
                     reader.Close();
                     return splitz;
