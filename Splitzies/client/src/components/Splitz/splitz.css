@@ -42,4 +42,21 @@
 .flexRow {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.font10{
+    font-size: 10px;
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.font18{
+    font-size: 18px;
+}
+
+.center {
+    align-content: center;
 }
