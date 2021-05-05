@@ -14,7 +14,6 @@ export const SplitzDetails = () => {
         getSplitzById(splitzId)
     }, []);
 
-
     return (
         <div>
             <Card className="m-4">

@@ -48,7 +48,8 @@ FROM UserSplitz US
 WHERE S.Id IN (
 SELECT US.SplitzId
 FROM UserSplitz US
-WHERE US.UserProfileId = 2 )
+WHERE US.UserProfileId = 2 
+AND S.ID =3)
 ORDER BY S.Date DESC
 
 

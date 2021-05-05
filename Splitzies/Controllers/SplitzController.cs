@@ -11,6 +11,7 @@ namespace Splitzies.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+
     public class SplitzController : ControllerBase
     {
         private readonly ISplitzRepository _splitzRepository;
@@ -56,13 +57,12 @@ namespace Splitzies.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int splitzId)
+        public IActionResult Get(int id)
         {
             var userProfile = GetCurrentUserProfile();
             var userProfileId = userProfile.Id;
 
-
-            var splitz = _splitzRepository.GetById(splitzId, userProfileId);
+            var splitz = _splitzRepository.GetById(id, userProfileId);
             if (splitz == null)
             {
                 return NotFound();

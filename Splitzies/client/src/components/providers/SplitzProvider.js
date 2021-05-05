@@ -33,6 +33,8 @@ export const SplitzProvider = (props) => {
             }).then((res) => res.json()))
     };
 
+
+
     const addSplitz = (splitz) => {
         return fetch("/api/splitz", {
             method: "POST",
