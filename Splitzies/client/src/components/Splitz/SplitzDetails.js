@@ -61,6 +61,8 @@ export const SplitzDetails = () => {
                         <div className="center">
                             <img className="a" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                            <small>$83.88</small>
+                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                             <img className="a" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                         </div>
                     </div>
