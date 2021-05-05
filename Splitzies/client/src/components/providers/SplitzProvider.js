@@ -7,12 +7,13 @@ export const SplitzProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const [splitzies, setSplitzies] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
+    const apiUrl = "/api/Splitz";
 
     const getMySplitzies = () => {
 
         return getToken()
             .then((token) =>
-                fetch("/api/Splitz/MySplitz", {
+                fetch(`${apiUrl}/MySplitz`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -21,6 +22,18 @@ export const SplitzProvider = (props) => {
             )
             .then(setSplitzies);
     };
+
+    const getSplitzById = (id) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((res) => res.json()))
+    };
+
+
 
     const addSplitz = (splitz) => {
         return fetch("/api/splitz", {
@@ -40,6 +53,7 @@ export const SplitzProvider = (props) => {
                 setSplitzies,
                 searchTerms,
                 setSearchTerms,
+                getSplitzById,
                 addSplitz
             }}
         >

@@ -4,7 +4,6 @@ import Splitz from "./SplitzCard";
 
 export const SplitzList = () => {
     const { splitzies, getMySplitzies } = useContext(SplitzContext);
-    console.log("List of Splitzies:", splitzies)
 
     useEffect(() => {
         getMySplitzies();
@@ -15,7 +14,6 @@ export const SplitzList = () => {
             <div className="row justify-content-center">
                 <div className="cards-column">
                     {splitzies.map((splitz) => {
-                        console.log(splitz.splitzName)
                         return <Splitz key={splitz.id} splitz={splitz} />
                     })}
                 </div>

@@ -20,3 +20,43 @@
     width: 30px;
     height: 30px;
 }
+
+.b, .b:hover {
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+    font-size: 9px;
+    max-height: 2rem;
+}
+
+.picSize {
+    max-width: 5rem;
+    max-height: 5rem;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.font10{
+    font-size: 10px;
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.font18{
+    font-size: 18px;
+}
+
+.center {
+    align-content: center;
+}
