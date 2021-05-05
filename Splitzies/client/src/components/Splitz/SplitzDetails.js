@@ -4,6 +4,8 @@ import { SplitzContext } from "../providers/SplitzProvider";
 import { useParams, Link } from "react-router-dom";
 import "./splitz.css";
 import dateFormat from 'dateformat';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export const SplitzDetails = () => {
     const [splitz, setSplitz] = useState({ splitz: {} });
@@ -53,6 +55,13 @@ export const SplitzDetails = () => {
                                     </>
                                 )
                             })}
+                        </div>
+                    </div>
+                    <div className="flexColumn">
+                        <div className="center">
+                            <img className="a" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                            <img className="a" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                         </div>
                     </div>
                 </CardBody>
