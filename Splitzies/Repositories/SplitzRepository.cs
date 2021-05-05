@@ -121,7 +121,7 @@ namespace Splitzies.Repositories
                                             s.deletedDate, 
 
                                             up.Id AS userProfileId,
-                                            up.firebaseId
+                                            up.firebaseId,
                                             up.displayName, 
                                             up.firstName, 
                                             up.lastName, 
@@ -133,8 +133,11 @@ namespace Splitzies.Repositories
                                        FROM UserSplitz US 
                                         LEFT JOIN UserProfile UP ON US.UserProfileId = UP.Id
                                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
-                                       WHERE US.SplitzId = @splitzId
-                                       AND UP.Id = @userProfileId;";
+                                       WHERE S.Id IN(
+                                        SELECT US.SplitzId
+                                        FROM UserSplitz US
+                                        WHERE US.UserProfileId = @userProfileId
+                                        AND US.SplitzId = @splitzId);";
 
                     DbUtils.AddParameter(cmd, "@splitzId", splitzId);
                     DbUtils.AddParameter(cmd, "@userProfileId", userProfileId);

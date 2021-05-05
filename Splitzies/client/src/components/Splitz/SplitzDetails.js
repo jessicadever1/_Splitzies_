@@ -16,7 +16,9 @@ export const SplitzDetails = () => {
         getSplitzById(splitzId).then(setSplitz)
     }, []);
 
-    return (
+    let usersOnSplitz = splitz.userProfiles
+
+    return usersOnSplitz ? (
         <div>
             <Card className="m-4">
                 <CardBody>
@@ -42,10 +44,21 @@ export const SplitzDetails = () => {
                             <p>$83.33</p>
                         </div>
                     </div>
+                    <div className="flexRow">
+                        <div>
+                            {usersOnSplitz.map((user) => {
+                                return (
+                                    <>
+                                        <img className="a" key={user.id} src={user.profilePic}></img>
+                                    </>
+                                )
+                            })}
+                        </div>
+                    </div>
                 </CardBody>
             </Card>
         </div>
-    );
+    ) : null;
 };
 
 export default SplitzDetails;

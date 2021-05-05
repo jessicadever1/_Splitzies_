@@ -24,11 +24,9 @@ export const Splitz = ({ splitz }) => {
                     <p>{date}</p>
                     <div>
                         {usersOnSplitz.map((user) => {
-
                             return (
                                 <>
-
-                                    <img className="a" src={user.profilePic}></img>
+                                    <img className="a" key={user.id} src={user.profilePic}></img>
                                 </>
                             )
                         })}
