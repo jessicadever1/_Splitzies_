@@ -48,14 +48,6 @@ namespace Splitzies.Controllers
             return id;
         }
 
-        [HttpPost]
-        public IActionResult Post(Splitz splitz)
-        {
-            
-            _splitzRepository.Add(splitz);
-            return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
-        }
-
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -70,5 +62,16 @@ namespace Splitzies.Controllers
             return Ok(splitz);
 
         }
+
+        [HttpPost]
+        public IActionResult Post(Splitz splitz)
+        {
+            var currentUserProfile = GetCurrentUserProfile();
+            splitz.UserProfile.Id = currentUserProfile.Id;
+
+            _splitzRepository.Add(splitz);
+            return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
+        }
+
     }
 }

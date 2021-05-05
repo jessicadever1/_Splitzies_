@@ -208,18 +208,21 @@ namespace Splitzies.Repositories
                         INSERT INTO Splitz  (SplitzName, 
                                              SplitzDetails, 
                                              DeletedDate, 
-                                             Date)
+                                             Date,
+                                             SplitzPic)
 
                                OUTPUT INSERTED.ID
                         VALUES (@splitzName, 
                                 @splitzDetails, 
                                 @deletedDate, 
-                                @date)";
+                                @date,
+                                @splitzPic)";
 
                     DbUtils.AddParameter(cmd, "@splitzName", splitz.SplitzName);
                     DbUtils.AddParameter(cmd, "@splitzDetails", splitz.SplitzDetails);
                     DbUtils.AddParameter(cmd, "@deletedDate", splitz.DeletedDate);
                     DbUtils.AddParameter(cmd, "@date", splitz.Date);
+                    DbUtils.AddParameter(cmd, "@splitzPic", splitz.SplitzPic);
 
                     splitz.Id = (int)cmd.ExecuteScalar();
 

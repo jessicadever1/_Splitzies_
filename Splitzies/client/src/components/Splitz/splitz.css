@@ -60,3 +60,12 @@
 .center {
     align-content: center;
 }
+
+.padding {
+    padding: 18px;
+}
+
+.textarea {
+    font-size: 10px;
+    min-height: 10rem;
+}
