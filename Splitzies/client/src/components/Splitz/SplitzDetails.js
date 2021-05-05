@@ -17,23 +17,33 @@ export const SplitzDetails = () => {
     return (
         <div>
             <Card className="m-4">
-                <p className="text-left px-2">{splitz.splitzName}</p>
-                <CardImg top src={splitz.splitzPic} alt={splitz.splitzName} />
                 <CardBody>
-                    <p>
-                        <strong>{post.title}</strong>
-                    </p>
-                    <p>{post.content}</p>
-                    <p>{new Date(post.publishDateTime).toLocaleDateString()}</p>
-                    <Button className="b addComment"><Link className="a" to={`/comment/create/${post.id}`}>Add Comment</Link></Button>
-                </CardBody>
+                    <div className="flexRow">
+                        <CardImg top src={splitz.splitzPic} alt={splitz.splitzName} />
 
-                <div className="">
-                    <CommentList />
-                </div>
+                        <div class="flexColumn">
+                            <h1 className="text-left px-2">{splitz.splitzName}</h1>
+                            <h2>{splitz.date}</h2>
+                            <div class="flexRow">
+                                <Button><Link className="a" to={`/expense`}>See All Expenses</Link></Button>
+                                <Button><Link className="a" to={`/expense/create/${splitz.id}`}>Add Expense</Link></Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexRow">
+                        <div class="flexColumn">
+                            <h6>Your Portion Total</h6>
+                            <p>$300.00</p>
+                        </div>
+                        <div class="flexColumn">
+                            <h6>Your Total Owed</h6>
+                            <p>$83.33</p>
+                        </div>
+                    </div>
+                </CardBody>
             </Card>
         </div>
     );
 };
 
-export default PostDetails;
+export default SplitzDetails;

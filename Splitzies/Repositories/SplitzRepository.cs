@@ -105,7 +105,7 @@ namespace Splitzies.Repositories
 
 
 
-        public Splitz GetById(int id)
+        public Splitz GetById(int splitzId)
         {
             using (var conn = Connection)
             {
@@ -113,25 +113,27 @@ namespace Splitzies.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT 
-                                            s.Id AS splitzId
+                                            s.Id AS Id
                                             s.splitzName, 
                                             s.splitzDetails, 
                                             s.date,
                                             s.splitzPic, 
                                             s.deletedDate, 
 
-                                            up.Id as userProfileId, 
+                                            up.Id AS userProfileId, 
                                             up.displayName, 
                                             up.firstName, 
                                             up.lastName, 
                                             up.email, 
-                                            up.profilePic
+                                            up.profilePic,
+                
+                                            us.Id AS userSplitzId
                                        FROM UserSplitz US 
                                         LEFT JOIN UserProfile UP ON US.UserProfileId = UP.Id
                                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
-                                       WHERE UP.Id = @Id";
+                                       WHERE US.SplitzId = @splitzId;";
 
-                    DbUtils.AddParameter(cmd, "@Id", id);
+                    DbUtils.AddParameter(cmd, "@Id", splitzId);
 
                     var reader = cmd.ExecuteReader();
                     Splitz splitz = null;

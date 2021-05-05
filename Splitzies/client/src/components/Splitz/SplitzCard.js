@@ -19,7 +19,7 @@ export const Splitz = ({ splitz }) => {
                 </div>
 
                 <div>
-                    <Link to="">{splitz.splitzName}</Link>
+                    <Link to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
                     <p>{splitz.date}</p>
                     <div>
                         {usersOnSplitz.map((user) => {

@@ -7,6 +7,7 @@ export const SplitzProvider = (props) => {
     const { getToken } = useContext(UserProfileContext);
     const [splitzies, setSplitzies] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
+    const apiUrl = "/api/splitz";
 
     const getMySplitzies = () => {
 
