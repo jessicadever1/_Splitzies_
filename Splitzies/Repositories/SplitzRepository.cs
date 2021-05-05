@@ -104,6 +104,68 @@ namespace Splitzies.Repositories
 
 
 
+
+        public Splitz GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT 
+                                            s.Id AS splitzId
+                                            s.splitzName, 
+                                            s.splitzDetails, 
+                                            s.date,
+                                            s.splitzPic, 
+                                            s.deletedDate, 
+
+                                            up.Id as userProfileId, 
+                                            up.displayName, 
+                                            up.firstName, 
+                                            up.lastName, 
+                                            up.email, 
+                                            up.profilePic
+                                       FROM UserSplitz US 
+                                        LEFT JOIN UserProfile UP ON US.UserProfileId = UP.Id
+                                        LEFT JOIN Splitz S ON US.SplitzId = S.Id
+                                       WHERE UP.Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+                    Splitz splitz = null;
+                    while (reader.Read())
+                    {
+                        splitz = new Splitz()
+                        {
+                            Id = DbUtils.GetInt(reader, "splitzId"),
+                            SplitzName = DbUtils.GetString(reader, "splitzName"),
+                            SplitzDetails = DbUtils.GetString(reader, "splitzDetails"),
+                            Date = DbUtils.GetDateTime(reader, "date"),
+                            SplitzPic = DbUtils.IsDbNull(reader, "splitzPic") ? null :
+                                DbUtils.GetString(reader, "splitzPic"),
+                            DeletedDate = DbUtils.IsDbNull(reader, "deletedDate") ? null :
+                                DbUtils.GetDateTime(reader, "deletedDate"),
+                            UserProfile = new UserProfile()
+                            {
+                                Id = DbUtils.GetInt(reader, "userProfileId"),
+                                DisplayName = DbUtils.GetString(reader, "displayName"),
+                                FirstName = DbUtils.GetString(reader, "firstName"),
+                                LastName = DbUtils.GetString(reader, "lastName"),
+                                Email = DbUtils.GetString(reader, "email"),
+                                ProfilePic = DbUtils.GetString(reader, "profilePic")
+                            },
+                        };
+                    }
+                    reader.Close();
+                    return splitz;
+                }
+            }
+        }
+
+
+
         public void Add(Splitz splitz)
         {
             using (var conn = Connection)

@@ -54,5 +54,16 @@ namespace Splitzies.Controllers
             return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var splitz = _splitzRepository.GetById(id);
+            if (splitz == null)
+            {
+                return NotFound();
+            }
+            return Ok(splitz);
+
+        }
     }
 }

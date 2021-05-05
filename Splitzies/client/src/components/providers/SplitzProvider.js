@@ -22,6 +22,17 @@ export const SplitzProvider = (props) => {
             .then(setSplitzies);
     };
 
+    const getSplitzById = (id) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json()))
+
+    };
+
     const addSplitz = (splitz) => {
         return fetch("/api/splitz", {
             method: "POST",
@@ -40,6 +51,7 @@ export const SplitzProvider = (props) => {
                 setSplitzies,
                 searchTerms,
                 setSearchTerms,
+                getSplitzById,
                 addSplitz
             }}
         >

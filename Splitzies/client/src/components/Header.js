@@ -10,9 +10,11 @@ import {
     NavLink
 } from 'reactstrap';
 import { UserProfileContext } from "./providers/UserProfileProvider";
-import './header.css'
+import './header.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 
-export default function Header() {
+export function Header() {
     const { isLoggedIn, logout } = useContext(UserProfileContext);
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -20,8 +22,29 @@ export default function Header() {
 
     return (
         <div>
-            <Navbar className="pink" light expand="md">
-                <NavbarBrand tag={RRNavLink} to="/" id="textColorWhite" className="center">Splitzies</NavbarBrand>
+            <Navbar className="pink" >
+                <NavbarBrand tag={RRNavLink} to="/" className="textColorWhite center">Splitzies</NavbarBrand>
+                <NavItem>
+                    <Nav>
+                        {isLoggedIn &&
+                            <>
+                                <NavItem>
+                                    <a aria-current="page" className="vertical-center"
+                                        style={{ cursor: "pointer" }} onClick={logout}><FontAwesomeIcon className="textColorWhite" icon={faDoorOpen} /></a>
+                                </NavItem>
+                            </>
+                        }
+                    </Nav>
+
+                </NavItem>
+            </Navbar>
+        </div >
+    );
+};
+
+export default Header;
+/*
+
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
 
@@ -45,8 +68,4 @@ export default function Header() {
                             </>
                         }
                     </Nav>
-                </Collapse>
-            </Navbar>
-        </div >
-    );
-}
+                </Collapse>*/
