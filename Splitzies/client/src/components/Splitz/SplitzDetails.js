@@ -33,7 +33,7 @@ export const SplitzDetails = () => {
                         </div>
                         <div className="flexRow">
                             <Link to={`/splitzDelete/${splitz.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
-                            <Link to=""><FontAwesomeIcon className="" icon={faEdit} /></Link>
+                            <Link to={`/splitzEdit/${splitz.id}`}><FontAwesomeIcon className="" icon={faEdit} /></Link>
                         </div>
                     </div>
                     <div className="flexRow">

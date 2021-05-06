@@ -8,6 +8,7 @@ import SplitzProvider from "./providers/SplitzProvider";
 import SplitzDetails from "./Splitz/SplitzDetails";
 import SplitzAdd from "./Splitz/SplitzAdd";
 import SplitzDelete from "./Splitz/SplitzDelete";
+import SplitzEdit from "./Splitz/SplitzEdit";
 import './appViews.css';
 
 export default function ApplicationViews() {
@@ -52,6 +53,12 @@ export default function ApplicationViews() {
                 <Route exact path="/splitzDelete/:id(\d+)">
                     <SplitzProvider>
                         {isLoggedIn ? <SplitzDelete /> : <Redirect to="/login" />}
+                    </SplitzProvider>
+                </Route>
+
+                <Route>
+                    <SplitzProvider exact path="/splitzEdit/:id(\d+)">
+                        {isLoggedIn ? <SplitzEdit /> : <Redirect to="/login" />}
                     </SplitzProvider>
                 </Route>
 
