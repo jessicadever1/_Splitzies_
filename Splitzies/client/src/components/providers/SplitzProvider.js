@@ -60,6 +60,20 @@ export const SplitzProvider = (props) => {
         )
     };
 
+    const editSplitz = (splitz) => {
+        return getToken()
+            .then((token) =>
+                fetch(`${apiUrl}/${splitz.id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(splitz),
+                })
+            )
+    };
+
     return (
         <SplitzContext.Provider
             value={{
@@ -70,7 +84,8 @@ export const SplitzProvider = (props) => {
                 setSearchTerms,
                 getSplitzById,
                 addSplitz,
-                deleteSplitz
+                deleteSplitz,
+                editSplitz
             }}
         >
             {props.children}
