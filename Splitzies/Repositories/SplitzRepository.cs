@@ -45,6 +45,7 @@ namespace Splitzies.Repositories
                     SELECT US.SplitzId
                     FROM UserSplitz US
                     WHERE US.UserProfileId = @userProfileId )
+                    AND S.DeletedDate IS NULL
                     ORDER BY S.Date DESC";
 
                     cmd.Parameters.AddWithValue("@userProfileId", userProfileId);

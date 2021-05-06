@@ -95,5 +95,5 @@ SELECT  US.Id AS UserSplitzId,
                     SELECT US.SplitzId
                     FROM UserSplitz US
                     WHERE US.UserProfileId = 1 )
-                    
+                    AND S.DeletedDate IS NULL
                     ORDER BY S.Date DESC
