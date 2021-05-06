@@ -13,8 +13,8 @@ export const SplitzAdd = () => {
         "splitzName": "",
         "date": "",
         "splitzDetails": "",
-        "splitzPic": "",
-        "id": 6
+        "splitzPic": ""
+
     })
 
     const handleClickSaveSplitz = (event) => {
@@ -24,8 +24,8 @@ export const SplitzAdd = () => {
             splitzName: splitz.splitzName,
             date: splitz.date,
             splitzDetails: splitz.splitzDetails,
-            splitzPic: splitz.splitzPic,
-            id: 6
+            splitzPic: splitz.splitzPic
+
         })
             .then(() => history.push(`/mySplitz`))
     }

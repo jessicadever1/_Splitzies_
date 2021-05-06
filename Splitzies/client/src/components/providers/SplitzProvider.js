@@ -47,6 +47,19 @@ export const SplitzProvider = (props) => {
             }))
     };
 
+
+    const deleteSplitz = (id) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+                .then(getMySplitzies)
+        )
+    };
+
     return (
         <SplitzContext.Provider
             value={{
@@ -56,7 +69,8 @@ export const SplitzProvider = (props) => {
                 searchTerms,
                 setSearchTerms,
                 getSplitzById,
-                addSplitz
+                addSplitz,
+                deleteSplitz
             }}
         >
             {props.children}
