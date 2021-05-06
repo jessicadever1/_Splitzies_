@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Splitzies.Repositories;
 using System.Security.Claims;
 using Splitzies.Models;
-using System.Collections.Generic;
 
 namespace Splitzies.Controllers
 {

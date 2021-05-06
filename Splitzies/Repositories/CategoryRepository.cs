@@ -22,7 +22,7 @@ namespace Splitzies.Repositories
                                         c.Id, 
                                         c.CategoryName
                                         FROM Category c
-                                        ORDER BY c.Name ASC;";
+                                        ORDER BY c.CategoryName ASC;";
 
                     var reader = cmd.ExecuteReader();
                     var categories = new List<Category>();
