@@ -66,6 +66,10 @@
     padding: 18px 18px 36px 18px;
 }
 
+.padBot {
+    padding-bottom: 7rem;
+}
+
 .textarea {
     font-size: 10px;
     min-height: 10rem;

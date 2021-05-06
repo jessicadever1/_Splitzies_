@@ -20,8 +20,9 @@
                     WHERE S.Id IN (
                     SELECT US.SplitzId
                     FROM UserSplitz US
-                    WHERE US.UserProfileId = 2 
-                    AND US.SplitzId =1 )
+                    WHERE US.UserProfileId = 1 
+                    AND US.SplitzId =6 )
+                    AND S.DeletedDate = NULL
 
 
 SELECT 
@@ -47,3 +48,13 @@ SELECT
                                         LEFT JOIN Splitz S ON US.SplitzId = S.Id
                                        WHERE US.SplitzId = 5
                                        AND UP.Id = 1;
+
+
+USE [Splitzies]
+GO
+SET IDENTITY_INSERT [UserSplitz] ON
+INSERT INTO [UserSplitz]
+  ([Id], [UserProfileId], [SplitzId])
+VALUES
+  (14, 1, 6);
+SET IDENTITY_INSERT [UserSplitz] OFF

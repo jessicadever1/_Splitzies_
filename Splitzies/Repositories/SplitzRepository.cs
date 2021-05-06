@@ -245,8 +245,12 @@ namespace Splitzies.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM Splitz WHERE Id = @Id";
+                    cmd.CommandText = @"UPDATE Splitz
+                                        SET DeletedDate = @deletedDate
+                                        WHERE Id = @Id;";
+
                     DbUtils.AddParameter(cmd, "@id", id);
+                    DbUtils.AddParameter(cmd, "@deletedDate", DateTime.Now);
                     cmd.ExecuteNonQuery();
                 }
             }

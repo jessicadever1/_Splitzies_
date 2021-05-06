@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import "./splitz.css";
 import dateFormat from 'dateformat';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 export const SplitzDetails = () => {
     const [splitz, setSplitz] = useState({ splitz: {} });
@@ -30,6 +30,10 @@ export const SplitzDetails = () => {
                         <div className="flexColumn">
                             <h1 className="text-left px-2 font18">{splitz.splitzName}</h1>
                             <h2 className="text-left px-2 font14">{date}</h2>
+                        </div>
+                        <div className="flexRow">
+                            <Link to={`/splitzDelete/${splitz.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
+                            <Link to=""><FontAwesomeIcon className="" icon={faEdit} /></Link>
                         </div>
                     </div>
                     <div className="flexRow">
@@ -63,7 +67,7 @@ export const SplitzDetails = () => {
                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                             <small>$83.88</small>
                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                            <img className="a" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
+                            <img className="a" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                         </div>
                     </div>
                 </CardBody>
