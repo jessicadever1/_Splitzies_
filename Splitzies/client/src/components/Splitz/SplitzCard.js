@@ -3,7 +3,6 @@ import { Card, CardBody, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./splitz.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRoute } from '@fortawesome/free-solid-svg-icons';
 import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 import dateFormat from 'dateformat';
 

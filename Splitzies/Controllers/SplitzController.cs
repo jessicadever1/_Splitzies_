@@ -55,9 +55,9 @@ namespace Splitzies.Controllers
         public IActionResult Post(Splitz splitz)
         {
             var currentUserProfile = GetCurrentUserProfile();
-            splitz.UserProfile.Id = currentUserProfile.Id;
+            var userProfileId = currentUserProfile.Id;
 
-            _splitzRepository.Add(splitz);
+            _splitzRepository.Add(splitz, userProfileId);
             return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
         }
 

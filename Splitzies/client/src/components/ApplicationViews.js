@@ -11,6 +11,8 @@ import SplitzDelete from "./Splitz/SplitzDelete";
 import SplitzEdit from "./Splitz/SplitzEdit";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "./providers/CategoryProvider";
+import ExpenseProvider from "./providers/ExpenseProvider";
+import ExpenseList from "./Expense/ExpenseList";
 import './appViews.css';
 
 export default function ApplicationViews() {
@@ -31,6 +33,14 @@ export default function ApplicationViews() {
                 <Route exact path="/category">
                     <CategoryProvider>
                         {isLoggedIn ? <CategoryList /> : <Redirect to="/login" />}
+                    </CategoryProvider>
+                </Route>
+
+                <Route exact path="/expense/:id(\d+)">
+                    <CategoryProvider>
+                        <ExpenseProvider>
+                            {isLoggedIn ? <ExpenseList /> : <Redirect to="/login" />}
+                        </ExpenseProvider>
                     </CategoryProvider>
                 </Route>
 

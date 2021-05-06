@@ -9,8 +9,6 @@ export const CategoryList = () => {
         getAllCategories();
     }, []);
 
-    console.log("these are my categories", categories)
-
     return (
         <>
             <h2>Categories</h2>

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import { ExpenseContext } from '../providers/ExpenseProvider';
 import { ExpenseCard } from "./ExpenseCard";
 import './expense.css';
@@ -30,3 +31,5 @@ export const ExpenseList = () => {
         </>
     );
 };
+
+export default ExpenseList;
