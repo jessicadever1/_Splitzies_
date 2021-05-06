@@ -5,17 +5,21 @@ import { Button, Form, Label, Input } from 'reactstrap';
 import { Link } from "react-router-dom";
 import "./splitz.css"
 
-export const CategoryEditForm = () => {
+export const SplitzEdit = () => {
 
     const { getSplitzById, editSplitz } = useContext(SplitzContext)
     const history = useHistory();
     const { splitzId } = useParams()
+    console.log("What is splitzId", splitzId)
     const sId = parseInt(splitzId)
+    console.log("Is sId a number", sId)
 
     const [splitz, setSplitz] = useState({
+        "id": sId,
         "splitzName": "",
-        "deletedDate": NULL,
-        "id": sId
+        "date": "",
+        "splitzDetails": "",
+        "splitzPic": ""
     })
 
     useEffect(() => {
@@ -31,7 +35,9 @@ export const CategoryEditForm = () => {
             editSplitz(
                 {
                     splitzName: splitz.splitzName,
-                    deletedDate: NULL,
+                    date: splitz.date,
+                    splitzDetails: splitz.splitzDetails,
+                    splitzPic: splitz.splitzPic,
                     id: sId
                 }
             ).then(() => history.push(`/mySplitz`))
@@ -50,18 +56,88 @@ export const CategoryEditForm = () => {
     }
 
     return (
-        <Form className="addCatDiv">
-            <Label htmlFor="catInput">Ready to Help You Make Changes!</Label>
-            <Input id="splitzName"
-                placeholder={splitz.splitzName}
+        <Form className="padding seeBot">
+            <h1>Ready to Help You Make Changes!</h1>
+            <Input
+                id="splitzName"
+                className="margBot"
                 type="text"
-                value=""
-                onChange={handleInputChange}></Input>
-            <Button className="b" onClick={handleClickSaveSplitz}>Save</Button>
-            <Button className=""><Link className="b" to="/mySplitz" >My Bad, Nevermind</Link></Button>
+                defaultValue={splitz.splitzName}
+                onChange={handleInputChange}>
+            </Input>
+            <Input
+                id="date"
+                className="margBot"
+                type="date"
+                onChange={handleInputChange}>
+            </Input>
+            <Input
+                id="splitzPic"
+                className="margBot"
+                type="text"
+                placeholder="Image URL"
+                onChange={handleInputChange}>
+            </Input>
+            <Input
+                id="splitzDetails"
+                type="textarea"
+                className="textarea margBot"
+                placeholder={`Dear Future You,\
+                \ You may not remember what this splitz was all about. So I’ve written a few notes about it to jog your memory.\
+                Love,\
+                \ Current You`}
+                onChange={handleInputChange}>
+            </Input>
+            <Input
+                id="searchForUser"
+                className="margBot"
+                type="search"
+                placeholder="Who is Spitzing with you?"
+            >
+            </Input>
+            <div>Now, let's add your expenses!</div>
+            <Input
+                id="expenseName"
+                placeholder="Expense Name"
+                className="margBot"
+                type="text">
+            </Input>
+            <div className="flexRow jc">
+                <div>$</div>
+                <div>
+                    <Input
+                        id="amount"
+                        type="number"
+                        placeholder="Dollar Amount"
+                        className="margBot">
+                    </Input>
+                </div>
+            </div>
+            <Input
+                id="category"
+                type="select"
+                placeholder="Expense Category"
+                className="margBot">
+            </Input>
+            <Input
+                id="paidBy"
+                type="select"
+                placeholder="Paid By"
+                className="margBot">
+            </Input>
+
+            <div className="flexRow">
+                <Button id="btn" className="margBot">Save Expense</Button>
+                <Button id="btn" className="margBot">Add Another Expense</Button>
+            </div>
+            <div className="center">
+                <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Savezies</Button>
+                <Button id="btn" className="margBot"><Link className="b" to="/mySplitz" >My Bad, Nevermind</Link></Button>
+            </div>
+
         </Form>
 
     )
 }
 
-export default CategoryEditForm;
+export default SplitzEdit;
