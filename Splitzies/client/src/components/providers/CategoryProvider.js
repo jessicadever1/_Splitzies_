@@ -25,6 +25,7 @@ export const CategoryProvider = (props) => {
                 setCategories
             }}
         >
+            {props.children}
         </CategoryContext.Provider >
     )
 };

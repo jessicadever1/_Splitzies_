@@ -18,11 +18,14 @@ export const CategoryList = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="cards=column">
-                        {categories.map((category) => (
-
-                            <CategoryCard key={category.id} category={category} />
-
-                        ))}
+                        <select>
+                            <option value="0">Select a Category</option>
+                            {categories.map((c) => (
+                                <option key={c.id} value={c.id}>
+                                    {c.categoryName}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
             </div>

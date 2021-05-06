@@ -8,6 +8,8 @@ export const CategoryCard = ({ category }) => {
                 <option value="0">TBD</option>
                 <option value={category.id}>{category.categoryName}</option>
             </select>
+
+
         </>
     )
 };
