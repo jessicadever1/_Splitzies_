@@ -97,3 +97,32 @@ SELECT  US.Id AS UserSplitzId,
                     WHERE US.UserProfileId = 1 )
                     AND S.DeletedDate IS NULL
                     ORDER BY S.Date DESC
+
+
+
+
+
+
+
+
+
+
+
+SELECT 
+    e.Id, 
+    e.SplitzId, 
+    e.ExpenseName, 
+    e.CategoryId, 
+    e.Amount, 
+    e.UserWhoPaidId,
+    e.DeletedDate,
+
+    s.Id as SplitzId,                                    
+                                               
+    up.Id AS userProfileId
+FROM Expense e
+JOIN Splitz s ON e.SplitzId = s.Id
+JOIN UserProfile up ON e.UserWhoPaidId = up.Id
+WHERE e.SplitzId = 1
+AND e.DeletedDate IS NULL
+ORDER BY e.Amount DESC

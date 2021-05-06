@@ -26,6 +26,7 @@ namespace Splitzies
             services.AddTransient<ISplitzRepository, SplitzRepository>();
             services.AddTransient<IUserSplitzRepository,UserSplitzRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IExpenseRepository, ExpenseRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";

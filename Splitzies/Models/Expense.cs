@@ -13,6 +13,6 @@ namespace Splitzies.Models
         public int Amount { get; set; }
         public int UserWhoPaidId { get; set; }
         public int SplitzId { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public DateTime ? DeletedDate { get; set; }
     }
 }

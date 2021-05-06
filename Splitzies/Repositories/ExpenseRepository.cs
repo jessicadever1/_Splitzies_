@@ -19,38 +19,44 @@ namespace Splitzies.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"
-                                        SELECT c.Id, c.PostId, c.UserProfileId, c.Subject, c.Content, c.CreateDateTime,
-                                               p.Id,                                    
-                                               u.Id AS userId
-                                        FROM Comment c
-                                        JOIN Post p ON c.PostId = p.Id
-                                        JOIN UserProfile u ON c.UserProfileId = u.Id
-                                        WHERE c.PostId = @id
-                                        ORDER BY c.CreateDateTime DESC
+                    cmd.CommandText = @"SELECT 
+                                            e.Id, 
+                                            e.SplitzId, 
+                                            e.ExpenseName, 
+                                            e.CategoryId, 
+                                            e.Amount, 
+                                            e.UserWhoPaidId,
+                                            e.DeletedDate,
+
+                                            s.Id as SplitzId,                                    
+                                               
+                                            up.Id AS userProfileId
+                                        FROM Expense e
+                                        JOIN Splitz s ON e.SplitzId = s.Id
+                                        JOIN UserProfile up ON e.UserWhoPaidId = up.Id
+                                        WHERE e.SplitzId = @id
+                                        AND e.DeletedDate IS NULL
+                                        ORDER BY e.Amount DESC
                                         ";
                     DbUtils.AddParameter(cmd, "@id", id);
                     var reader = cmd.ExecuteReader();
-                    var comments = new List<Comment>();
+                    var expenses = new List<Expense>();
                     while (reader.Read())
                     {
-                        comments.Add(new Comment()
+                        expenses.Add(new Expense()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
-                            PostId = DbUtils.GetInt(reader, "PostId"),
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            Subject = DbUtils.GetString(reader, "Subject"),
-                            Content = DbUtils.GetString(reader, "Content"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            userProfile = new UserProfile()
-                            {
-                                Id = DbUtils.GetInt(reader, "userId")
-                            }
-
+                            SplitzId = DbUtils.GetInt(reader, "SplitzId"),
+                            UserWhoPaidId = DbUtils.GetInt(reader, "UserWhoPaidId"),
+                            ExpenseName = DbUtils.GetString(reader, "ExpenseName"),
+                            CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                            Amount = DbUtils.GetInt(reader, "Amount"),
+                            DeletedDate = DbUtils.IsDbNull(reader, "DeletedDate") ? null : DbUtils.GetDateTime(reader, "DeletedDate"),
+                            
                         });
                     }
                     reader.Close();
-                    return comments;
+                    return expenses;
                 }
 
             }
