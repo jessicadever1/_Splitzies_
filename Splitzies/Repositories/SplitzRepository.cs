@@ -266,11 +266,17 @@ namespace Splitzies.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE Splitz
-                            SET Splitz = @splitzName,
-                                
+                            SET SplitzName = @splitzName,
+                                Date = @date,
+                                SplitzDetails = @splitzDetails,
+                                SplitzPic = @splitzPic
                             WHERE Id = @id";
 
-                 
+                    DbUtils.AddParameter(cmd, "@id", splitz.Id);
+                    DbUtils.AddParameter(cmd, "@splitzName", splitz.SplitzName);
+                    DbUtils.AddParameter(cmd, "@date", splitz.Date);
+                    DbUtils.AddParameter(cmd, "@splitzDetails", splitz.SplitzDetails);
+                    DbUtils.AddParameter(cmd, "@splitzPic", splitz.SplitzPic);
 
                     cmd.ExecuteNonQuery();
 
