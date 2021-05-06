@@ -36,13 +36,15 @@ export const SplitzProvider = (props) => {
 
 
     const addSplitz = (splitz) => {
-        return fetch("/api/splitz", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(splitz),
-        })
+        return getToken().then((token) =>
+            fetch(`${apiUrl}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(splitz),
+            }))
     };
 
     return (

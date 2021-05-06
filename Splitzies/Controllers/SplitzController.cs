@@ -73,5 +73,12 @@ namespace Splitzies.Controllers
             return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _splitzRepository.Delete(id);
+            return NoContent();
+        }
+
     }
 }

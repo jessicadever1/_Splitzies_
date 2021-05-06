@@ -12,8 +12,6 @@ export const Splitz = ({ splitz }) => {
     let usersOnSplitz = splitz.userProfiles
     const date = dateFormat(splitz.date, "mmmm dS, yyyy")
 
-    console.log("img", splitz)
-
     return splitz ? (
         <Card className="m-4">
             <CardBody className="row">

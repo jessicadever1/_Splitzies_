@@ -6,26 +6,40 @@ import { date } from "check-types";
 
 export const SplitzAdd = () => {
 
-    // const { addSplitz } = useContext(SplitzContext)
-    // const history = useHistory();
+    const { addSplitz } = useContext(SplitzContext)
+    const history = useHistory();
 
-    // const [splitz, setSplitz] = useState({
-    //     "splitzName": "",
-    //     "date": "",
-    //     "splitzDetails": "",
-    //     "splitzPic": ""
-    // })
+    const [splitz, setSplitz] = useState({
+        "splitzName": "",
+        "date": "",
+        "splitzDetails": "",
+        "splitzPic": "",
+        "id": 6
+    })
 
-    // const handleClickSaveSplitz = (event) => {
-    //     event.preventDefault()
+    const handleClickSaveSplitz = (event) => {
+        event.preventDefault()
 
-    //     addSplitz({
-    //         splitzName: splitzName,
-    //         splitzDetails: splitzDetails,
-    //         splitzPic: splitzPic
-    //     })
-    //         .then(() => history.push(`/mySplitz`))
-    // }
+        addSplitz({
+            splitzName: splitz.splitzName,
+            date: splitz.date,
+            splitzDetails: splitz.splitzDetails,
+            splitzPic: splitz.splitzPic,
+            id: 6
+        })
+            .then(() => history.push(`/mySplitz`))
+    }
+
+    const handleInputChange = (event) => {
+
+        const newSplitz = { ...splitz }
+        let selectedVal = event.target.value
+        if (event.target.id.includes("id")) {
+            selectedVal = parseInt(selectedVal)
+        }
+        newSplitz[event.target.id] = selectedVal
+        setSplitz(newSplitz)
+    }
 
     return (<>
         <Form className="padding seeBot">
@@ -34,18 +48,21 @@ export const SplitzAdd = () => {
                 id="splitzName"
                 className="margBot"
                 type="text"
-                placeholder="Name Your Splitz">
+                placeholder="Name Your Splitz"
+                onChange={handleInputChange}>
             </Input>
             <Input
                 id="date"
                 className="margBot"
-                type="date">
+                type="date"
+                onChange={handleInputChange}>
             </Input>
             <Input
                 id="splitzPic"
                 className="margBot"
                 type="text"
-                placeholder="Image URL">
+                placeholder="Image URL"
+                onChange={handleInputChange}>
             </Input>
             <Input
                 id="splitzDetails"
@@ -54,13 +71,15 @@ export const SplitzAdd = () => {
                 placeholder={`Dear Future You,\
                 \ You may not remember what this splitz was all about. So I’ve written a few notes about it to jog your memory.\
                 Love,\
-                \ Current You`}>
+                \ Current You`}
+                onChange={handleInputChange}>
             </Input>
             <Input
                 id="searchForUser"
                 className="margBot"
                 type="search"
-                placeholder="Who is Spitzing with you?">
+                placeholder="Who is Spitzing with you?"
+            >
             </Input>
             <div>Now, let's add your expenses!</div>
             <Input
@@ -97,8 +116,8 @@ export const SplitzAdd = () => {
                 <Button id="btn" className="margBot">Save Expense</Button>
                 <Button id="btn" className="margBot">Add Another Expense</Button>
             </div>
-            <div class="center">
-                <Button id="btn" className="margBot">Savezies</Button>
+            <div className="center">
+                <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Savezies</Button>
             </div>
         </Form>
     </>)

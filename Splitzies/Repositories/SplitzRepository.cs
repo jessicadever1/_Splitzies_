@@ -30,6 +30,7 @@ namespace Splitzies.Repositories
                             S.SplitzDetails,
                             S.[Date],
                             S.DeletedDate,
+                            S.SplitzPic,
 
                             UP.DisplayName,
                             UP.FirstName,
@@ -64,6 +65,7 @@ namespace Splitzies.Repositories
                                 SplitzDetails = DbUtils.GetString(reader, "SplitzDetails"),
                                 Date = DbUtils.GetDateTime(reader, "Date"),
                                 DeletedDate = DbUtils.IsDbNull(reader, "DeletedDate") ? null : DbUtils.GetDateTime(reader, "DeletedDate"),
+                                SplitzPic = DbUtils.IsDbNull(reader, "SplitzPic") ? null : DbUtils.GetString(reader, "SplitzPic"),
                                 UserProfile = new UserProfile()
                                 {
                                     Id = DbUtils.GetInt(reader, "UserProfileId"),
@@ -207,20 +209,23 @@ namespace Splitzies.Repositories
                     cmd.CommandText = @"
                         INSERT INTO Splitz  (SplitzName, 
                                              SplitzDetails, 
-                                             DeletedDate, 
                                              Date,
                                              SplitzPic)
 
                                OUTPUT INSERTED.ID
                         VALUES (@splitzName, 
-                                @splitzDetails, 
-                                @deletedDate, 
+                                @splitzDetails,
                                 @date,
-                                @splitzPic)";
+                                @splitzPic)
+
+                        INSERT INTO UserSplitz (SplitzId,
+                                                UserProfileId)
+                              OUTPUT INSERTED.ID
+                        VALUES (@splitzId
+                                @userProfileId)";
 
                     DbUtils.AddParameter(cmd, "@splitzName", splitz.SplitzName);
                     DbUtils.AddParameter(cmd, "@splitzDetails", splitz.SplitzDetails);
-                    DbUtils.AddParameter(cmd, "@deletedDate", splitz.DeletedDate);
                     DbUtils.AddParameter(cmd, "@date", splitz.Date);
                     DbUtils.AddParameter(cmd, "@splitzPic", splitz.SplitzPic);
 
@@ -230,6 +235,22 @@ namespace Splitzies.Repositories
             }
         }
 
+
+
+
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Splitz WHERE Id = @Id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
 
         public void Update(Splitz splitz)
