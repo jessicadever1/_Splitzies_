@@ -4,10 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { Button, Form, Label, Input } from 'reactstrap'
 import { date } from "check-types";
 
+
 export const SplitzAdd = () => {
 
     const { addSplitz } = useContext(SplitzContext)
     const history = useHistory();
+
 
     const [splitz, setSplitz] = useState({
         "splitzName": "",
