@@ -69,6 +69,7 @@ export const SplitzEdit = () => {
                 id="date"
                 className="margBot"
                 type="date"
+                defaultValue={splitz.date}
                 onChange={handleInputChange}>
             </Input>
             <Input
@@ -76,6 +77,7 @@ export const SplitzEdit = () => {
                 className="margBot"
                 type="text"
                 placeholder="Image URL"
+                defaultValue={splitz.splitzPic}
                 onChange={handleInputChange}>
             </Input>
             <Input
@@ -86,6 +88,7 @@ export const SplitzEdit = () => {
                 \ You may not remember what this splitz was all about. So I’ve written a few notes about it to jog your memory.\
                 Love,\
                 \ Current You`}
+                defaultValue={splitz.splitzDetails}
                 onChange={handleInputChange}>
             </Input>
             <Input
