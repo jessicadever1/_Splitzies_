@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, CardImg } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
@@ -23,6 +23,7 @@ export const ExpenseCard = ({ expense }) => {
     let userWhoPaid = userProfiles.filter((up => up.id === expense.userWhoPaidId))
     let uWhoPaid = userWhoPaid[0]
 
+
     console.log("this is the user who paid", uWhoPaid)
 
     return catSeletected, uWhoPaid ? (
@@ -33,7 +34,7 @@ export const ExpenseCard = ({ expense }) => {
                         <div>{expense.expenseName}</div>
                         <div>{catSeletected.categoryName}</div>
                         <div>${expense.amount}</div>
-                        <div><img src={uWhoPaid.profilepic} alt={uWhoPaid.firstName}></img></div>
+                        <div><img className="picIcon" src={uWhoPaid.profilePic} alt={uWhoPaid.firstName}></img></div>
                         <Link to={`/expenseDelete/${expense.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
                         <Link to={`/expenseEdit/${expense.id}`}><FontAwesomeIcon className="" icon={faEdit} /></Link>
                     </div>

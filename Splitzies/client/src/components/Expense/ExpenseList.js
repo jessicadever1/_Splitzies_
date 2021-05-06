@@ -21,7 +21,7 @@ export const ExpenseList = () => {
             <h2>How are these expenses looking?</h2>
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="cards=column">
+                    <div className="cards=column width">
                         {expenses.map((expense) => {
                             return <ExpenseCard key={expense.id} expense={expense} />
                         })}
