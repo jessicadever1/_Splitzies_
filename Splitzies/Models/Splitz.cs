@@ -11,8 +11,8 @@ namespace Splitzies.Models
         public string SplitzDetails { get; set; }
         public DateTime ? DeletedDate { get; set; }
         public string ? SplitzPic { get; set; }
-        public UserProfile UserProfile { get; set; }
-        public List<UserProfile> UserProfiles { get; set; }
-        public UserSplitz UserSplitz { get; set; }
+        public UserProfile ? UserProfile { get; set; }
+        public List<UserProfile> ? UserProfiles { get; set; }
+        public UserSplitz ? UserSplitz { get; set; }
     }
 }

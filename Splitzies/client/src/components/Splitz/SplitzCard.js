@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./splitz.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,12 +12,10 @@ export const Splitz = ({ splitz }) => {
     let usersOnSplitz = splitz.userProfiles
     const date = dateFormat(splitz.date, "mmmm dS, yyyy")
 
-    return (
+    return splitz ? (
         <Card className="m-4">
             <CardBody className="row">
-                <div className="listPic">
-                    <FontAwesomeIcon className="" icon={faRoute} />
-                </div>
+                <CardImg className="picSize" top src={splitz.splitzPic} alt={splitz.splitzName} />
 
                 <div>
                     <Link to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
@@ -35,7 +33,7 @@ export const Splitz = ({ splitz }) => {
                 <FontAwesomeIcon icon={faCommentsDollar} />
             </CardBody>
         </Card>
-    );
+    ) : null;
 };
 
 export default Splitz;

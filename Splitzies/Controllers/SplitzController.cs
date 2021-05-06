@@ -36,25 +36,6 @@ namespace Splitzies.Controllers
             return Ok(splitzies); 
         }
 
-        private UserProfile GetCurrentUserProfile()
-        {
-            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return _userProfileRepository.GetByFirebaseId(firebaseUserId);
-        }
-
-        private string GetCurrentFirebaseUserProfileId()
-        {
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return id;
-        }
-
-        [HttpPost]
-        public IActionResult Post(Splitz splitz)
-        {
-            
-            _splitzRepository.Add(splitz);
-            return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
-        }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -70,5 +51,50 @@ namespace Splitzies.Controllers
             return Ok(splitz);
 
         }
+
+
+        [HttpPost]
+        public IActionResult Post(Splitz splitz)
+        {
+            var currentUserProfile = GetCurrentUserProfile();
+            splitz.UserProfile.Id = currentUserProfile.Id;
+
+            _splitzRepository.Add(splitz);
+            return CreatedAtAction("Get", new { id = splitz.Id }, splitz);
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _splitzRepository.Delete(id);
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Splitz splitz)
+        {
+            if (id != splitz.Id)
+            {
+                return BadRequest();
+            }
+
+            _splitzRepository.Update(splitz);
+            return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseId(firebaseUserId);
+        }
+
+
+        private string GetCurrentFirebaseUserProfileId()
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return id;
+        }
+
     }
 }

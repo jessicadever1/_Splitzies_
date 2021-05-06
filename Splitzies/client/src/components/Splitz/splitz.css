@@ -1,5 +1,6 @@
 .pink {
     color: rgb(255, 0, 110);
+    background-color: rgb(255, 0, 110);
 }
 
 .blue {
@@ -59,4 +60,39 @@
 
 .center {
     align-content: center;
+}
+
+.padding {
+    padding: 18px 18px 36px 18px;
+}
+
+.padBot {
+    padding-bottom: 7rem;
+}
+
+.textarea {
+    font-size: 10px;
+    min-height: 10rem;
+}
+
+.margBot {
+    margin-bottom: 1rem;
+}
+
+.seeBot {
+    margin-bottom: 5rem;
+}
+
+#btn {
+    background-color: rgb(255, 0, 110);
+    border-color: rgb(255, 0, 110)
+}
+
+#amount {
+    width: 100%;
+}
+
+.jc {
+    display: flex;
+    justify-content: space-between;
 }

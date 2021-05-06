@@ -36,13 +36,42 @@ export const SplitzProvider = (props) => {
 
 
     const addSplitz = (splitz) => {
-        return fetch("/api/splitz", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(splitz),
-        })
+        return getToken().then((token) =>
+            fetch(`${apiUrl}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(splitz),
+            }))
+    };
+
+
+    const deleteSplitz = (id) => {
+        return getToken().then((token) =>
+            fetch(`${apiUrl}/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+                .then(getMySplitzies)
+        )
+    };
+
+    const editSplitz = (splitz) => {
+        return getToken()
+            .then((token) =>
+                fetch(`${apiUrl}/${splitz.id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(splitz),
+                })
+            )
     };
 
     return (
@@ -54,7 +83,9 @@ export const SplitzProvider = (props) => {
                 searchTerms,
                 setSearchTerms,
                 getSplitzById,
-                addSplitz
+                addSplitz,
+                deleteSplitz,
+                editSplitz
             }}
         >
             {props.children}

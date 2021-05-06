@@ -10,7 +10,7 @@ export const SplitzList = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container padBot">
             <div className="row justify-content-center">
                 <div className="cards-column">
                     {splitzies.map((splitz) => {

@@ -1,33 +1,47 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
-import { useHistory } from 'react-router-dom';
-import { Button, Form, Label, Input } from 'reactstrap'
-import { date } from "check-types";
+import { useHistory, useParams } from 'react-router-dom';
+import { Button, Form, Label, Input } from 'reactstrap';
+import { Link } from "react-router-dom";
+import "./splitz.css"
 
-export const SplitzAdd = () => {
+export const SplitzEdit = () => {
 
-    const { addSplitz } = useContext(SplitzContext)
+    const { getSplitzById, editSplitz } = useContext(SplitzContext)
     const history = useHistory();
+    const { splitzId } = useParams()
+    console.log("What is splitzId", splitzId)
+    const sId = parseInt(splitzId)
+    console.log("Is sId a number", sId)
 
     const [splitz, setSplitz] = useState({
+        "id": sId,
         "splitzName": "",
         "date": "",
         "splitzDetails": "",
         "splitzPic": ""
-
     })
 
-    const handleClickSaveSplitz = (event) => {
-        event.preventDefault()
+    useEffect(() => {
 
-        addSplitz({
-            splitzName: splitz.splitzName,
-            date: splitz.date,
-            splitzDetails: splitz.splitzDetails,
-            splitzPic: splitz.splitzPic
+        getSplitzById(sId)
+            .then(splitz => {
+                setSplitz(splitz)
+            })
+    }, [])
 
-        })
-            .then(() => history.push(`/mySplitz`))
+    const handleClickSaveSplitz = () => {
+        if (sId) {
+            editSplitz(
+                {
+                    splitzName: splitz.splitzName,
+                    date: splitz.date,
+                    splitzDetails: splitz.splitzDetails,
+                    splitzPic: splitz.splitzPic,
+                    id: sId
+                }
+            ).then(() => history.push(`/mySplitz`))
+        }
     }
 
     const handleInputChange = (event) => {
@@ -41,20 +55,21 @@ export const SplitzAdd = () => {
         setSplitz(newSplitz)
     }
 
-    return (<>
+    return (
         <Form className="padding seeBot">
-            <h1>Let's Add A Splitz!</h1>
+            <h1>Ready to Help You Make Changes!</h1>
             <Input
                 id="splitzName"
                 className="margBot"
                 type="text"
-                placeholder="Name Your Splitz"
+                defaultValue={splitz.splitzName}
                 onChange={handleInputChange}>
             </Input>
             <Input
                 id="date"
                 className="margBot"
                 type="date"
+                defaultValue={splitz.date}
                 onChange={handleInputChange}>
             </Input>
             <Input
@@ -62,6 +77,7 @@ export const SplitzAdd = () => {
                 className="margBot"
                 type="text"
                 placeholder="Image URL"
+                defaultValue={splitz.splitzPic}
                 onChange={handleInputChange}>
             </Input>
             <Input
@@ -72,6 +88,7 @@ export const SplitzAdd = () => {
                 \ You may not remember what this splitz was all about. So I’ve written a few notes about it to jog your memory.\
                 Love,\
                 \ Current You`}
+                defaultValue={splitz.splitzDetails}
                 onChange={handleInputChange}>
             </Input>
             <Input
@@ -118,9 +135,12 @@ export const SplitzAdd = () => {
             </div>
             <div className="center">
                 <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Savezies</Button>
+                <Button id="btn" className="margBot"><Link className="b" to="/mySplitz" >My Bad, Nevermind</Link></Button>
             </div>
-        </Form>
-    </>)
-};
 
-export default SplitzAdd;
+        </Form>
+
+    )
+}
+
+export default SplitzEdit;
