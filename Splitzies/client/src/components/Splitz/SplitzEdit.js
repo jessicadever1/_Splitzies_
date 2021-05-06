@@ -10,9 +10,8 @@ export const SplitzEdit = () => {
     const { getSplitzById, editSplitz } = useContext(SplitzContext)
     const history = useHistory();
     const { splitzId } = useParams()
-    console.log("What is splitzId", splitzId)
     const sId = parseInt(splitzId)
-    console.log("Is sId a number", sId)
+
 
     const [splitz, setSplitz] = useState({
         "id": sId,
