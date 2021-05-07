@@ -9,7 +9,7 @@ export const ExpenseAdd = () => {
     const { getExpenseById, addExpense } = useContext(ExpenseContext)
     const { categories, getAllCategories } = useContext(CategoryContext);
     const history = useHistory();
-    const expenseId = parseInt(useParams().id)
+    const splitzId = parseInt(useParams().id)
 
 
     const [expense, setExpense] = useState({
@@ -28,7 +28,7 @@ export const ExpenseAdd = () => {
             categoryId: parseInt(expense.categoryId),
             userWhoPaidId: expense.userWhoPaidId,
             amount: expense.amount,
-            splitzId: expense.splitzId
+            splitzId: splitzId
         })
     }
 
@@ -45,12 +45,9 @@ export const ExpenseAdd = () => {
 
     useEffect(() => {
         getAllCategories();
-        if (expenseId) {
-            getExpenseById(expenseId).then((expense) => {
-                setExpense(expense);
-            });
-        }
     }, []);
+
+    console.log("these are my cats", categories)
 
     return (
         <Form className="padding seeBot">

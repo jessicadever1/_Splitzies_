@@ -49,7 +49,7 @@ namespace Splitzies.Controllers
         public IActionResult Post(Expense expense)
         {
             _expenseRepository.Add(expense);
-            return CreatedAtAction("Get", new { id = expense.Id }, expense);
+            return CreatedAtAction("GetById", new { id = expense.Id }, expense);
         }
 
     }

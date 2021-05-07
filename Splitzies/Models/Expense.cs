@@ -12,5 +12,6 @@ namespace Splitzies.Models
         public int SplitzId { get; set; }
         public DateTime ? DeletedDate { get; set; }
         public Splitz splitz { get; set; }
+        public Category category { get; set; }
     }
 }

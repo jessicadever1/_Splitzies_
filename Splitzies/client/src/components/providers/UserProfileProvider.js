@@ -114,7 +114,7 @@ export function UserProfileProvider(props) {
                 }
             })
                 .then((res) => res.json())
-                .then(setSearchResults));
+                .then(setUserProfiles));
     }
 
     return (
