@@ -61,5 +61,95 @@ namespace Splitzies.Repositories
 
             }
         }
+
+
+
+
+        public Expense GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT 
+                                        E.expenseName, 
+                                        E.categoryId, 
+                                        E.userWhoPaidId,
+                                        E.amount,
+                                        E.splitzId,
+
+                                        S.Id AS SplitzId,
+                                        S.splitzName
+                                       FROM Expense E
+                                            LEFT JOIN Splitz S ON E.splitzId = S.Id
+                                       WHERE E.Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+                    Expense expense = null;
+                    while (reader.Read())
+                    {
+                        expense = new Expense()
+                        {
+                            Id = id,
+                            ExpenseName = DbUtils.GetString(reader, "expenseName"),
+                            CategoryId = DbUtils.GetInt(reader, "categoryId"),
+                            UserWhoPaidId = DbUtils.GetInt(reader, "UserWhoPaidId"),
+                            Amount = DbUtils.GetInt(reader, "amount"),
+                            SplitzId = DbUtils.GetInt(reader, "splitzId"), 
+                            splitz = new Splitz()
+                            {
+                                Id = DbUtils.GetInt(reader, "splitzId"),
+                                SplitzName = DbUtils.GetString(reader, "splitzName")
+                            },
+                        };
+                    }
+                    reader.Close();
+                    return expense;
+                }
+            }
+        }
+
+
+
+
+        public void Add(Expense expense)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Expense 
+                                            (ExpenseName,
+                                             CategoryId,
+                                             UserWhoPaidId,
+                                             Amount,
+                                             SplitzId)
+
+                                        OUTPUT INSERTED.ID
+
+                                        VALUES 
+                                            (@ExpenseName, 
+                                             @CategoryId, 
+                                             @UserWhoPaidId, 
+                                             @Amount, 
+                                             @SplitzId)";
+
+                    DbUtils.AddParameter(cmd, "@ExpenseName", expense.ExpenseName);
+                    DbUtils.AddParameter(cmd, "@CategoryId", expense.CategoryId);
+                    DbUtils.AddParameter(cmd, "@UserWhoPaidId", expense.UserWhoPaidId);
+                    DbUtils.AddParameter(cmd, "@Amount", expense.Amount);
+                    DbUtils.AddParameter(cmd, "@SplitzId", expense.SplitzId);
+
+                    expense.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+
+
     }
 }

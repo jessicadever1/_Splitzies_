@@ -38,7 +38,7 @@ export const SplitzDetails = () => {
                     </div>
                     <div className="flexRow">
                         <Button><Link className="b" to={`/expense/${splitzId}`}>See All Expenses</Link></Button>
-                        <Button><Link className="b" to={`/expense/create/${splitz.id}`}>Add Expense</Link></Button>
+                        <Button><Link className="b" to={`/addExpense/${splitzId}`}>Add Expense</Link></Button>
                     </div>
                     <div className="flexRow">
                         <div className="flexColumn center">

@@ -222,7 +222,7 @@ namespace Splitzies.Repositories
 
 
 
-        public List<UserProfile> SearchByFirstLastAndDisplayName(string firstName, string lastName, string displayName, bool sortDescending)
+        public List<UserProfile> SearchByFirstLastAndDisplayName(string firstName, bool sortDescending)
         {
             using (var conn = Connection)
             {
@@ -238,7 +238,7 @@ namespace Splitzies.Repositories
                             up.ProfilePic
 
                     FROM UserProfile up 
-                    WHERE up.FirstName LIKE @firstName AND up.LastName LIKE @lastName AND up.DisplayName LIKE displayName";
+                    WHERE up.FirstName LIKE @firstName";
 
                     if (sortDescending)
                     {
@@ -251,8 +251,7 @@ namespace Splitzies.Repositories
 
                     cmd.CommandText = sql;
                     DbUtils.AddParameter(cmd, "@firstName", $"%{firstName}%");
-                    DbUtils.AddParameter(cmd, "@lastName", $"%{lastName}%");
-                    DbUtils.AddParameter(cmd, "@displayName", $"%{displayName}%");
+                    
                     var reader = cmd.ExecuteReader();
 
                     var userProfiles = new List<UserProfile>();

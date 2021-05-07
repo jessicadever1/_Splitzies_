@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Splitzies.Models
 {
@@ -14,5 +11,7 @@ namespace Splitzies.Models
         public int UserWhoPaidId { get; set; }
         public int SplitzId { get; set; }
         public DateTime ? DeletedDate { get; set; }
+        public Splitz splitz { get; set; }
+        public Category category { get; set; }
     }
 }

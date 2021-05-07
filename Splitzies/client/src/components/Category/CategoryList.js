@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { Input } from 'reactstrap';
 import { CategoryContext } from '../providers/CategoryProvider';
 import './category.css';
 
@@ -11,18 +12,18 @@ export const CategoryList = () => {
 
     return (
         <>
-            <h2>Categories</h2>
+
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="cards=column">
-                        <select>
+                        <Input type="select" className="margBot">
                             <option value="0">Select a Category</option>
                             {categories.map((c) => (
                                 <option key={c.id} value={c.id}>
                                     {c.categoryName}
                                 </option>
                             ))}
-                        </select>
+                        </Input>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, Form, Label, Input } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 import { Link } from "react-router-dom";
 import "./splitz.css"
 

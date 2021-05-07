@@ -10,6 +10,6 @@ namespace Splitzies.Repositories
         UserProfile GetByFirebaseId(string firebaseId);
         UserProfile GetById(int id);
         void Deactivate(int id);
-        List<UserProfile> SearchByFirstLastAndDisplayName(string first, string last, string display, bool sortDescending);
+        List<UserProfile> SearchByFirstLastAndDisplayName(string first, bool sortDescending);
     }
 }

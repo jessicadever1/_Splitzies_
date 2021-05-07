@@ -9,7 +9,7 @@ export const ExpenseProvider = (props) => {
 
     const GetAllExpensesBySplitzId = (splitzId) => {
         return getToken().then((token) =>
-            fetch(`/api/Expense/${splitzId}`, {
+            fetch(`/api/Expense/getBySplitzId/${splitzId}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -19,12 +19,37 @@ export const ExpenseProvider = (props) => {
         )
     };
 
+    const getExpenseById = (id) => {
+        return getToken().then((token) =>
+            fetch(`/api/Expense/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((res) => res.json())
+        );
+    };
+
+    const addExpense = (expense) => {
+        return getToken().then((token) =>
+            fetch(`/api/Expense`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(expense),
+            }))
+    };
+
     return (
         <ExpenseContext.Provider
             value={{
                 expenses,
                 GetAllExpensesBySplitzId,
-                setExpenses
+                setExpenses,
+                getExpenseById,
+                addExpense
             }}
         >
             {props.children}

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Splitzies.Repositories;
+using Splitzies.Models; 
 
 namespace Splitzies.Controllers
 {
@@ -25,10 +26,31 @@ namespace Splitzies.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("getBySplitzId/{id}")]
+        public IActionResult GetAllExpensesBySplitzId(int id)
         {
             return Ok(_expenseRepository.GetAllExpensesBySplitzId(id));
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var expense = _expenseRepository.GetById(id);
+            if (expense == null)
+            {
+                return NotFound();
+            }
+            return Ok(expense);
+
+        }
+
+
+        [HttpPost]
+        public IActionResult Post(Expense expense)
+        {
+            _expenseRepository.Add(expense);
+            return CreatedAtAction("GetById", new { id = expense.Id }, expense);
+        }
+
     }
 }

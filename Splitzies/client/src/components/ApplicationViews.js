@@ -13,6 +13,7 @@ import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "./providers/CategoryProvider";
 import ExpenseProvider from "./providers/ExpenseProvider";
 import ExpenseList from "./Expense/ExpenseList";
+import ExpenseAdd from "./Expense/ExpenseAdd";
 import './appViews.css';
 
 export default function ApplicationViews() {
@@ -44,6 +45,14 @@ export default function ApplicationViews() {
                     </CategoryProvider>
                 </Route>
 
+                <Route exact path="/addExpense/:id(\d+)">
+                    <CategoryProvider>
+                        <ExpenseProvider>
+                            {isLoggedIn ? <ExpenseAdd /> : <Redirect to="/login" />}
+                        </ExpenseProvider>
+                    </CategoryProvider>
+                </Route>
+
                 <Route path="/" exact>
                     <SplitzProvider>
                         {isLoggedIn ? <SplitzList /> : <Redirect to="/login" />}
@@ -64,7 +73,11 @@ export default function ApplicationViews() {
 
                 <Route exact path="/addSplitz">
                     <SplitzProvider>
-                        {isLoggedIn ? <SplitzAdd /> : <Redirect to="/login" />}
+                        <ExpenseProvider>
+                            <CategoryProvider>
+                                {isLoggedIn ? <SplitzAdd /> : <Redirect to="/login" />}
+                            </CategoryProvider>
+                        </ExpenseProvider>
                     </SplitzProvider>
                 </Route>
 

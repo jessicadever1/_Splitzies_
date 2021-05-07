@@ -52,7 +52,7 @@ namespace Splitzies.Controllers
 
 
         [HttpPost]
-        public IActionResult Post(Splitz splitz)
+        public IActionResult Post(SplitzUsersCreate splitz)
         {
             var currentUserProfile = GetCurrentUserProfile();
             var userProfileId = currentUserProfile.Id;

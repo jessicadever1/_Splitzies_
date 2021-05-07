@@ -11,6 +11,8 @@ export function UserProfileProvider(props) {
     const [userProfiles, setUserProfiles] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
     const getToken = () => firebase.auth().currentUser.getIdToken();
+    const [searchedName, setSearchedName] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const [isFirebaseReady, setIsFirebaseReady] = useState(false);
     useEffect(() => {
@@ -103,8 +105,37 @@ export function UserProfileProvider(props) {
             }).then(resp => resp.json()));
     };
 
+    const searchUsersByName = (searchedName) => {
+        return getToken().then((token) =>
+            fetch(`/api/UserProfile/searchForUser?f=${searchedName}&l=${searchedName}&d=${searchedName}&sortDesc=false`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then((res) => res.json())
+                .then(setUserProfiles));
+    }
+
     return (
-        <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, userProfiles, setUserProfiles, getUserProfileById, deactivateUserProfile }}>
+        <UserProfileContext.Provider value={{
+            isLoggedIn,
+            login,
+            logout,
+            register,
+            getToken,
+            getUserProfile,
+            getAllUserProfiles,
+            userProfiles,
+            setUserProfiles,
+            getUserProfileById,
+            deactivateUserProfile,
+            searchUsersByName,
+            searchedName,
+            setSearchedName,
+            searchResults,
+            setSearchResults
+        }}>
             {isFirebaseReady
                 ? props.children
                 : <Spinner className="app-spinner dark" />}
