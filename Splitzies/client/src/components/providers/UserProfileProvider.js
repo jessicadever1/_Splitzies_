@@ -20,7 +20,7 @@ export function UserProfileProvider(props) {
     }, []);
 
     const getAllUserProfiles = () => {
-        //the proxy that was set up in package.json will be handling the first part of the URL
+
         return getToken().then((token) =>
             fetch(`${apiUrl}`, {
                 method: "GET",

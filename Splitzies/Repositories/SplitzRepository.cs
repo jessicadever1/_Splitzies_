@@ -200,7 +200,7 @@ namespace Splitzies.Repositories
 
 
 
-        public void Add(Splitz splitz)
+        public void Add(Splitz splitz, int userProfileId)
         {
             using (var conn = Connection)
             {
@@ -217,13 +217,7 @@ namespace Splitzies.Repositories
                         VALUES (@splitzName, 
                                 @splitzDetails,
                                 @date,
-                                @splitzPic)
-
-                        INSERT INTO UserSplitz (SplitzId,
-                                                UserProfileId)
-                              OUTPUT INSERTED.ID
-                        VALUES (@splitzId
-                                @userProfileId)";
+                                @splitzPic);";
 
                     DbUtils.AddParameter(cmd, "@splitzName", splitz.SplitzName);
                     DbUtils.AddParameter(cmd, "@splitzDetails", splitz.SplitzDetails);
@@ -231,7 +225,18 @@ namespace Splitzies.Repositories
                     DbUtils.AddParameter(cmd, "@splitzPic", splitz.SplitzPic);
 
                     splitz.Id = (int)cmd.ExecuteScalar();
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = @"
+                            INSERT INTO UserSplitz (SplitzId,
+                                                UserProfileId)
+                                  
+                            VALUES (@splitzId,
+                                    @userProfileId)";
 
+                    DbUtils.AddParameter(cmd, "@splitzId", splitz.Id);
+                    DbUtils.AddParameter(cmd, "@userProfileId", userProfileId);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

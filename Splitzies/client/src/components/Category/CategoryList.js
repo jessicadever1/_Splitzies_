@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { CategoryContext } from '../providers/CategoryProvider';
-import { CategoryCard } from './CategoryCard';
 import './category.css';
 
 export const CategoryList = () => {
@@ -9,8 +8,6 @@ export const CategoryList = () => {
     useEffect(() => {
         getAllCategories();
     }, []);
-
-    console.log("these are my categories", categories)
 
     return (
         <>
