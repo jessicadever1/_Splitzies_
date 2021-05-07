@@ -106,7 +106,7 @@ export const SplitzAdd = () => {
             </Input>
             <div className="container margBot">
                 <div className="row justify-content-center">
-                    <div className="cards-column">
+                    <div className="cards-column flexRow">
                         {userProfiles.map((userProfile) => (
                             <UserProfile key={userProfile.id} userProfile={userProfile} />
                         ))}
