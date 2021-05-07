@@ -9,7 +9,7 @@ export const ExpenseProvider = (props) => {
 
     const GetAllExpensesBySplitzId = (splitzId) => {
         return getToken().then((token) =>
-            fetch(`/api/Expense/${splitzId}`, {
+            fetch(`/api/Expense/getBySplitzId/${splitzId}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -17,6 +17,17 @@ export const ExpenseProvider = (props) => {
             }).then((res) => res.json())
                 .then(setExpenses)
         )
+    };
+
+    const getExpenseById = (id) => {
+        return getToken().then((token) =>
+            fetch(`/api/Expense/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((res) => res.json())
+        );
     };
 
     const addExpense = (expense) => {
@@ -37,6 +48,7 @@ export const ExpenseProvider = (props) => {
                 expenses,
                 GetAllExpensesBySplitzId,
                 setExpenses,
+                getExpenseById,
                 addExpense
             }}
         >

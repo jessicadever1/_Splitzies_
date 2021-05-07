@@ -2,23 +2,22 @@ import React, { useContext, useState, useEffect } from "react";
 import { Button, Form, Input } from 'reactstrap';
 import { ExpenseContext } from '../providers/ExpenseProvider';
 import { CategoryContext } from '../providers/CategoryProvider';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import './expense.css';
 
 export const ExpenseAdd = () => {
-    const { addExpense } = useContext(ExpenseContext)
+    const { getExpenseById, addExpense } = useContext(ExpenseContext)
     const { categories, getAllCategories } = useContext(CategoryContext);
     const history = useHistory();
+    const expenseId = parseInt(useParams().id)
 
-    useEffect(() => {
-        getAllCategories();
-    }, []);
 
     const [expense, setExpense] = useState({
-        "expenseName": "",
-        "categoryId": "",
-        "userWhoPaidId": "",
-        "amount": 0
+        expenseName: "",
+        categoryId: 0,
+        userWhoPaidId: 0,
+        splitzId: 0,
+        amount: 0
     })
 
     const handleClickSaveExpense = (event) => {
@@ -26,9 +25,10 @@ export const ExpenseAdd = () => {
 
         addExpense({
             expenseName: expense.expenseName,
-            categoryId: expense.categoryId,
+            categoryId: parseInt(expense.categoryId),
             userWhoPaidId: expense.userWhoPaidId,
-            amount: expense.amount
+            amount: expense.amount,
+            splitzId: expense.splitzId
         })
     }
 
@@ -42,6 +42,15 @@ export const ExpenseAdd = () => {
         newExpense[event.target.id] = selectedVal
         setExpense(newExpense)
     }
+
+    useEffect(() => {
+        getAllCategories();
+        if (expenseId) {
+            getExpenseById(expenseId).then((expense) => {
+                setExpense(expense);
+            });
+        }
+    }, []);
 
     return (
         <Form className="padding seeBot">
@@ -68,6 +77,9 @@ export const ExpenseAdd = () => {
             <Input
                 type="select"
                 className="margBot"
+                value={expense.categoryId}
+                name="categoryId"
+                id="categoryId"
                 onChange={handleInputChange}>
                 <option value="0">Select a Category</option>
                 {categories.map((c) => (

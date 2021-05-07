@@ -7,5 +7,6 @@ namespace Splitzies.Repositories
     {
         void Add(Expense expense);
         List<Expense> GetAllExpensesBySplitzId(int id);
+        Expense GetById(int id);
     }
 }
