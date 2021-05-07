@@ -2,14 +2,16 @@ import React, { useContext, useState, useEffect } from "react";
 import { Button, Form, Input } from 'reactstrap';
 import { ExpenseContext } from '../providers/ExpenseProvider';
 import { CategoryContext } from '../providers/CategoryProvider';
+import { SplitzContext } from '../providers/SplitzProvider';
 import { useHistory, useParams } from "react-router-dom";
 import './expense.css';
 
 export const ExpenseAdd = () => {
-    const { getExpenseById, addExpense } = useContext(ExpenseContext)
+    const { addExpense } = useContext(ExpenseContext)
     const { categories, getAllCategories } = useContext(CategoryContext);
-    const history = useHistory();
     const splitzId = parseInt(useParams().id)
+    const [splitz, setSplitz] = useState({ splitz: {} });
+    const { getSplitzById } = useContext(SplitzContext);
 
 
     const [expense, setExpense] = useState({
@@ -44,12 +46,16 @@ export const ExpenseAdd = () => {
     }
 
     useEffect(() => {
-        getAllCategories();
+        getAllCategories()
     }, []);
 
-    console.log("these are my cats", categories)
+    useEffect(() => {
+        getSplitzById(splitzId).then(setSplitz)
+    }, []);
 
-    return (
+    let usersOnSplitz = splitz.userProfiles
+
+    return usersOnSplitz ? (
         <Form className="padding seeBot">
             <div>Let's add your expenses!</div>
             <Input
@@ -86,11 +92,18 @@ export const ExpenseAdd = () => {
                 ))}
             </Input>
             <Input
-                id="paidBy"
+                id="userWhoPaidId"
                 type="select"
-                placeholder="Paid By"
+                value={expense.userWhoPaidId}
+                name="userWhoPaidId"
                 className="margBot"
                 onChange={handleInputChange}>
+                <option value="0">Who Paid For Expense?</option>
+                {usersOnSplitz.map((up) => (
+                    <option key={up.id} value={up.id}>
+                        {up.displayName}
+                    </option>
+                ))}
             </Input>
 
             <div className="flexRow">
@@ -103,7 +116,7 @@ export const ExpenseAdd = () => {
                 <Button id="btn" className="margBot">Add Another Expense</Button>
             </div>
         </Form>
-    )
+    ) : null;
 };
 
 export default ExpenseAdd;

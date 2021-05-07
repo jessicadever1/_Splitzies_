@@ -46,11 +46,13 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/addExpense/:id(\d+)">
-                    <CategoryProvider>
-                        <ExpenseProvider>
-                            {isLoggedIn ? <ExpenseAdd /> : <Redirect to="/login" />}
-                        </ExpenseProvider>
-                    </CategoryProvider>
+                    <SplitzProvider>
+                        <CategoryProvider>
+                            <ExpenseProvider>
+                                {isLoggedIn ? <ExpenseAdd /> : <Redirect to="/login" />}
+                            </ExpenseProvider>
+                        </CategoryProvider>
+                    </SplitzProvider>
                 </Route>
 
                 <Route path="/" exact>
