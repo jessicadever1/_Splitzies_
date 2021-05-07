@@ -13,6 +13,7 @@ import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "./providers/CategoryProvider";
 import ExpenseProvider from "./providers/ExpenseProvider";
 import ExpenseList from "./Expense/ExpenseList";
+import ExpenseAdd from "./Expense/ExpenseAdd";
 import './appViews.css';
 
 export default function ApplicationViews() {
@@ -40,6 +41,14 @@ export default function ApplicationViews() {
                     <CategoryProvider>
                         <ExpenseProvider>
                             {isLoggedIn ? <ExpenseList /> : <Redirect to="/login" />}
+                        </ExpenseProvider>
+                    </CategoryProvider>
+                </Route>
+
+                <Route exact path="/addExpense/:id(\d+)">
+                    <CategoryProvider>
+                        <ExpenseProvider>
+                            {isLoggedIn ? <ExpenseAdd /> : <Redirect to="/login" />}
                         </ExpenseProvider>
                     </CategoryProvider>
                 </Route>

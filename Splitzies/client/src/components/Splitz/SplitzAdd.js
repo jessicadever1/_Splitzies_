@@ -1,17 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap'
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { UserProfile } from '../UserProfile/UserProfile';
 import './splitz.css';
 
 export const SplitzAdd = () => {
 
     const { addSplitz } = useContext(SplitzContext)
     const history = useHistory();
-    const { searchUsersByName, searchedName, setSearchedName, setSearchResults } = useContext(UserProfileContext)
+    const {
+        userProfiles,
+        setUserProfiles,
+        getAllUserProfiles,
+        searchUsersByName,
+        searchedName,
+        setSearchedName,
+        searchResults,
+        setSearchResults
+    } = useContext(UserProfileContext)
+
+    // useEffect(() => {
+    //     getAllUserProfiles();
+    // }, []);
+
+    useEffect(() => {
+        if (searchedName !== "") {
+            searchUsersByName(searchedName);
+        } else {
+            getAllUserProfiles();
+        }
+    }, [searchedName]);
 
     const handleControlledInputChange = (evt) => {
         let newSearch = { ...searchedName };
@@ -24,7 +46,6 @@ export const SplitzAdd = () => {
         "date": "",
         "splitzDetails": "",
         "splitzPic": ""
-
     })
 
     const handleClickSaveSplitz = (event) => {
@@ -35,7 +56,6 @@ export const SplitzAdd = () => {
             date: splitz.date,
             splitzDetails: splitz.splitzDetails,
             splitzPic: splitz.splitzPic
-
         })
             .then(() => history.push(`/mySplitz`))
     }
@@ -84,6 +104,15 @@ export const SplitzAdd = () => {
                  Current You`}
                 onChange={handleInputChange}>
             </Input>
+            <div className="container margBot">
+                <div className="row justify-content-center">
+                    <div className="cards-column">
+                        {userProfiles.map((userProfile) => (
+                            <UserProfile key={userProfile.id} userProfile={userProfile} />
+                        ))}
+                    </div>
+                </div>
+            </div>
             <div className="flexRow">
                 <Input
                     type="search"
@@ -107,7 +136,7 @@ export const SplitzAdd = () => {
             <div>THIS IS WHERE EXPENSE LIST WILL BE IMPORTED</div>
 
             <div className="center">
-                <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Savezies</Button>
+                <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>On to Expenses!</Button>
             </div>
         </Form>
     </>)
