@@ -47,5 +47,38 @@ namespace Splitzies.Repositories
                 }
             }
         }
+
+
+
+
+        public void Add(UserSplitz userSplitz)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO UserSplitz 
+                                            (userProfileId,
+                                             slitzId)
+
+                                        OUTPUT INSERTED.ID
+
+                                        VALUES 
+                                            (@userProfileId, 
+                                             @splitzId)";
+
+                    DbUtils.AddParameter(cmd, "@userProfileId", userSplitz.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@splitzId", userSplitz.SplitzId);
+
+                    userSplitz.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+
+
+
+
     }
 }

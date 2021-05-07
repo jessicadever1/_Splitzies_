@@ -73,7 +73,11 @@ export default function ApplicationViews() {
 
                 <Route exact path="/addSplitz">
                     <SplitzProvider>
-                        {isLoggedIn ? <SplitzAdd /> : <Redirect to="/login" />}
+                        <ExpenseProvider>
+                            <CategoryProvider>
+                                {isLoggedIn ? <SplitzAdd /> : <Redirect to="/login" />}
+                            </CategoryProvider>
+                        </ExpenseProvider>
                     </SplitzProvider>
                 </Route>
 

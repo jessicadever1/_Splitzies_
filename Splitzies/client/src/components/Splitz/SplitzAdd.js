@@ -3,9 +3,11 @@ import { SplitzContext } from "../providers/SplitzProvider"
 import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap'
 import { UserProfileContext } from "../providers/UserProfileProvider";
+import { ExpenseList } from "../Expense/ExpenseList"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { UserProfile } from '../UserProfile/UserProfile';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import './splitz.css';
 
 export const SplitzAdd = () => {
@@ -48,6 +50,8 @@ export const SplitzAdd = () => {
         "splitzPic": ""
     })
 
+    const [splitzUsers, setSplitzUsers] = useState([])
+
     const handleClickSaveSplitz = (event) => {
         event.preventDefault()
 
@@ -55,9 +59,10 @@ export const SplitzAdd = () => {
             splitzName: splitz.splitzName,
             date: splitz.date,
             splitzDetails: splitz.splitzDetails,
-            splitzPic: splitz.splitzPic
+            splitzPic: splitz.splitzPic,
+            splitzUsers: splitzUsers
         })
-            .then(console.log("do i get a splitzId?", splitz.id))
+
     }
 
     const handleInputChange = (event) => {
@@ -70,6 +75,16 @@ export const SplitzAdd = () => {
         newSplitz[event.target.id] = selectedVal
         setSplitz(newSplitz)
     }
+
+    const handleAddUserToSplitz = (event) => {
+        const users = [...splitzUsers]
+        users.push(parseInt(event.target.id))
+        setSplitzUsers(users)
+    }
+
+    useEffect(() => {
+        console.log(splitzUsers)
+    }, [splitzUsers])
 
     return (<>
         <Form className="padding seeBot">
@@ -108,7 +123,13 @@ export const SplitzAdd = () => {
                 <div className="row justify-content-center">
                     <div className="cards-column flexRow">
                         {userProfiles.map((userProfile) => (
-                            <UserProfile key={userProfile.id} userProfile={userProfile} />
+                            <details key={userProfile.id}>
+                                <summary className="white"><img className="a" src={userProfile.profilePic} alt={userProfile.firstName}></img></summary>
+                                <div className="flexRow" >
+                                    <FontAwesomeIcon className="" id={userProfile.id} onClick={handleAddUserToSplitz} icon={faPlusCircle} />
+                                    <div>{userProfile.firstName}</div>
+                                </div>
+                            </details>
                         ))}
                     </div>
                 </div>
@@ -133,6 +154,8 @@ export const SplitzAdd = () => {
                     }}
                 ><FontAwesomeIcon className="" icon={faSearch} /></Button>
             </div>
+
+
 
             <div className="center">
                 <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Save Splitz</Button>

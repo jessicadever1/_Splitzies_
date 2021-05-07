@@ -22,5 +22,12 @@ namespace Splitzies.Controllers
         {
             return Ok(_userSplitzRepository.GetUserProfilesByUserSplitzId(splitzId));
         }
+
+        [HttpPost]
+        public IActionResult Post(UserSplitz userSplitz)
+        {
+            _userSplitzRepository.Add(userSplitz);
+            return CreatedAtAction("GetById", new { id = userSplitz.Id }, userSplitz);
+        }
     }
 }

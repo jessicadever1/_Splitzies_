@@ -5,6 +5,7 @@ namespace Splitzies.Repositories
 {
     public interface IUserSplitzRepository
     {
+        void Add(UserSplitz userSplitz);
         List<UserProfile> GetUserProfilesByUserSplitzId(int id);
     }
 }
