@@ -1,12 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Button, Form, Input } from 'reactstrap';
 import { ExpenseContext } from '../providers/ExpenseProvider';
+import { CategoryContext } from '../providers/CategoryProvider';
 import { useHistory } from "react-router-dom";
 import './expense.css';
 
 export const ExpenseAdd = () => {
     const { addExpense } = useContext(ExpenseContext)
+    const { categories, getAllCategories } = useContext(CategoryContext);
     const history = useHistory();
+
+    useEffect(() => {
+        getAllCategories();
+    }, []);
 
     const [expense, setExpense] = useState({
         "expenseName": "",
@@ -60,11 +66,15 @@ export const ExpenseAdd = () => {
                 </div>
             </div>
             <Input
-                id="category"
                 type="select"
-                placeholder="Expense Category"
                 className="margBot"
                 onChange={handleInputChange}>
+                <option value="0">Select a Category</option>
+                {categories.map((c) => (
+                    <option key={c.id} value={c.id}>
+                        {c.categoryName}
+                    </option>
+                ))}
             </Input>
             <Input
                 id="paidBy"
