@@ -51,6 +51,12 @@ namespace Splitzies.Controllers
             return NoContent();
         }
 
+        [HttpGet("searchForUser")]
+        public IActionResult SearchByFirstLastAndDisplayName(string f, string l, string d, bool sortDesc)
+        {
+            return Ok(_userProfileRepository.SearchByFirstLastAndDisplayName(f, l, d, sortDesc));
+        }
+
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
         {

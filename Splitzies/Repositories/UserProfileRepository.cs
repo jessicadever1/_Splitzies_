@@ -221,7 +221,63 @@ namespace Splitzies.Repositories
         }
 
 
-        
+
+        public List<UserProfile> SearchByFirstLastAndDisplayName(string firstName, string lastName, string displayName, bool sortDescending)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    var sql =
+                        @"SELECT 
+                            up.Id AS UserProfileId, 
+                            up.FirstName, 
+                            up.LastName, 
+                            up.DisplayName, 
+                            up.ProfilePic
+
+                    FROM UserProfile up 
+                    WHERE up.FirstName LIKE @firstName AND up.LastName LIKE @lastName AND up.DisplayName LIKE displayName";
+
+                    if (sortDescending)
+                    {
+                        sql += " ORDER BY up.firstName DESC";
+                    }
+                    else
+                    {
+                        sql += " ORDER BY up.firstName";
+                    }
+
+                    cmd.CommandText = sql;
+                    DbUtils.AddParameter(cmd, "@firstName", $"%{firstName}%");
+                    DbUtils.AddParameter(cmd, "@lastName", $"%{lastName}%");
+                    DbUtils.AddParameter(cmd, "@displayName", $"%{displayName}%");
+                    var reader = cmd.ExecuteReader();
+
+                    var userProfiles = new List<UserProfile>();
+                    while (reader.Read())
+                    {
+                        userProfiles.Add(new UserProfile()
+                        {
+                            Id = DbUtils.GetInt(reader, "UserProfileId"),
+                            FirstName = DbUtils.GetString(reader, "FirstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
+                            
+                        });
+                    }
+
+                    reader.Close();
+
+                    return userProfiles;
+                }
+            }
+        }
+
+
+
         public void Deactivate(int id)
         {
             using (var conn = Connection)
