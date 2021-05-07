@@ -27,7 +27,7 @@ export const ExpenseAdd = () => {
             expenseName: expense.expenseName,
             categoryId: parseInt(expense.categoryId),
             userWhoPaidId: expense.userWhoPaidId,
-            amount: expense.amount,
+            amount: parseInt(expense.amount),
             splitzId: splitzId
         })
     }

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap'
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -57,7 +57,7 @@ export const SplitzAdd = () => {
             splitzDetails: splitz.splitzDetails,
             splitzPic: splitz.splitzPic
         })
-            .then(() => history.push(`/mySplitz`))
+            .then(console.log("do i get a splitzId?", splitz.id))
     }
 
     const handleInputChange = (event) => {
@@ -133,10 +133,10 @@ export const SplitzAdd = () => {
                     }}
                 ><FontAwesomeIcon className="" icon={faSearch} /></Button>
             </div>
-            <div>THIS IS WHERE EXPENSE LIST WILL BE IMPORTED</div>
 
             <div className="center">
-                <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>On to Expenses!</Button>
+                <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Save Splitz</Button>
+                <Button id="btn" className="margBot"><Link to={`/addExpense/${splitz.id}`}>On to expenses!</Link></Button>
             </div>
         </Form>
     </>)
