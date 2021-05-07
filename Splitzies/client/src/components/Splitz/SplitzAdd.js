@@ -2,14 +2,22 @@ import React, { useContext, useState } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
 import { useHistory } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap'
-
-
+import { UserProfileContext } from "../providers/UserProfileProvider";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './splitz.css';
 
 export const SplitzAdd = () => {
 
     const { addSplitz } = useContext(SplitzContext)
     const history = useHistory();
+    const { searchUsersByName, searchedName, setSearchedName, setSearchResults } = useContext(UserProfileContext)
 
+    const handleControlledInputChange = (evt) => {
+        let newSearch = { ...searchedName };
+        newSearch = evt.target.value;
+        setSearchedName(newSearch);
+    };
 
     const [splitz, setSplitz] = useState({
         "splitzName": "",
@@ -76,14 +84,26 @@ export const SplitzAdd = () => {
                  Current You`}
                 onChange={handleInputChange}>
             </Input>
-            <Input
-                id="searchForUser"
-                className="margBot"
-                type="search"
-                placeholder="Who is Spitzing with you?"
-            >
-            </Input>
-
+            <div className="flexRow">
+                <Input
+                    type="search"
+                    name="search-term"
+                    id="search-term"
+                    autoComplete="off"
+                    value={searchedName}
+                    onChange={handleControlledInputChange}
+                    className="margBot"
+                    placeholder="Who is Spitzing with you?"
+                >
+                </Input>
+                <Button
+                    className="margBot"
+                    onClick={(evt) => {
+                        evt.preventDefault();
+                        searchUsersByName(searchedName);
+                    }}
+                ><FontAwesomeIcon className="" icon={faSearch} /></Button>
+            </div>
             <div>THIS IS WHERE EXPENSE LIST WILL BE IMPORTED</div>
 
             <div className="center">
