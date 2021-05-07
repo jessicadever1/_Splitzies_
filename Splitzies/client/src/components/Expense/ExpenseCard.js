@@ -24,8 +24,6 @@ export const ExpenseCard = ({ expense }) => {
     let uWhoPaid = userWhoPaid[0]
 
 
-    console.log("this is the user who paid", uWhoPaid)
-
     return catSeletected && uWhoPaid ? (
         <>
             <Card>

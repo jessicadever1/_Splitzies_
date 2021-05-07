@@ -12,7 +12,7 @@ export const ExpenseAdd = () => {
     const splitzId = parseInt(useParams().id)
     const [splitz, setSplitz] = useState({ splitz: {} });
     const { getSplitzById } = useContext(SplitzContext);
-
+    const history = useHistory();
 
     const [expense, setExpense] = useState({
         expenseName: "",
@@ -31,7 +31,7 @@ export const ExpenseAdd = () => {
             userWhoPaidId: expense.userWhoPaidId,
             amount: parseInt(expense.amount),
             splitzId: splitzId
-        })
+        }).then(() => history.push(`/expense/${splitzId}`))
     }
 
     const handleInputChange = (event) => {
