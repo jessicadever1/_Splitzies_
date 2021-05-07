@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
 import { useHistory } from 'react-router-dom';
-import { Button, Form, Label, Input } from 'reactstrap'
-import { date } from "check-types";
-import ExpenseCard from "../Expense/ExpenseCard";
+import { Button, Form, Input } from 'reactstrap'
+
 
 
 export const SplitzAdd = () => {
@@ -72,9 +71,9 @@ export const SplitzAdd = () => {
                 type="textarea"
                 className="textarea margBot"
                 placeholder={`Dear Future You,\
-                \ You may not remember what this splitz was all about. So I’ve written a few notes about it to jog your memory.\
+                 You may not remember what this splitz was all about. So I’ve written a few notes about it to jog your memory.\
                 Love,\
-                \ Current You`}
+                 Current You`}
                 onChange={handleInputChange}>
             </Input>
             <Input

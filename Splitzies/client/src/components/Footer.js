@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
-    NavBar,
     Nav,
     NavItem,
     NavLink
@@ -12,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const FooterMenu = () => {
-    const { isLoggedIn, logout } = useContext(UserProfileContext);
+    const { isLoggedIn } = useContext(UserProfileContext);
 
     return (
         <div>

@@ -1,13 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink
 } from 'reactstrap';
 import { UserProfileContext } from "./providers/UserProfileProvider";
 import './header.css';
@@ -16,9 +13,9 @@ import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 
 export function Header() {
     const { isLoggedIn, logout } = useContext(UserProfileContext);
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+    //const [isOpen, setIsOpen] = useState(false);
+    // const toggle = () => setIsOpen(!isOpen);
+    // const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     return (
         <div>
