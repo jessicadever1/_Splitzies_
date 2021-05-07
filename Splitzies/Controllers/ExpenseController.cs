@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Splitzies.Repositories;
+using Splitzies.Models; 
 
 namespace Splitzies.Controllers
 {
@@ -30,5 +31,13 @@ namespace Splitzies.Controllers
         {
             return Ok(_expenseRepository.GetAllExpensesBySplitzId(id));
         }
+
+        [HttpPost]
+        public IActionResult Post(Expense expense)
+        {
+            _expenseRepository.Add(expense);
+            return CreatedAtAction("Get", new { id = expense.Id }, expense);
+        }
+
     }
 }

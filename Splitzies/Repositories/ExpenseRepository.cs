@@ -78,22 +78,23 @@ namespace Splitzies.Repositories
                                              UserWhoPaidId,
                                              Amount,
                                              SplitzId)
-                                        OUTPUT INSERTED.ID
-                                        VALUES 
-                                            (@FirebaseId, 
-                                             @FirstName, 
-                                             @LastName, 
-                                             @DisplayName, 
-                                             @Email, 
-                                             @ProfilePic)";
-                    DbUtils.AddParameter(cmd, "@FirebaseId", userProfile.FirebaseId);
-                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
-                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
-                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
-                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@ProfilePic", userProfile.ProfilePic);
 
-                    userProfile.Id = (int)cmd.ExecuteScalar();
+                                        OUTPUT INSERTED.ID
+
+                                        VALUES 
+                                            (@ExpenseName, 
+                                             @CategoryId, 
+                                             @UserWhoPaidId, 
+                                             @Amount, 
+                                             @SplitzId)";
+
+                    DbUtils.AddParameter(cmd, "@ExpenseName", expense.ExpenseName);
+                    DbUtils.AddParameter(cmd, "@CategoryId", expense.CategoryId);
+                    DbUtils.AddParameter(cmd, "@UserWhoPaidId", expense.UserWhoPaidId);
+                    DbUtils.AddParameter(cmd, "@Amount", expense.Amount);
+                    DbUtils.AddParameter(cmd, "@SplitzId", expense.SplitzId);
+
+                    expense.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
