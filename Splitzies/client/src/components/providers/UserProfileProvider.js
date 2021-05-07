@@ -106,9 +106,15 @@ export function UserProfileProvider(props) {
     };
 
     const searchUsersByName = (searchedName) => {
-        return fetch(`/api/UserProfile/searchForUser?f=${searchedName}&l=${searchedName}&d=${searchedName}&sortDesc=false`)
-            .then((res) => res.json())
-            .then(setSearchResults);
+        return getToken().then((token) =>
+            fetch(`/api/UserProfile/searchForUser?f=${searchedName}&l=${searchedName}&d=${searchedName}&sortDesc=false`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then((res) => res.json())
+                .then(setSearchResults));
     }
 
     return (
