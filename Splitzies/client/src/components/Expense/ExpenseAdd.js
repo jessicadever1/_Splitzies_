@@ -18,7 +18,7 @@ export const ExpenseAdd = () => {
     const handleClickSaveExpense = (event) => {
         event.preventDefault()
 
-        addSplitz({
+        addExpense({
             expenseName: expense.expenseName,
             categoryId: expense.categoryId,
             userWhoPaidId: expense.userWhoPaidId,

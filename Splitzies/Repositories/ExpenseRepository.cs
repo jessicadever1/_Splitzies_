@@ -61,5 +61,44 @@ namespace Splitzies.Repositories
 
             }
         }
+
+
+
+
+        public void Add(Expense expense)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Expense 
+                                            (ExpenseName,
+                                             CategoryId,
+                                             UserWhoPaidId,
+                                             Amount,
+                                             SplitzId)
+                                        OUTPUT INSERTED.ID
+                                        VALUES 
+                                            (@FirebaseId, 
+                                             @FirstName, 
+                                             @LastName, 
+                                             @DisplayName, 
+                                             @Email, 
+                                             @ProfilePic)";
+                    DbUtils.AddParameter(cmd, "@FirebaseId", userProfile.FirebaseId);
+                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "@ProfilePic", userProfile.ProfilePic);
+
+                    userProfile.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+
+
     }
 }

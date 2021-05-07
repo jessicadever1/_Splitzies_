@@ -19,12 +19,25 @@ export const ExpenseProvider = (props) => {
         )
     };
 
+    const addExpense = (expense) => {
+        return getToken().then((token) =>
+            fetch(`/api/Expense`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(expense),
+            }))
+    };
+
     return (
         <ExpenseContext.Provider
             value={{
                 expenses,
                 GetAllExpensesBySplitzId,
-                setExpenses
+                setExpenses,
+                addExpense
             }}
         >
             {props.children}
