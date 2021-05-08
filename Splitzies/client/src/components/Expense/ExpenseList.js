@@ -15,10 +15,19 @@ export const ExpenseList = () => {
         GetAllExpensesBySplitzId(splitzId);
     }, []);
 
+    expenses.map((expense) => {
+
+        return (
+
+            console.log(expense.amount)
+
+        )
+    })
+
     return (
         <>
             <div className="p bkgwhite">
-                <h2 class="center purple margBot">How are these expenses looking?</h2>
+                <h2 className="center purple margBot">How are these expenses looking?</h2>
                 <div className="container mw">
                     <div className="row justify-content-center margBot">
                         <div className="cards=column width ">
