@@ -20,8 +20,12 @@
     text-align: center;
 }
 
+.logoSize {
+    width: 17rem;
+}
+
 #border {
-    margin-top: 7rem;
+    /* margin-top: 7rem; */
     background-color: white;
     margin-left: -.5rem;
     margin-right: -.5rem;
