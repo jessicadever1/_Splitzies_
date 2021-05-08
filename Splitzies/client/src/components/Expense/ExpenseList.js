@@ -1,20 +1,19 @@
 import React, { useContext, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { ExpenseContext } from '../providers/ExpenseProvider';
 import { ExpenseCard } from "./ExpenseCard";
 import './expense.css';
+import { Button } from 'reactstrap';
 
 export const ExpenseList = () => {
     const { expenses, GetAllExpensesBySplitzId } = useContext(ExpenseContext);
     const { id } = useParams();
-
-    console.log("is this the splitzid in num format?", id)
+    const splitzId = parseInt(id);
+    const history = useHistory();
 
     useEffect(() => {
-        GetAllExpensesBySplitzId(id);
+        GetAllExpensesBySplitzId(splitzId);
     }, []);
-
-    console.log("these are my expenes", expenses)
 
     return (
         <>
@@ -28,6 +27,8 @@ export const ExpenseList = () => {
                     </div>
                 </div>
             </div>
+            <Button onClick={() => history.push(`/splitzDetails/${splitzId}`)}>Back to My Splitz</Button>
+            <Button ><Link to={`/addExpense/${splitzId}`}>Add Another Expense</Link></Button>
         </>
     );
 };
