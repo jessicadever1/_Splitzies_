@@ -7,6 +7,10 @@
     color:rgb(58, 134, 255)
 }
 
+.purple {
+    color: rgb(131, 56, 236)
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -21,6 +25,22 @@
     width: 30px;
     height: 30px;
     margin: .15rem;
+}
+
+.balImg {
+    border-radius: 100%;
+    border: 2.5px solid rgb(251, 86, 7);
+    width: 65px;
+    height: 65px;
+    margin: .5rem;
+}
+
+small {
+    margin: .25rem;
+}
+
+main {
+    min-height: 667px;
 }
 
 .b, .b:hover {

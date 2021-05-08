@@ -13,3 +13,19 @@
 .width {
     width: 85%;
 }
+
+.white {
+    color: white;
+}
+
+.p {
+    padding: 1rem;
+}
+
+.margBot {
+    margin-bottom: 1rem;
+}
+
+.sp {
+    padding: 0 1rem;
+}

@@ -55,22 +55,22 @@ export const SplitzDetails = () => {
                     </div>
                     <div className="flexRow">
                         <div className="flexColumn center">
-                            <h6 className="font10">Your Portion Total</h6>
+                            <h6 className="font10 purple">Your Portion Total</h6>
                             <p>$300.00</p>
                         </div>
                         <div className="flexColumn center">
-                            <h6 className="font10">Your Total Owed</h6>
+                            <h6 className="font10 purple">Your Total Owed</h6>
                             <p>$83.33</p>
                         </div>
                     </div>
 
                     <div className="flexColumn">
                         <div className="center">
-                            <img className="a" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                            <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                             <small>$83.88</small>
                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                            <img className="a" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                            <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                         </div>
                     </div>
                 </CardBody>

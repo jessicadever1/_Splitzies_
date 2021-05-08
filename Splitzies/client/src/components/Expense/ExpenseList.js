@@ -17,18 +17,20 @@ export const ExpenseList = () => {
 
     return (
         <>
-            <h2>How are these expenses looking?</h2>
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="cards=column width">
-                        {expenses.map((expense) => {
-                            return <ExpenseCard key={expense.id} expense={expense} />
-                        })}
+            <div class="p">
+                <h2 class="center purple">How are these expenses looking?</h2>
+                <div className="container">
+                    <div className="row justify-content-center margBot">
+                        <div className="cards=column width ">
+                            {expenses.map((expense) => {
+                                return <ExpenseCard key={expense.id} expense={expense} />
+                            })}
+                        </div>
                     </div>
                 </div>
+                <Button onClick={() => history.push(`/splitzDetails/${splitzId}`)}>Back to My Splitz</Button>
+                <Button ><Link to={`/addExpense/${splitzId}`}>Add Another Expense</Link></Button>
             </div>
-            <Button onClick={() => history.push(`/splitzDetails/${splitzId}`)}>Back to My Splitz</Button>
-            <Button ><Link to={`/addExpense/${splitzId}`}>Add Another Expense</Link></Button>
         </>
     );
 };
