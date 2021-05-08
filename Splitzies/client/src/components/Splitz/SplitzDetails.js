@@ -25,18 +25,31 @@ export const SplitzDetails = () => {
             <Card className="m-4">
                 <CardBody>
                     <div className="flexRow">
-                        <CardImg className="picSize" top src={splitz.splitzPic} alt={splitz.splitzName} />
+                        <CardImg className="detPicSize" top src={splitz.splitzPic} alt={splitz.splitzName} />
 
                         <div className="flexColumn">
-                            <h1 className="text-left px-2 font18">{splitz.splitzName}</h1>
+                            <div id="se" className="flexRow">
+                                <h1 className="text-left px-2 font18">{splitz.splitzName}</h1>
+                                <div className="flexRow">
+                                    <Link to={`/splitzDelete/${splitz.id}`}><FontAwesomeIcon className="trash" icon={faTrashAlt} /></Link>
+                                    <Link to={`/splitzEdit/${splitz.id}`}><FontAwesomeIcon className="edit" icon={faEdit} /></Link>
+                                </div>
+                            </div>
                             <h2 className="text-left px-2 font14">{date}</h2>
-                        </div>
-                        <div className="flexRow">
-                            <Link to={`/splitzDelete/${splitz.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
-                            <Link to={`/splitzEdit/${splitz.id}`}><FontAwesomeIcon className="" icon={faEdit} /></Link>
+                            <div className="flexRow">
+                                <div>
+                                    {usersOnSplitz.map((user) => {
+                                        return (
+                                            <>
+                                                <img className="a" key={user.id} src={user.profilePic}></img>
+                                            </>
+                                        )
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="flexRow">
+                    <div id="sb" className="flexRow">
                         <Button><Link className="b" to={`/expense/${splitzId}`}>See All Expenses</Link></Button>
                         <Button><Link className="b" to={`/addExpense/${splitzId}`}>Add Expense</Link></Button>
                     </div>
@@ -50,17 +63,7 @@ export const SplitzDetails = () => {
                             <p>$83.33</p>
                         </div>
                     </div>
-                    <div className="flexRow">
-                        <div>
-                            {usersOnSplitz.map((user) => {
-                                return (
-                                    <>
-                                        <img className="a" key={user.id} src={user.profilePic}></img>
-                                    </>
-                                )
-                            })}
-                        </div>
-                    </div>
+
                     <div className="flexColumn">
                         <div className="center">
                             <img className="a" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>

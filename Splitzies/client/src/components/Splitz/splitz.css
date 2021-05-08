@@ -27,8 +27,14 @@
     color: white;
     text-decoration: none;
     margin-top: 1rem;
-    font-size: 9px;
+    /* font-size: 9px; */
     max-height: 2rem;
+}
+
+#sb {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .picSize {
@@ -37,6 +43,22 @@
     border-radius: 5%;
     margin-left: .75rem;
 }
+
+.detPicSize {
+    max-width: 7rem;
+    max-height: 7rem;
+    border-radius: 5%;
+    margin: 0 .75rem .75rem 0;
+}
+
+#se {
+    justify-content: space-between;
+}
+
+.trash, .edit {
+    margin: 0 .25rem 0 0;
+}
+
 .marg {
     margin: 0 .5rem 0 0;
 }
