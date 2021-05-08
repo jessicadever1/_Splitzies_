@@ -20,6 +20,7 @@
     border-radius: 100%;
     width: 30px;
     height: 30px;
+    margin: .15rem;
 }
 
 .b, .b:hover {
@@ -31,14 +32,22 @@
 }
 
 .picSize {
-    max-width: 4rem;
-    max-height: 4rem;
+    max-width: 6rem;
+    max-height: 6rem;
     border-radius: 5%;
+    margin-left: .75rem;
+}
+.marg {
+    margin: 0 .5rem 0 0;
 }
 
 .flexColumn {
     display: flex;
     flex-direction: column;
+}
+
+.wrapText {
+    overflow-wrap: break-word;
 }
 
 .flexRow {
