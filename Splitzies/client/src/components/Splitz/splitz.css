@@ -7,6 +7,10 @@
     color:rgb(58, 134, 255)
 }
 
+.purple {
+    color: rgb(131, 56, 236)
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -20,24 +24,72 @@
     border-radius: 100%;
     width: 30px;
     height: 30px;
+    margin: .15rem;
+}
+
+.balImg {
+    border-radius: 100%;
+    border: 2.5px solid rgb(251, 86, 7);
+    width: 65px;
+    height: 65px;
+    margin: .5rem;
+}
+
+small {
+    margin: .25rem;
+}
+
+main {
+    min-height: 667px;
 }
 
 .b, .b:hover {
     color: white;
     text-decoration: none;
     margin-top: 1rem;
-    font-size: 9px;
+    /* font-size: 9px; */
     max-height: 2rem;
 }
 
+#sb {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
 .picSize {
-    max-width: 5rem;
-    max-height: 5rem;
+    max-width: 6rem;
+    max-height: 6rem;
+    border-radius: 5%;
+    margin-left: .75rem;
+}
+
+.detPicSize {
+    max-width: 7rem;
+    max-height: 7rem;
+    border-radius: 5%;
+    margin: 0 .75rem .75rem 0;
+}
+
+#se {
+    justify-content: space-between;
+}
+
+.trash, .edit {
+    margin: 0 .25rem 0 0;
+}
+
+.marg {
+    margin: 0 .5rem 0 0;
 }
 
 .flexColumn {
     display: flex;
     flex-direction: column;
+}
+
+.wrapText {
+    overflow-wrap: break-word;
 }
 
 .flexRow {
@@ -88,6 +140,10 @@
     border-color: rgb(255, 0, 110)
 }
 
+.bc {
+    background-color: white;
+}
+
 
 
 #amount {
@@ -98,3 +154,20 @@
     display: flex;
     justify-content: space-between;
 }
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .padTop {
+      padding-top: 5rem;
+  }
+
+  .bkgwhiteRad {
+      background-color: white;
+      border-radius: 2.5%;
+  }

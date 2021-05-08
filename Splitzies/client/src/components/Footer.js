@@ -20,7 +20,7 @@ export const FooterMenu = () => {
 
                 {isLoggedIn &&
                     <NavItem className="nav-items pink flex m8">
-                        <NavLink id="textColorWhite" tag={RRNavLink} to="/mySplitz">Splitz</NavLink>
+                        <NavLink id="textColorWhite" tag={RRNavLink} to="/mySplitz">My Splitzies</NavLink>
                         <NavLink id="textColorWhite" tag={RRNavLink} to="/addSplitz">
                             <FontAwesomeIcon className="fontSize20" icon={faPlusCircle} />
                         </NavLink>

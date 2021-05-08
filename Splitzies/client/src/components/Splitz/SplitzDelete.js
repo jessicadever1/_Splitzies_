@@ -20,12 +20,15 @@ export const SplitzDelete = () => {
 
     return (
         <>
-            <h3>Are you sure you want to delete this splitz?</h3>
-
-            <Button className="b" onClick={handleDeleteClick}>Yes, Final Answer</Button>
-            <Button className="b">
-                <Link className="b" to="/mySplitz">Nevermind, my bad</Link>
-            </Button>
+            <div className="bkgwhite padTop">
+                <h3 className="purple center">Are you sure you want to delete this splitz?</h3>
+                <div className="flexRow">
+                    <Button className="b" onClick={handleDeleteClick}>Yes, Final Answer</Button>
+                    <Button className="b">
+                        <Link className="b" to="/mySplitz">Nevermind, my bad</Link>
+                    </Button>
+                </div>
+            </div>
         </>
     )
 }

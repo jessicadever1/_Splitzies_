@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'reactstrap';
 import { ExpenseContext } from '../providers/ExpenseProvider';
 import { CategoryContext } from '../providers/CategoryProvider';
 import { SplitzContext } from '../providers/SplitzProvider';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import './expense.css';
 
 export const ExpenseAdd = () => {
@@ -34,7 +34,7 @@ export const ExpenseAdd = () => {
         }).then(() => history.push(`/expense/${splitzId}`))
     }
 
-    const handleInputChange = (event) => {
+    const handleExpenseInputChange = (event) => {
 
         const newExpense = { ...expense }
         let selectedVal = event.target.value
@@ -56,14 +56,14 @@ export const ExpenseAdd = () => {
     let usersOnSplitz = splitz.userProfiles
 
     return usersOnSplitz ? (
-        <Form className="padding seeBot">
-            <div>Let's add your expenses!</div>
+        <Form className="padding seeBot bkgwhite">
+            <h2 className="purple center">Let's add your expenses!</h2>
             <Input
                 id="expenseName"
                 placeholder="Expense Name"
                 className="margBot"
                 type="text"
-                onChange={handleInputChange}>
+                onChange={handleExpenseInputChange}>
             </Input>
             <div className="flexRow jc">
                 <div>$</div>
@@ -73,7 +73,7 @@ export const ExpenseAdd = () => {
                         type="number"
                         placeholder="Dollar Amount"
                         className="margBot"
-                        onChange={handleInputChange}>
+                        onChange={handleExpenseInputChange}>
                     </Input>
                 </div>
             </div>
@@ -83,7 +83,7 @@ export const ExpenseAdd = () => {
                 value={expense.categoryId}
                 name="categoryId"
                 id="categoryId"
-                onChange={handleInputChange}>
+                onChange={handleExpenseInputChange}>
                 <option value="0">Select a Category</option>
                 {categories.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -97,7 +97,7 @@ export const ExpenseAdd = () => {
                 value={expense.userWhoPaidId}
                 name="userWhoPaidId"
                 className="margBot"
-                onChange={handleInputChange}>
+                onChange={handleExpenseInputChange}>
                 <option value="0">Who Paid For Expense?</option>
                 {usersOnSplitz.map((up) => (
                     <option key={up.id} value={up.id}>
@@ -115,6 +115,7 @@ export const ExpenseAdd = () => {
                 </Button>
                 <Button id="btn" className="margBot">Add Another Expense</Button>
             </div>
+            <Button id="btn"><Link className="white" to={`/splitzDetails/${splitzId}`}>Back To Splitz</Link></Button>
         </Form>
     ) : null;
 };

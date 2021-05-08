@@ -12,24 +12,26 @@ export const Splitz = ({ splitz }) => {
     const date = dateFormat(splitz.date, "mmmm dS, yyyy")
 
     return splitz ? (
-        <Card className="m-4">
+        <Card className="m-2">
             <CardBody className="row">
                 <CardImg className="picSize" top src={splitz.splitzPic} alt={splitz.splitzName} />
 
                 <div>
-                    <Link to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
+                    <Link className="wrapText" to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
                     <p>{date}</p>
                     <div>
                         {usersOnSplitz.map((user) => {
                             return (
                                 <>
+
                                     <img className="a" key={user.id} src={user.profilePic} alt={user.firstName}></img>
+
                                 </>
                             )
                         })}
                     </div>
                 </div>
-                <FontAwesomeIcon icon={faCommentsDollar} />
+                <FontAwesomeIcon className="marg blue" icon={faCommentsDollar} />
             </CardBody>
         </Card>
     ) : null;

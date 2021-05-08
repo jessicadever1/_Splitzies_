@@ -13,3 +13,38 @@
 .width {
     width: 85%;
 }
+
+.white {
+    color: white;
+}
+
+.p {
+    padding: 1rem;
+}
+
+.margBot {
+    margin-bottom: 1rem;
+}
+
+.sp {
+    padding: 0 1rem;
+}
+
+.white {
+    color: white;
+}
+
+.eb, .eb:hover {
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+    /* max-height: 2rem; */
+    margin-left: .5rem;
+}
+
+.bkgwhite {
+    background-color: white;
+    border-radius: 5%;
+    min-height: 567px;
+    margin-top: 1rem;
+}

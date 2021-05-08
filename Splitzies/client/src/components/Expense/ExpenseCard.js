@@ -26,7 +26,7 @@ export const ExpenseCard = ({ expense }) => {
 
     return catSeletected && uWhoPaid ? (
         <>
-            <Card>
+            <Card className="margBot sp">
                 <CardBody>
                     <div className="row">
                         <div>{expense.expenseName}</div>
