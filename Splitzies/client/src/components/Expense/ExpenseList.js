@@ -15,14 +15,20 @@ export const ExpenseList = () => {
         GetAllExpensesBySplitzId(splitzId);
     }, []);
 
+
+    let justNumbers = []
     expenses.map((expense) => {
-
-        return (
-
-            console.log(expense.amount)
-
-        )
+        justNumbers.push(expense.amount)
     })
+
+    const sum = justNumbers.reduce(add, 0); // with initial value to avoid when the array is empty
+
+    function add(accumulator, a) {
+        return accumulator + a;
+    }
+
+    console.log(sum);
+    const portion = sum / 3
 
     return (
         <>
@@ -35,6 +41,16 @@ export const ExpenseList = () => {
                                 return <ExpenseCard key={expense.id} expense={expense} />
                             })}
                         </div>
+                    </div>
+                </div>
+                <div className="flexRow">
+                    <div className="flexColumn center">
+                        <h6 className="font10 purple">Total Cost of Splitz</h6>
+                        <p>${sum}</p>
+                    </div>
+                    <div className="flexColumn center">
+                        <h6 className="font10 purple">Your Portion of Splitz</h6>
+                        <p>${portion}</p>
                     </div>
                 </div>
                 <div className="flexRow">
