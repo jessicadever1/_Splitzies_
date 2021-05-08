@@ -23,7 +23,9 @@ export const Splitz = ({ splitz }) => {
                         {usersOnSplitz.map((user) => {
                             return (
                                 <>
+
                                     <img className="a" key={user.id} src={user.profilePic} alt={user.firstName}></img>
+
                                 </>
                             )
                         })}
