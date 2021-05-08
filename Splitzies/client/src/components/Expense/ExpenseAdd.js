@@ -56,8 +56,8 @@ export const ExpenseAdd = () => {
     let usersOnSplitz = splitz.userProfiles
 
     return usersOnSplitz ? (
-        <Form className="padding seeBot">
-            <div>Let's add your expenses!</div>
+        <Form className="padding seeBot bkgwhite">
+            <h2 className="purple center">Let's add your expenses!</h2>
             <Input
                 id="expenseName"
                 placeholder="Expense Name"
@@ -115,7 +115,7 @@ export const ExpenseAdd = () => {
                 </Button>
                 <Button id="btn" className="margBot">Add Another Expense</Button>
             </div>
-            <Button><Link to={`/splitzDetails/${splitzId}`}>Back To Splitz</Link></Button>
+            <Button id="btn"><Link className="white" to={`/splitzDetails/${splitzId}`}>Back To Splitz</Link></Button>
         </Form>
     ) : null;
 };

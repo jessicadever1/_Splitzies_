@@ -21,8 +21,8 @@ export const SplitzDetails = () => {
     let usersOnSplitz = splitz.userProfiles
 
     return usersOnSplitz ? (
-        <div>
-            <Card className="m-4">
+        <div className="">
+            <Card className="m-4 bkgwhite">
                 <CardBody>
                     <div className="flexRow">
                         <CardImg className="detPicSize" top src={splitz.splitzPic} alt={splitz.splitzName} />

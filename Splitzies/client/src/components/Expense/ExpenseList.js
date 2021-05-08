@@ -17,9 +17,9 @@ export const ExpenseList = () => {
 
     return (
         <>
-            <div class="p">
-                <h2 class="center purple">How are these expenses looking?</h2>
-                <div className="container">
+            <div className="p bkgwhite">
+                <h2 class="center purple margBot">How are these expenses looking?</h2>
+                <div className="container mw">
                     <div className="row justify-content-center margBot">
                         <div className="cards=column width ">
                             {expenses.map((expense) => {
@@ -28,8 +28,10 @@ export const ExpenseList = () => {
                         </div>
                     </div>
                 </div>
-                <Button onClick={() => history.push(`/splitzDetails/${splitzId}`)}>Back to My Splitz</Button>
-                <Button ><Link to={`/addExpense/${splitzId}`}>Add Another Expense</Link></Button>
+                <div className="flexRow">
+                    <Button className="eb" onClick={() => history.push(`/splitzDetails/${splitzId}`)}>Back to My Splitz </Button>
+                    <Button className="eb"><Link className="white" to={`/addExpense/${splitzId}`}>Add Another Expense</Link></Button>
+                </div>
             </div>
         </>
     );
