@@ -13,28 +13,28 @@ import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 
 export function Header() {
     const { isLoggedIn, logout } = useContext(UserProfileContext);
-    //const [isOpen, setIsOpen] = useState(false);
-    // const toggle = () => setIsOpen(!isOpen);
-    // const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     return (
         <div>
-            <Navbar className="pink" >
-                <NavbarBrand tag={RRNavLink} to="/" className="textColorWhite" id="center">Splitzies</NavbarBrand>
-                <NavItem>
-                    <Nav>
-                        {isLoggedIn &&
-                            <>
-                                <NavItem>
-                                    <a aria-current="page" className="vertical-center"
-                                        style={{ cursor: "pointer" }} onClick={logout}><FontAwesomeIcon className="textColorWhite" icon={faDoorOpen} /></a>
-                                </NavItem>
-                            </>
-                        }
-                    </Nav>
+            {isLoggedIn &&
+                <>
+                    < Navbar className="pink" >
+                        <NavbarBrand tag={RRNavLink} to="/" className="textColorWhite" id="center">Splitzies</NavbarBrand>
+                        <NavItem>
+                            <Nav>
+                                {isLoggedIn &&
+                                    <>
+                                        <NavItem>
+                                            <a aria-current="page" className="vertical-center"
+                                                style={{ cursor: "pointer" }} onClick={logout}><FontAwesomeIcon className="textColorWhite" icon={faDoorOpen} /></a>
+                                        </NavItem>
+                                    </>
+                                }
+                            </Nav>
 
-                </NavItem>
-            </Navbar>
+                        </NavItem>
+                    </Navbar>
+                </>}
         </div >
     );
 };
