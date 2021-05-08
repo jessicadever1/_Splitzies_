@@ -166,3 +166,8 @@ main {
   .padTop {
       padding-top: 5rem;
   }
+
+  .bkgwhiteRad {
+      background-color: white;
+      border-radius: 2.5%;
+  }

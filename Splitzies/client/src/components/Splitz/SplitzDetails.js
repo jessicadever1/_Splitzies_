@@ -20,6 +20,7 @@ export const SplitzDetails = () => {
 
     let usersOnSplitz = splitz.userProfiles
 
+
     return usersOnSplitz ? (
         <div className="">
             <Card className="m-4 bkgwhite">
@@ -53,6 +54,7 @@ export const SplitzDetails = () => {
                         <Button><Link className="b" to={`/expense/${splitzId}`}>See All Expenses</Link></Button>
                         <Button><Link className="b" to={`/addExpense/${splitzId}`}>Add Expense</Link></Button>
                     </div>
+
                     <div className="flexRow">
                         <div className="flexColumn center">
                             <h6 className="font10 purple">Your Portion Total</h6>
@@ -65,14 +67,67 @@ export const SplitzDetails = () => {
                     </div>
 
                     <div className="flexColumn">
-                        <div className="center">
-                            <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
-                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                            <small>$83.88</small>
-                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                            <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
-                        </div>
+
+                        {usersOnSplitz.map((user) => {
+
+                            let filter = usersOnSplitz.filter(val => val.id)
+                            let numOfSplitzers = filter.length;
+                            console.log(numOfSplitzers)
+
+                            if (numOfSplitzers === 1) {
+                                return (
+                                    <div className="center">
+                                        <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                                        <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                        <small>$83.88</small>
+                                        <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                        <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                                    </div>
+                                )
+                            } else if (numOfSplitzers === 2) {
+                                return (
+                                    <div className="center">
+                                        <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                                        <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                        <small>$83.88</small>
+                                        <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                        <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
+                                    </div>
+                                )
+                            } else if (numOfSplitzers === 3) {
+                                return (
+                                    <>
+                                        <div className="center">
+                                            <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                            <small>$83.88</small>
+                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                            <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
+                                        </div>
+                                        <div className="center">
+                                            <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
+                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                            <small>$83.88</small>
+                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                            <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
+                                        </div>
+                                        <div className="center">
+                                            <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
+                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                            <small>$83.88</small>
+                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                            <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
+                                        </div>
+                                    </>
+                                )
+                            }
+
+                        })}
+
+
+
                     </div>
+
                 </CardBody>
             </Card>
         </div>

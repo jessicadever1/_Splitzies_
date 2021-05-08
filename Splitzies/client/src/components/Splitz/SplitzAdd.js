@@ -87,8 +87,8 @@ export const SplitzAdd = () => {
     }, [splitzUsers])
 
     return (<>
-        <Form className="padding seeBot">
-            <h1>Let's Add A Splitz!</h1>
+        <Form className="padding seeBot bkgwhite">
+            <h1 className="purple center">Let's Add A Splitz!</h1>
             <Input
                 id="splitzName"
                 className="margBot"
@@ -159,7 +159,7 @@ export const SplitzAdd = () => {
 
             <div className="center">
                 <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Save Splitz</Button>
-                <Button id="btn" className="margBot"><Link to={`/addExpense/${splitz.id}`}>On to expenses!</Link></Button>
+
             </div>
         </Form>
     </>)

@@ -55,8 +55,8 @@ export const SplitzEdit = () => {
     }
 
     return (
-        <div className="">
-            <Form className="padding seeBot bkgwhite purple center">
+        <div className="bkgwhiteRad">
+            <Form className="padding seeBot  purple center">
                 <h1>Ready to Help You Make Changes!</h1>
                 <Input
                     id="splitzName"
