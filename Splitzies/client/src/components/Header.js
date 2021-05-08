@@ -20,7 +20,7 @@ export function Header() {
     return (
         <div>
             <Navbar className="pink" >
-                <NavbarBrand tag={RRNavLink} to="/" className="textColorWhite center">Splitzies</NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/" className="textColorWhite" id="center">Splitzies</NavbarBrand>
                 <NavItem>
                     <Nav>
                         {isLoggedIn &&

@@ -20,7 +20,7 @@ export default function Login() {
 
     return (
         <Form onSubmit={loginSubmit} className="p backgroundWhite">
-            <fieldset>
+            <fieldset id="border" className="ptb">
                 <FormGroup className="p">
                     <Label for="email">Email</Label>
                     <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
@@ -29,11 +29,12 @@ export default function Login() {
                     <Label for="password">Password</Label>
                     <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
                 </FormGroup>
-                <FormGroup className="p">
-                    <Button>Login</Button>
+                <FormGroup id="noMarg" className="p jcc ">
+                    <Button id="btn">Login</Button>
                 </FormGroup>
                 <em className="p">
-                    Not registered? <Link to="register">Register</Link>
+                    <div className="jcc">Are you new here? Let's get you</div>
+                    <Link to="register" className="jcc mb">Registered!</Link>
                 </em>
             </fieldset>
         </Form>
