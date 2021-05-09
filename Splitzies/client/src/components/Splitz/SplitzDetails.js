@@ -26,7 +26,7 @@ export const SplitzDetails = () => {
 
     let usersOnSplitz = splitz.userProfiles
 
-    console.log(usersOnSplitz)
+    //console.log("are these the users on the splitz?", usersOnSplitz)
 
     let justNumbers = []
     expenses.map((expense) => {
@@ -40,6 +40,7 @@ export const SplitzDetails = () => {
     }
 
     let array = [1]
+    let arrayOfNum = []
 
     let userWhoPaidId = expenses.map((expense) => {
         return expense.userWhoPaidId
@@ -105,25 +106,86 @@ export const SplitzDetails = () => {
                         </div>
                         <div className="flexColumn center">
                             <h6 className="font10 purple">Your Total Owed</h6>
-                            <p>${array.map(() => {
-                                let usersOnSplitz = splitz.userProfiles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <p>${usersOnSplitz.map(() => {
+
+
                                 let usersWhoOwe = []
-                                usersWhoOwe = usersOnSplitz.map((user) => {
+                                let newObject = {}
+                                let taco = usersOnSplitz.map((user) => {
                                     console.log("do we have the id of userWhoPaid?", userWhoPaidId[0])
                                     if (user.id !== userWhoPaidId[0]) {
-                                        console.log("this is a userId of someone who owes", user.id)
+                                        //console.log("this is a userId of someone who owes", user.id)
+                                        usersWhoOwe.push(user.id)
                                         console.log("do we ahve the amt of the expense", expenseAmt[0])
                                         let filter = usersOnSplitz.filter(val => val.id)
                                         let numOfSplitzers = filter.length;
                                         console.log("do we have the number of splitzers?", numOfSplitzers)
-                                        usersWhoOwe.push(user.id)
                                         let answer = expenseAmt[0] / numOfSplitzers
                                         return answer
                                     }
                                 })
 
                                 console.log("is this an array of users who owe?", usersWhoOwe)
+
+
+
                             })}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
 
