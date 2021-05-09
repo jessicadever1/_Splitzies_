@@ -98,44 +98,10 @@ export const SplitzEdit = () => {
                     placeholder="Who is Spitzing with you?"
                 >
                 </Input>
-                <div>Now, let's add your expenses!</div>
-                <Input
-                    id="expenseName"
-                    placeholder="Expense Name"
-                    className="margBot"
-                    type="text">
-                </Input>
-                <div className="flexRow jc">
-                    <div>$</div>
-                    <div>
-                        <Input
-                            id="amount"
-                            type="number"
-                            placeholder="Dollar Amount"
-                            className="margBot">
-                        </Input>
-                    </div>
-                </div>
-                <Input
-                    id="category"
-                    type="select"
-                    placeholder="Expense Category"
-                    className="margBot">
-                </Input>
-                <Input
-                    id="paidBy"
-                    type="select"
-                    placeholder="Paid By"
-                    className="margBot">
-                </Input>
 
-                <div className="flexRow">
-                    <Button id="btn" className="margBot">Save Expense</Button>
-                    <Button id="btn" className="margBot">Add Another Expense</Button>
-                </div>
                 <div className="center">
                     <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Savezies</Button>
-                    <Button id="btn" className="margBot"><Link className="b" to="/mySplitz" >My Bad, Nevermind</Link></Button>
+                    <Button id="btn" className="margBot"><Link className="b" to="/mySplitz" >Nevermind, My Bad</Link></Button>
                 </div>
 
             </Form>
