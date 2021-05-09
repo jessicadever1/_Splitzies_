@@ -101,7 +101,7 @@ export const SplitzEdit = () => {
 
                 <div className="center">
                     <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Savezies</Button>
-                    <Button id="btn" className="margBot"><Link className="b" to="/mySplitz" >Nevermind, My Bad</Link></Button>
+                    <Button id="btn" className="margBot"><Link className="b" to={`/splitzDetails/${splitz.id}`} >Nevermind, My Bad</Link></Button>
                 </div>
 
             </Form>
