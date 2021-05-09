@@ -19,7 +19,7 @@ export const SplitzDetails = () => {
     }, []);
 
     let usersOnSplitz = splitz.userProfiles
-    console.log("users on splitz", usersOnSplitz)
+
     let kate = [1]
 
     return usersOnSplitz ? (
