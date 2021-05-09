@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { SplitzContext } from "../providers/SplitzProvider";
+import { ExpenseContext } from "../providers/ExpenseProvider";
 import { useParams, Link } from "react-router-dom";
 import "./splitz.css";
 import dateFormat from 'dateformat';
@@ -10,6 +11,7 @@ import { faArrowRight, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-ic
 export const SplitzDetails = () => {
     const [splitz, setSplitz] = useState({ splitz: {} });
     const { getSplitzById } = useContext(SplitzContext);
+    const { expenses, GetAllExpensesBySplitzId } = useContext(ExpenseContext);
     const { id } = useParams();
     const splitzId = parseInt(id)
     const date = dateFormat(splitz.date, "mmmm dS, yyyy")
@@ -18,9 +20,41 @@ export const SplitzDetails = () => {
         getSplitzById(splitzId).then(setSplitz)
     }, []);
 
+    useEffect(() => {
+        GetAllExpensesBySplitzId(splitzId);
+    }, []);
+
     let usersOnSplitz = splitz.userProfiles
 
-    let kate = [1]
+    console.log(usersOnSplitz)
+
+    let justNumbers = []
+    expenses.map((expense) => {
+        justNumbers.push(expense.amount)
+    })
+
+    const sum = justNumbers.reduce(add, 0); // with initial value to avoid when the array is empty
+
+    function add(accumulator, a) {
+        return accumulator + a;
+    }
+
+    let array = [1]
+
+    let userWhoPaidId = expenses.map((expense) => {
+        return expense.userWhoPaidId
+    });
+    console.log("here is the userId who paid for the first expense", userWhoPaidId[0])
+
+    let expenseAmt = expenses.map((expense) => {
+        return expense.amount
+    })
+
+    console.log("this is the first expenseAmt", expenseAmt[0])
+
+    let usersWhoOwe = [];
+
+
 
     return usersOnSplitz ? (
         <div className="">
@@ -59,7 +93,15 @@ export const SplitzDetails = () => {
                     <div className="flexRow">
                         <div className="flexColumn center">
                             <h6 className="font10 purple">Your Portion Total</h6>
-                            <p>$300.00</p>
+                            <p>${array.map(() => {
+                                let filter = usersOnSplitz.filter(val => val.id)
+                                let numOfSplitzers = filter.length;
+
+                                const portion = parseFloat(sum / numOfSplitzers).toFixed(2)
+                                return (
+                                    portion
+                                )
+                            })}</p>
                         </div>
                         <div className="flexColumn center">
                             <h6 className="font10 purple">Your Total Owed</h6>
@@ -69,11 +111,10 @@ export const SplitzDetails = () => {
 
                     <div className="flexColumn">
 
-                        {kate.map((user) => {
+                        {array.map((user) => {
 
                             let filter = usersOnSplitz.filter(val => val.id)
                             let numOfSplitzers = filter.length;
-                            console.log(numOfSplitzers)
 
                             if (numOfSplitzers === 1) {
                                 return (

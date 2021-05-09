@@ -35,9 +35,7 @@ export const ExpenseList = () => {
         return accumulator + a;
     }
 
-    console.log("do we have the sum of the numbers?", sum)
-
-    let kate = [1]
+    let array = [1]
 
     return usersOnSplitz ? (
         <>
@@ -59,10 +57,9 @@ export const ExpenseList = () => {
                     </div>
                     <div className="flexColumn center">
                         <h6 className="font10 purple">Your Portion of Splitz</h6>
-                        <p>${kate.map(() => {
+                        <p>${array.map(() => {
                             let filter = usersOnSplitz.filter(val => val.id)
                             let numOfSplitzers = filter.length;
-                            console.log("do we have access to numofSplitzers and is it a num?", numOfSplitzers)
 
                             const portion = parseFloat(sum / numOfSplitzers).toFixed(2)
                             return (

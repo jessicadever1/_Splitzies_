@@ -70,9 +70,11 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/splitzDetails/:id(\d+)">
-                    <SplitzProvider>
-                        {isLoggedIn ? <SplitzDetails /> : <Redirect to="/login" />}
-                    </SplitzProvider>
+                    <ExpenseProvider>
+                        <SplitzProvider>
+                            {isLoggedIn ? <SplitzDetails /> : <Redirect to="/login" />}
+                        </SplitzProvider>
+                    </ExpenseProvider>
                 </Route>
 
                 <Route exact path="/addSplitz">
