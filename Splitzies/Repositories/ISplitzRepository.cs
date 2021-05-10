@@ -9,6 +9,6 @@ namespace Splitzies.Repositories
         void Delete(int id);
         Splitz GetById(int id, int splitzId);
         List<Splitz> GetSplitzByUserProfileId(int userProfileId);
-        void Update(Splitz splitz);
+        void Update(SplitzUsersCreate splitz);
     }
 }

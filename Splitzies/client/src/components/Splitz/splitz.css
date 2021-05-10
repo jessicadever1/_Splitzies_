@@ -171,3 +171,9 @@ main {
       background-color: white;
       border-radius: 2.5%;
   }
+
+  .note {
+      font-size: 8px;
+      color: rgb(58, 134, 255);
+      text-align: center;
+  }

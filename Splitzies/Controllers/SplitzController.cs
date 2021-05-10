@@ -70,7 +70,7 @@ namespace Splitzies.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Splitz splitz)
+        public IActionResult Put(int id, SplitzUsersCreate splitz)
         {
             if (id != splitz.Id)
             {

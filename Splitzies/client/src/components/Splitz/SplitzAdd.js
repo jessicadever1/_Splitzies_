@@ -1,12 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap'
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import { ExpenseList } from "../Expense/ExpenseList"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { UserProfile } from '../UserProfile/UserProfile';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import './splitz.css';
 
@@ -24,10 +22,6 @@ export const SplitzAdd = () => {
         searchResults,
         setSearchResults
     } = useContext(UserProfileContext)
-
-    // useEffect(() => {
-    //     getAllUserProfiles();
-    // }, []);
 
     useEffect(() => {
         if (searchedName !== "") {
@@ -62,7 +56,7 @@ export const SplitzAdd = () => {
             splitzPic: splitz.splitzPic,
             splitzUsers: splitzUsers
         })
-
+            .then(() => history.push(`/mySplitz`))
     }
 
     const handleInputChange = (event) => {
@@ -85,6 +79,10 @@ export const SplitzAdd = () => {
     useEffect(() => {
         console.log(splitzUsers)
     }, [splitzUsers])
+
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+
+    const nonCurrentUserProfiles = userProfiles.filter((userProfile) => userProfile.id !== currentUser.id)
 
     return (<>
         <Form className="padding seeBot bkgwhite">
@@ -122,7 +120,8 @@ export const SplitzAdd = () => {
             <div className="container margBot">
                 <div className="row justify-content-center">
                     <div className="cards-column flexRow">
-                        {userProfiles.map((userProfile) => (
+                        {nonCurrentUserProfiles.map((userProfile) => (
+
                             <details key={userProfile.id}>
                                 <summary className="white"><img className="a" src={userProfile.profilePic} alt={userProfile.firstName}></img></summary>
                                 <div className="flexRow" >

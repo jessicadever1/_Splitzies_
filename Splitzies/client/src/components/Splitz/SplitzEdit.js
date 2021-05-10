@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
+import { UserProfileContext } from "../providers/UserProfileProvider"
 import { useHistory, useParams } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap';
 import { Link } from "react-router-dom";
+import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./splitz.css"
 
 export const SplitzEdit = () => {
@@ -11,7 +14,30 @@ export const SplitzEdit = () => {
     const history = useHistory();
     const { splitzId } = useParams()
     const sId = parseInt(splitzId)
+    const {
+        userProfiles,
+        setUserProfiles,
+        getAllUserProfiles,
+        searchUsersByName,
+        searchedName,
+        setSearchedName,
+        searchResults,
+        setSearchResults
+    } = useContext(UserProfileContext)
 
+    useEffect(() => {
+        if (searchedName !== "") {
+            searchUsersByName(searchedName);
+        } else {
+            getAllUserProfiles();
+        }
+    }, [searchedName]);
+
+    const handleSearchedInputChange = (evt) => {
+        let newSearch = { ...searchedName };
+        newSearch = evt.target.value;
+        setSearchedName(newSearch);
+    };
 
     const [splitz, setSplitz] = useState({
         "id": sId,
@@ -20,6 +46,8 @@ export const SplitzEdit = () => {
         "splitzDetails": "",
         "splitzPic": ""
     })
+
+    const [splitzUsers, setSplitzUsers] = useState([])
 
     useEffect(() => {
 
@@ -37,6 +65,7 @@ export const SplitzEdit = () => {
                     date: splitz.date,
                     splitzDetails: splitz.splitzDetails,
                     splitzPic: splitz.splitzPic,
+                    splitzUsers: splitzUsers,
                     id: sId
                 }
             ).then(() => history.push(`/mySplitz`))
@@ -54,7 +83,23 @@ export const SplitzEdit = () => {
         setSplitz(newSplitz)
     }
 
-    return (
+    const handleAddUserToSplitz = (event) => {
+        const users = [...splitzUsers]
+        users.push(parseInt(event.target.id))
+        setSplitzUsers(users)
+    }
+
+    let usersOnSplitz = splitz.userProfiles
+
+    useEffect(() => {
+        console.log(splitzUsers)
+    }, [splitzUsers])
+
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+
+    const nonCurrentUserProfiles = userProfiles.filter((userProfile) => userProfile.id !== currentUser.id)
+
+    return usersOnSplitz ? (
         <div className="bkgwhiteRad">
             <Form className="padding seeBot  purple center">
                 <h1>Ready to Help You Make Changes!</h1>
@@ -91,56 +136,63 @@ export const SplitzEdit = () => {
                     defaultValue={splitz.splitzDetails}
                     onChange={handleInputChange}>
                 </Input>
-                <Input
-                    id="searchForUser"
-                    className="margBot"
-                    type="search"
-                    placeholder="Who is Spitzing with you?"
-                >
-                </Input>
-                <div>Now, let's add your expenses!</div>
-                <Input
-                    id="expenseName"
-                    placeholder="Expense Name"
-                    className="margBot"
-                    type="text">
-                </Input>
-                <div className="flexRow jc">
-                    <div>$</div>
-                    <div>
-                        <Input
-                            id="amount"
-                            type="number"
-                            placeholder="Dollar Amount"
-                            className="margBot">
-                        </Input>
+
+                <div className="container margBot">
+                    <div className="row justify-content-center">
+                        <div className="cards-column flexRow">
+                            {nonCurrentUserProfiles.map((userProfile) => (
+
+                                <details key={userProfile.id}>
+                                    <summary className="white"><img className="a" src={userProfile.profilePic} alt={userProfile.firstName}></img></summary>
+                                    <div className="flexRow" >
+                                        <FontAwesomeIcon className="" id={userProfile.id} onClick={handleAddUserToSplitz} icon={faPlusCircle} />
+                                        <div>{userProfile.firstName}</div>
+                                    </div>
+                                </details>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <Input
-                    id="category"
-                    type="select"
-                    placeholder="Expense Category"
-                    className="margBot">
-                </Input>
-                <Input
-                    id="paidBy"
-                    type="select"
-                    placeholder="Paid By"
-                    className="margBot">
-                </Input>
-
                 <div className="flexRow">
-                    <Button id="btn" className="margBot">Save Expense</Button>
-                    <Button id="btn" className="margBot">Add Another Expense</Button>
+                    <Input
+                        type="search"
+                        name="search-term"
+                        id="search-term"
+                        autoComplete="off"
+                        value={searchedName}
+                        onChange={handleSearchedInputChange}
+                        className="margBot"
+                        placeholder="Who is Spitzing with you?"
+                    >
+                    </Input>
+                    <Button
+                        className="margBot"
+                        onClick={(evt) => {
+                            evt.preventDefault();
+                            searchUsersByName(searchedName);
+                        }}
+                    ><FontAwesomeIcon className="" icon={faSearch} /></Button>
                 </div>
+                <div className="flexRow">
+                    <div>
+                        {usersOnSplitz.map((user) => {
+                            return (
+                                <>
+                                    <img className="a" key={user.id} src={user.profilePic}></img>
+                                </>
+                            )
+                        })}
+                    </div>
+                </div>
+
                 <div className="center">
                     <Button id="btn" className="margBot" onClick={handleClickSaveSplitz}>Savezies</Button>
-                    <Button id="btn" className="margBot"><Link className="b" to="/mySplitz" >My Bad, Nevermind</Link></Button>
+                    <Button id="btn" className="margBot"><Link className="b" to={`/splitzDetails/${splitz.id}`} >Nevermind, My Bad</Link></Button>
                 </div>
 
             </Form>
         </div>
-    )
+    ) : null;
 }
 
 export default SplitzEdit;

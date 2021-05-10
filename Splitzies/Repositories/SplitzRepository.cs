@@ -280,7 +280,7 @@ namespace Splitzies.Repositories
         }
 
 
-        public void Update(Splitz splitz)
+        public void Update(SplitzUsersCreate splitz)
         {
             using (var conn = Connection)
             {
@@ -303,6 +303,23 @@ namespace Splitzies.Repositories
 
                     cmd.ExecuteNonQuery();
 
+                    foreach (int id in splitz.splitzUsers)
+                    {
+                        //this loop is going to assign the userSplitz.userprofileid by grabbing each id
+                        //from splitz.splitzUsers
+                        //first, we must build up SQL command to do an INSERT of every userProfileId from splitzUsers
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = @"
+                            INSERT INTO UserSplitz (SplitzId,
+                                                UserProfileId)
+                                  
+                            VALUES (@splitzId,
+                                    @userProfileId)";
+
+                        DbUtils.AddParameter(cmd, "@splitzId", splitz.Id);
+                        DbUtils.AddParameter(cmd, "@userProfileId", id);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
         }

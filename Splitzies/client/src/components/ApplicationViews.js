@@ -38,11 +38,13 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/expense/:id(\d+)">
-                    <CategoryProvider>
-                        <ExpenseProvider>
-                            {isLoggedIn ? <ExpenseList /> : <Redirect to="/login" />}
-                        </ExpenseProvider>
-                    </CategoryProvider>
+                    <SplitzProvider>
+                        <CategoryProvider>
+                            <ExpenseProvider>
+                                {isLoggedIn ? <ExpenseList /> : <Redirect to="/login" />}
+                            </ExpenseProvider>
+                        </CategoryProvider>
+                    </SplitzProvider>
                 </Route>
 
                 <Route exact path="/addExpense/:id(\d+)">
@@ -68,9 +70,11 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/splitzDetails/:id(\d+)">
-                    <SplitzProvider>
-                        {isLoggedIn ? <SplitzDetails /> : <Redirect to="/login" />}
-                    </SplitzProvider>
+                    <ExpenseProvider>
+                        <SplitzProvider>
+                            {isLoggedIn ? <SplitzDetails /> : <Redirect to="/login" />}
+                        </SplitzProvider>
+                    </ExpenseProvider>
                 </Route>
 
                 <Route exact path="/addSplitz">
