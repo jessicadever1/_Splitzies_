@@ -126,7 +126,7 @@ export const SplitzDetails = () => {
                         </div>
                     </div>
 
-                    <h6 className="note">***Note: a negative number indicates that the person on the right, owes the person on the left said amount. We know it's not ideal. Thanks for your patience!***</h6>
+
 
                     <div className="flexColumn">
 
@@ -149,7 +149,7 @@ export const SplitzDetails = () => {
                                 return (
                                     <div className="center">
                                         <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
-                                        <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                         <small>{array.map((x) => {
                                             const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[0].id)
                                             if (user.id === splitz.userProfiles[0].id) {
@@ -165,15 +165,24 @@ export const SplitzDetails = () => {
                                                 const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                 const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                 if (total < 0) {
-                                                    return ("-$" + total * -1)
+                                                    return (
+                                                        <>
+                                                            <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            {"$" + total * -1}
+                                                            <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                        </>)
                                                 } else if (total >= 0) {
-                                                    return ("$" + total)
+                                                    return (
+                                                        <>
+                                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            {"$" + total}
+                                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                        </>)
                                                 }
-                                                console.log(total)
 
                                             }
                                         })}</small>
-                                        <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                         <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                     </div>
                                 )
@@ -182,7 +191,7 @@ export const SplitzDetails = () => {
                                     <>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[0].id)
                                                 if (user.id === splitz.userProfiles[0].id) {
@@ -198,20 +207,29 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
-                                                    //console.log(total)
 
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[0].id)
                                                 if (user.id === splitz.userProfiles[0].id) {
@@ -227,20 +245,28 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
-                                                    //console.log(total)
-
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[1].id)
                                                 if (user.id === splitz.userProfiles[1].id) {
@@ -256,15 +282,24 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
-                                                    //console.log(total)
 
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
                                     </>
@@ -274,7 +309,7 @@ export const SplitzDetails = () => {
                                     <>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[0].id)
                                                 if (user.id === splitz.userProfiles[0].id) {
@@ -290,18 +325,28 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[0].id)
                                                 if (user.id === splitz.userProfiles[0].id) {
@@ -317,18 +362,28 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[0].id)
                                                 if (user.id === splitz.userProfiles[0].id) {
@@ -344,18 +399,28 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[3].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[1].id)
                                                 if (user.id === splitz.userProfiles[1].id) {
@@ -371,18 +436,28 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <small>{array.map((x) => {
                                                 const user = usersOnSplitz.find(u => u.id === splitz.userProfiles[1].id)
                                                 if (user.id === splitz.userProfiles[1].id) {
@@ -398,13 +473,23 @@ export const SplitzDetails = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return ("-$" + total * -1)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                                {"$" + total * -1}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowLeft} /></object>
+                                                            </>)
                                                     } else if (total >= 0) {
-                                                        return ("$" + total)
+                                                        return (
+                                                            <>
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                                {"$" + total}
+                                                                <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+                                                            </>)
                                                     }
                                                 }
                                             })}</small>
-                                            <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
+
                                             <img className="balImg" src={splitz.userProfiles[3].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
