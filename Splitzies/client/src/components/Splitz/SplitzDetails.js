@@ -26,21 +26,18 @@ export const SplitzDetails = () => {
 
     let usersOnSplitz = splitz.userProfiles
 
-    //console.log("are these the users on the splitz?", usersOnSplitz)
-
     let justNumbers = []
     expenses.map((expense) => {
         justNumbers.push(expense.amount)
     })
 
-    const sum = justNumbers.reduce(add, 0); // with initial value to avoid when the array is empty
+    const sum = justNumbers.reduce(add, 0);
 
     function add(accumulator, a) {
         return accumulator + a;
     }
 
     let array = [1]
-    let arrayOfNum = []
 
     let userWhoPaidId = expenses.map((expense) => {
         return expense.userWhoPaidId
@@ -51,10 +48,16 @@ export const SplitzDetails = () => {
         return expense.amount
     })
 
+    const expensesSum = expenseAmt.reduce(add, 0)
+    //console.log("idk", expensesSum)
+
     //console.log("this is the first expenseAmt", expenseAmt[0])
 
-    // let usersWhoOwe = [];
+    let totalCurrentUserOwes = 0
+    const currentUser = sessionStorage.getItem("userProfile")
+    console.log(currentUser)
 
+    let tempCU = 1
 
 
     return usersOnSplitz ? (
@@ -106,86 +109,25 @@ export const SplitzDetails = () => {
                         </div>
                         <div className="flexColumn center">
                             <h6 className="font10 purple">Your Total Owed</h6>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            <p>${usersOnSplitz.map(() => {
-
-
-                                let usersWhoOwe = []
-                                let newObject = {}
-                                let taco = usersOnSplitz.map((user) => {
-                                    console.log("do we have the id of userWhoPaid?", userWhoPaidId[0])
-                                    if (user.id !== userWhoPaidId[0]) {
-                                        //console.log("this is a userId of someone who owes", user.id)
-                                        usersWhoOwe.push(user.id)
-                                        console.log("do we ahve the amt of the expense", expenseAmt[0])
-                                        let filter = usersOnSplitz.filter(val => val.id)
-                                        let numOfSplitzers = filter.length;
-                                        console.log("do we have the number of splitzers?", numOfSplitzers)
-                                        let answer = expenseAmt[0] / numOfSplitzers
-                                        return answer
-                                    }
-                                })
-
-                                console.log("is this an array of users who owe?", usersWhoOwe)
-
-
-
+                            <p>${array.map((x) => {
+                                const user = usersOnSplitz.find(u => u.id === tempCU)
+                                const expensesOwed = expenses.filter(e => e.userWhoPaidId !== user.id)
+                                const amtsOwed = expensesOwed.map(a => a.amount)
+                                const sumOfamtsOwed = amtsOwed.reduce(add, 0)
+                                let filter = usersOnSplitz.filter(val => val.id)
+                                let numOfSplitzers = filter.length;
+                                const portionofSumOwed = parseFloat(sumOfamtsOwed / numOfSplitzers).toFixed(2)
+                                const expensesPaid = expenses.filter(e => e.userWhoPaidId === user.id)
+                                const amtsPaid = expensesPaid.map(a => a.amount)
+                                const sumOfamtsPaid = amtsPaid.reduce(add, 0)
+                                const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
+                                const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
+                                if (total < 0) {
+                                    return 0
+                                } else if (total >= 0) { return total }
+                                console.log(total)
+                                return total
                             })}</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
 
@@ -201,7 +143,7 @@ export const SplitzDetails = () => {
                                     <div className="center">
                                         <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                        <small>$83.88</small>
+                                        <small>$</small>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                         <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                     </div>
@@ -211,7 +153,7 @@ export const SplitzDetails = () => {
                                     <div className="center">
                                         <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                        <small>$83.88</small>
+                                        <small>$</small>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                         <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                     </div>
@@ -222,21 +164,21 @@ export const SplitzDetails = () => {
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
@@ -248,42 +190,42 @@ export const SplitzDetails = () => {
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[3].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[3].profilePic} alt="profile pic"></img>
                                         </div>
                                         <div className="center">
                                             <img className="balImg" src={splitz.userProfiles[2].profilePic} alt="profile pic"></img>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                            <small>$83.88</small>
+                                            <small>$</small>
                                             <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                             <img className="balImg" src={splitz.userProfiles[3].profilePic} alt="profile pic"></img>
                                         </div>
@@ -304,3 +246,31 @@ export const SplitzDetails = () => {
 };
 
 export default SplitzDetails;
+
+
+/*
+Notes:
+
+
+let usersWhoOwe = []
+                                let newObject = {}
+                                let taco = usersOnSplitz.map((user) => {
+                                    //console.log("do we have the id of userWhoPaid?", userWhoPaidId[0])
+                                    if (user.id !== userWhoPaidId[0]) {
+                                        //console.log("this is a userId of someone who owes", user.id)
+                                        newObject.userIdWhoOwes = user.id
+                                        //usersWhoOwe.push(newObject)
+                                        //console.log("do we ahve the amt of the expense", expenseAmt[0])
+                                        let filter = usersOnSplitz.filter(val => val.id)
+                                        let numOfSplitzers = filter.length;
+                                        //console.log("do we have the number of splitzers?", numOfSplitzers)
+                                        //console.log("expenses:", expenses)
+                                        let amtOwed = array.map((expense) => {
+                                            let amtOwed = expense.amount / numOfSplitzers
+                                            return amtOwed
+                                        })
+
+                                        newObject.amtOwed = amtOwed
+                                        usersWhoOwe.push(newObject)
+                                        console.log("arrayOfObjects: ", usersWhoOwe)
+*/
