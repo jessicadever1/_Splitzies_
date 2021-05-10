@@ -131,6 +131,8 @@ export const SplitzDetails = () => {
                         </div>
                     </div>
 
+                    <h6 className="note">***Note: a negative number indicates that the person on the right, owes the person on the left said amount. We know it's not ideal. Thanks for your patience!***</h6>
+
                     <div className="flexColumn">
 
                         {array.map((user) => {
