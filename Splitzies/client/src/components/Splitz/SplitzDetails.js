@@ -143,7 +143,7 @@ export const SplitzDetails = () => {
                                     <div className="center">
                                         <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                        <small>$</small>
+                                        <small>$0</small>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                         <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                     </div>
@@ -153,7 +153,25 @@ export const SplitzDetails = () => {
                                     <div className="center">
                                         <img className="balImg" src={splitz.userProfiles[0].profilePic} alt="profile pic"></img>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
-                                        <small>$</small>
+                                        <small>${array.map((x) => {
+                                            const user = usersOnSplitz.find(u => u.id === tempCU)
+                                            const expensesOwed = expenses.filter(e => e.userWhoPaidId !== user.id)
+                                            const amtsOwed = expensesOwed.map(a => a.amount)
+                                            const sumOfamtsOwed = amtsOwed.reduce(add, 0)
+                                            let filter = usersOnSplitz.filter(val => val.id)
+                                            let numOfSplitzers = filter.length;
+                                            const portionofSumOwed = parseFloat(sumOfamtsOwed / numOfSplitzers).toFixed(2)
+                                            const expensesPaid = expenses.filter(e => e.userWhoPaidId === user.id)
+                                            const amtsPaid = expensesPaid.map(a => a.amount)
+                                            const sumOfamtsPaid = amtsPaid.reduce(add, 0)
+                                            const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
+                                            const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
+                                            if (total < 0) {
+                                                return 0
+                                            } else if (total >= 0) { return total }
+                                            console.log(total)
+                                            return total
+                                        })}</small>
                                         <object><FontAwesomeIcon className="" icon={faArrowRight} /></object>
                                         <img className="balImg" src={splitz.userProfiles[1].profilePic} alt="profile pic"></img>
                                     </div>
