@@ -3,10 +3,8 @@ import { SplitzContext } from "../providers/SplitzProvider"
 import { useHistory, Link } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap'
 import { UserProfileContext } from "../providers/UserProfileProvider";
-import { ExpenseList } from "../Expense/ExpenseList"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { UserProfile } from '../UserProfile/UserProfile';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import './splitz.css';
 
@@ -24,10 +22,6 @@ export const SplitzAdd = () => {
         searchResults,
         setSearchResults
     } = useContext(UserProfileContext)
-
-    // useEffect(() => {
-    //     getAllUserProfiles();
-    // }, []);
 
     useEffect(() => {
         if (searchedName !== "") {
@@ -87,12 +81,8 @@ export const SplitzAdd = () => {
     }, [splitzUsers])
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
-    console.log(currentUser)
-
-
 
     const nonCurrentUserProfiles = userProfiles.filter((userProfile) => userProfile.id !== currentUser.id)
-    console.log(nonCurrentUserProfiles)
 
     return (<>
         <Form className="padding seeBot bkgwhite">
