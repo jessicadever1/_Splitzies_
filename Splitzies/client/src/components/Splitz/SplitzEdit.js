@@ -4,7 +4,7 @@ import { UserProfileContext } from "../providers/UserProfileProvider"
 import { useHistory, useParams } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap';
 import { Link } from "react-router-dom";
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./splitz.css"
 
@@ -47,6 +47,8 @@ export const SplitzEdit = () => {
         "splitzPic": ""
     })
 
+    const [splitzUsers, setSplitzUsers] = useState([])
+
     useEffect(() => {
 
         getSplitzById(sId)
@@ -63,6 +65,7 @@ export const SplitzEdit = () => {
                     date: splitz.date,
                     splitzDetails: splitz.splitzDetails,
                     splitzPic: splitz.splitzPic,
+                    splitzUsers: splitzUsers,
                     id: sId
                 }
             ).then(() => history.push(`/mySplitz`))
@@ -80,8 +83,6 @@ export const SplitzEdit = () => {
         setSplitz(newSplitz)
     }
 
-    const [splitzUsers, setSplitzUsers] = useState([])
-
     const handleAddUserToSplitz = (event) => {
         const users = [...splitzUsers]
         users.push(parseInt(event.target.id))
@@ -89,6 +90,10 @@ export const SplitzEdit = () => {
     }
 
     let usersOnSplitz = splitz.userProfiles
+
+    useEffect(() => {
+        console.log(splitzUsers)
+    }, [splitzUsers])
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
 
@@ -148,19 +153,26 @@ export const SplitzEdit = () => {
                         </div>
                     </div>
                 </div>
-
-                <Input
-                    type="search"
-                    name="search-term"
-                    id="search-term"
-                    autoComplete="off"
-                    value={searchedName}
-                    onChange={handleSearchedInputChange}
-                    className="margBot"
-                    placeholder="Who is Spitzing with you?"
-                >
-                </Input>
-
+                <div className="flexRow">
+                    <Input
+                        type="search"
+                        name="search-term"
+                        id="search-term"
+                        autoComplete="off"
+                        value={searchedName}
+                        onChange={handleSearchedInputChange}
+                        className="margBot"
+                        placeholder="Who is Spitzing with you?"
+                    >
+                    </Input>
+                    <Button
+                        className="margBot"
+                        onClick={(evt) => {
+                            evt.preventDefault();
+                            searchUsersByName(searchedName);
+                        }}
+                    ><FontAwesomeIcon className="" icon={faSearch} /></Button>
+                </div>
                 <div className="flexRow">
                     <div>
                         {usersOnSplitz.map((user) => {

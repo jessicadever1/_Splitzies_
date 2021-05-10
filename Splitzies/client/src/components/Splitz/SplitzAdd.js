@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { SplitzContext } from "../providers/SplitzProvider"
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap'
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
