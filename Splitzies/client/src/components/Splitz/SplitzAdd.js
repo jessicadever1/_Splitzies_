@@ -86,6 +86,14 @@ export const SplitzAdd = () => {
         console.log(splitzUsers)
     }, [splitzUsers])
 
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+    console.log(currentUser)
+
+
+
+    const nonCurrentUserProfiles = userProfiles.filter((userProfile) => userProfile.id !== currentUser.id)
+    console.log(nonCurrentUserProfiles)
+
     return (<>
         <Form className="padding seeBot bkgwhite">
             <h1 className="purple center">Let's Add A Splitz!</h1>
@@ -122,7 +130,8 @@ export const SplitzAdd = () => {
             <div className="container margBot">
                 <div className="row justify-content-center">
                     <div className="cards-column flexRow">
-                        {userProfiles.map((userProfile) => (
+                        {nonCurrentUserProfiles.map((userProfile) => (
+
                             <details key={userProfile.id}>
                                 <summary className="white"><img className="a" src={userProfile.profilePic} alt={userProfile.firstName}></img></summary>
                                 <div className="flexRow" >

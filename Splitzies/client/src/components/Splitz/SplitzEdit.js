@@ -54,7 +54,9 @@ export const SplitzEdit = () => {
         setSplitz(newSplitz)
     }
 
-    return (
+    let usersOnSplitz = splitz.userProfiles
+
+    return usersOnSplitz ? (
         <div className="bkgwhiteRad">
             <Form className="padding seeBot  purple center">
                 <h1>Ready to Help You Make Changes!</h1>
@@ -91,6 +93,17 @@ export const SplitzEdit = () => {
                     defaultValue={splitz.splitzDetails}
                     onChange={handleInputChange}>
                 </Input>
+                <div className="flexRow">
+                    <div>
+                        {usersOnSplitz.map((user) => {
+                            return (
+                                <>
+                                    <img className="a" key={user.id} src={user.profilePic}></img>
+                                </>
+                            )
+                        })}
+                    </div>
+                </div>
                 <Input
                     id="searchForUser"
                     className="margBot"
@@ -106,7 +119,7 @@ export const SplitzEdit = () => {
 
             </Form>
         </div>
-    )
+    ) : null;
 }
 
 export default SplitzEdit;
