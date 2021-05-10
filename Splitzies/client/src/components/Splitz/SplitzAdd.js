@@ -62,7 +62,7 @@ export const SplitzAdd = () => {
             splitzPic: splitz.splitzPic,
             splitzUsers: splitzUsers
         })
-
+            .then(() => history.push(`/mySplitz`))
     }
 
     const handleInputChange = (event) => {
