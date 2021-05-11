@@ -18,7 +18,6 @@ export const SplitzEdit = () => {
     const {
         userProfiles,
         getUserProfileById,
-        setUserProfiles,
         getAllUserProfiles,
         searchUsersByName,
         searchedName,
@@ -51,6 +50,7 @@ export const SplitzEdit = () => {
     })
 
     const [splitzUsers, setSplitzUsers] = useState([])
+    const [userProfile, setUserProfile] = useState([])
 
     useEffect(() => {
 
@@ -92,7 +92,6 @@ export const SplitzEdit = () => {
         const users = [...splitzUsers]
         users.push(parseInt(event.target.id))
         setSplitzUsers(users)
-
     }
 
 
@@ -101,13 +100,20 @@ export const SplitzEdit = () => {
 
     useEffect(() => {
         console.log("this is SplitzUsers", splitzUsers)
+        const userId = splitzUsers[0]
+        console.log("this is the userId", userId)
+        getUserProfileById(userId).then(setUserProfile)
+
     }, [splitzUsers])
 
+    useEffect(() => { }, [usersOnSplitz])
+    //usersOnSplitz.push(userProfile)
+
+    console.log("userprofile?", userProfile)
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
     const nonCurrentUserProfiles = userProfiles.filter((userProfile) => userProfile.id !== currentUser.id)
 
-
-    return usersOnSplitz && splitzUsers ? (
+    return usersOnSplitz && splitzUsers && userProfile ? (
         <div className="bkgwhiteRad">
             <Form className="padding seeBot  purple center">
                 <h1>Ready to Help You Make Changes!</h1>
@@ -152,9 +158,9 @@ export const SplitzEdit = () => {
 
 
                                 <div key={userProfile.id} onClick={handleAddUserToSplitz}>
-                                    <a className="white">
-                                        <img className="a imgAdd" id={userProfile.id} src={userProfile.profilePic} alt={userProfile.firstName}></img>
-                                        <img className="a" id={userProfile.id} src={AddUser} alt={userProfile.firstName}></img>
+                                    <a>
+                                        <img className="a" id={userProfile.id} src={userProfile.profilePic} alt={userProfile.firstName}></img>
+                                        <img className="a addUserImg" id={userProfile.id} src={AddUser} alt={userProfile.firstName}></img>
                                     </a>
 
 
