@@ -177,3 +177,24 @@ main {
       color: rgb(58, 134, 255);
       text-align: center;
   }
+
+  .flexRowLeft {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      margin-left: 1rem;
+  }
+
+  .margRight {
+      margin-right: .5rem;
+  }
+
+  a img:last-child {
+    display: none;  
+  }
+  a:hover img:last-child {
+    display: block;  
+  }
+  a:hover img:first-child {
+    display: none;  
+  }
