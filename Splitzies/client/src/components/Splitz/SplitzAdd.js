@@ -153,7 +153,12 @@ export const SplitzAdd = () => {
                     }}
                 ><FontAwesomeIcon className="" icon={faSearch} /></Button>
             </div>
+            <div>
+                <h6 className="purple center">Joining you on this foray: </h6>
+            </div>
+            <div className="center">
 
+            </div>
 
 
             <div className="center">
