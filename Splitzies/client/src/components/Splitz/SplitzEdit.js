@@ -17,6 +17,7 @@ export const SplitzEdit = () => {
     const sId = parseInt(splitzId)
     const {
         userProfiles,
+        getUserProfileById,
         setUserProfiles,
         getAllUserProfiles,
         searchUsersByName,
@@ -25,6 +26,7 @@ export const SplitzEdit = () => {
         searchResults,
         setSearchResults
     } = useContext(UserProfileContext)
+
 
     useEffect(() => {
         if (searchedName !== "") {
@@ -56,7 +58,7 @@ export const SplitzEdit = () => {
             .then(splitz => {
                 setSplitz(splitz)
             })
-    }, [])
+    }, [splitzUsers])
 
     const handleClickSaveSplitz = () => {
         if (sId) {
@@ -84,25 +86,28 @@ export const SplitzEdit = () => {
         setSplitz(newSplitz)
     }
 
+
+
     const handleAddUserToSplitz = (event) => {
         const users = [...splitzUsers]
         users.push(parseInt(event.target.id))
         setSplitzUsers(users)
-        usersOnSplitz.push(users)
+
     }
 
+
     let usersOnSplitz = splitz.userProfiles
+    console.log("users on splitz", usersOnSplitz)
 
     useEffect(() => {
-        console.log(splitzUsers)
+        console.log("this is SplitzUsers", splitzUsers)
     }, [splitzUsers])
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
-
     const nonCurrentUserProfiles = userProfiles.filter((userProfile) => userProfile.id !== currentUser.id)
 
 
-    return usersOnSplitz ? (
+    return usersOnSplitz && splitzUsers ? (
         <div className="bkgwhiteRad">
             <Form className="padding seeBot  purple center">
                 <h1>Ready to Help You Make Changes!</h1>
