@@ -39,7 +39,11 @@ export default function ApplicationViews() {
                 </Route>
 
                 <Route exact path="/balance">
-                    {isLoggedIn ? <Balance /> : <Redirect to="/login" />}
+                    <SplitzProvider>
+                        <ExpenseProvider>
+                            {isLoggedIn ? <Balance /> : <Redirect to="/login" />}
+                        </ExpenseProvider>
+                    </SplitzProvider>
                 </Route>
 
                 <Route exact path="/expense/:id(\d+)">
