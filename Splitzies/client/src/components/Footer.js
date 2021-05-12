@@ -24,7 +24,7 @@ export const FooterMenu = () => {
                         <NavLink id="textColorWhite" tag={RRNavLink} to="/addSplitz">
                             <FontAwesomeIcon className="fontSize20" icon={faPlusCircle} />
                         </NavLink>
-                        <NavLink id="textColorWhite" tag={RRNavLink} to="">Balance</NavLink>
+                        <NavLink id="textColorWhite" tag={RRNavLink} to="/balance">Balance</NavLink>
                     </NavItem>
                 }
 

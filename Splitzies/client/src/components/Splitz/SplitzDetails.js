@@ -39,19 +39,9 @@ export const SplitzDetails = () => {
 
     let array = [1]
 
-    let userWhoPaidId = expenses.map((expense) => {
-        return expense.userWhoPaidId
-    });
-    //console.log("here is the userId who paid for the first expense", userWhoPaidId[0])
-
     let expenseAmt = expenses.map((expense) => {
         return expense.amount
     })
-
-    const expensesSum = expenseAmt.reduce(add, 0)
-    //console.log("idk", expensesSum)
-
-    //console.log("this is the first expenseAmt", expenseAmt[0])
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
 
