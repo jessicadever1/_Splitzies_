@@ -94,3 +94,4 @@ FROM UserSplitz US
     LEFT JOIN UserProfile UP ON US.UserProfileId = UP.ID
 WHERE UP.FirebaseId = VfL1t0g0O2eV3Lyttnj3b54ydu82
 ORDER BY S.Date DESC
+

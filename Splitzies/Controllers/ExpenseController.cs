@@ -26,6 +26,12 @@ namespace Splitzies.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
+        [HttpGet]
+        public IActionResult GetAllExpenses()
+        {
+            return Ok(_expenseRepository.GetAllExpenses());
+        }
+
         [HttpGet("getBySplitzId/{id}")]
         public IActionResult GetAllExpensesBySplitzId(int id)
         {

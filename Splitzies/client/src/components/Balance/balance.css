@@ -1,0 +1,14 @@
+.bkground {
+    background-color: white;
+    border-radius: 5px;
+    min-height: 567px;
+}
+
+.stupid {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.font20 {
+    font-size: 2rem;
+}

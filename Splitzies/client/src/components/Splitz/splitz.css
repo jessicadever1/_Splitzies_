@@ -169,7 +169,7 @@ main {
 
   .bkgwhiteRad {
       background-color: white;
-      border-radius: 2.5%;
+      border-radius: 5px;
   }
 
   .note {

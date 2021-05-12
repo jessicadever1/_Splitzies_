@@ -42,10 +42,23 @@ export const ExpenseProvider = (props) => {
             }))
     };
 
+    const getAllExpenses = () => {
+
+        return getToken().then((token) =>
+            fetch(`/api/Expense`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json()))
+            .then(setExpenses)
+    };
+
     return (
         <ExpenseContext.Provider
             value={{
                 expenses,
+                getAllExpenses,
                 GetAllExpensesBySplitzId,
                 setExpenses,
                 getExpenseById,
