@@ -23,7 +23,7 @@ export const Balance = ({ splitz }) => {
                 <CardBody>
                     <Link className="wrapText" to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
                     <div>{date}</div>
-                    <div className="flexRow">
+                    <div className="flexRowLeft padLeft">
                         {array.map((user) => {
 
                             let filter = usersOnSplitz.filter(val => val.id)

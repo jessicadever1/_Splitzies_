@@ -198,3 +198,12 @@ main {
   a:hover img:first-child {
     display: none;  
   }
+
+  .overflow {
+      overflow: scroll;
+      max-width: 140px;
+  }
+
+  .margL {
+      margin-left: .5rem;
+  }
