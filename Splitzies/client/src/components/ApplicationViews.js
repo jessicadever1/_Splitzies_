@@ -14,6 +14,8 @@ import CategoryProvider from "./providers/CategoryProvider";
 import ExpenseProvider from "./providers/ExpenseProvider";
 import ExpenseList from "./Expense/ExpenseList";
 import ExpenseAdd from "./Expense/ExpenseAdd";
+import ExpenseDelete from "./Expense/ExpenseDelete";
+import ExpenseEditForm from "./Expense/ExpenseEdit";
 import Balance from "./Balance/Balance"
 import './appViews.css';
 
@@ -61,6 +63,24 @@ export default function ApplicationViews() {
                         <CategoryProvider>
                             <ExpenseProvider>
                                 {isLoggedIn ? <ExpenseAdd /> : <Redirect to="/login" />}
+                            </ExpenseProvider>
+                        </CategoryProvider>
+                    </SplitzProvider>
+                </Route>
+
+                <Route exact path="/deleteExpense/:id(\d+)">
+                    <SplitzProvider>
+                        <ExpenseProvider>
+                            {isLoggedIn ? <ExpenseDelete /> : <Redirect to="/login" />}
+                        </ExpenseProvider>
+                    </SplitzProvider>
+                </Route>
+
+                <Route exact path="/editExpense/:id(\d+)">
+                    <SplitzProvider>
+                        <CategoryProvider>
+                            <ExpenseProvider>
+                                {isLoggedIn ? <ExpenseEditForm /> : <Redirect to="/login" />}
                             </ExpenseProvider>
                         </CategoryProvider>
                     </SplitzProvider>

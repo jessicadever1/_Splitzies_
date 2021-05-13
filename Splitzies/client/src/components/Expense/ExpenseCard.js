@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Card, CardBody } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { CategoryContext } from "../providers/CategoryProvider";
 import { UserProfileContext } from "../providers/UserProfileProvider";
@@ -33,7 +33,7 @@ export const ExpenseCard = ({ expense }) => {
                         <div className="widthName">{expense.expenseName}</div>
                         <div>${expense.amount}</div>
                         <div><img className="picIcon" src={uWhoPaid.profilePic} alt={uWhoPaid.firstName}></img></div>
-                        <Link to={`/expenseDelete/${expense.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
+                        <Link to={`/deleteExpense/${expense.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
 
                     </div>
                 </CardBody>

@@ -79,7 +79,7 @@ export const SplitzAdd = () => {
     }
 
     useEffect(() => {
-        console.log(splitzUsers)
+
     }, [splitzUsers])
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))

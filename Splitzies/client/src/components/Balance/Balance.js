@@ -12,29 +12,12 @@ export const Balance = () => {
     const { expenses, getAllExpenses } = useContext(ExpenseContext)
 
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
-    const currentUserId = currentUser.id
 
     useEffect(() => {
         getMySplitzies()
             .then(getAllExpenses)
     }, []);
 
-    const mapInMap = () => {
-        let arrayOfExpenses = []
-        for (let expense of expenses) {
-            arrayOfExpenses.push(expense.splitzId)
-        }
-        return arrayOfExpenses
-    }
-
-    let results = mapInMap()
-
-    let matchingSplitzIds = splitzies.map((splitz) => {
-
-        results.filter(r => r.id === splitz.id)
-        return splitz
-    })
-    console.log("matching", matchingSplitzIds)
 
     function add(accumulator, a) {
         return accumulator + a;
@@ -62,7 +45,6 @@ export const Balance = () => {
                                                     const usersOnSplitz = splitz.userProfiles
                                                     const user = usersOnSplitz.find(u => u.id === currentUser.id)
                                                     const expensesOwed = expenses.filter(e => e.userWhoPaidId !== user.id)
-                                                    const filteredExpensesOwed = expensesOwed.filter(e => e.userWhoPaidId !== 0)
                                                     const filteredBySplitz = expensesOwed.filter(e => e.splitzId === splitz.id && e.userWhoPaidId !== 0)
                                                     const amtsOwed = filteredBySplitz.map(a => a.amount)
                                                     const sumOfamtsOwed = amtsOwed.reduce(add, 0)
@@ -71,14 +53,13 @@ export const Balance = () => {
                                                     const portionofSumOwed = parseFloat(sumOfamtsOwed / numOfSplitzers).toFixed(2)
                                                     const expensesPaid = expenses.filter(e => e.userWhoPaidId === user.id && e.splitzId === splitz.id)
                                                     const amtsPaid = expensesPaid.map(a => a.amount)
-                                                    console.log("this", amtsPaid)
                                                     const sumOfamtsPaid = amtsPaid.reduce(add, 0)
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
                                                         return 0.00
                                                     } else if (total >= 0) { return total }
-                                                    console.log(total)
+
                                                     return total
                                                 })}</div>
 
