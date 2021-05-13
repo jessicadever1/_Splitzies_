@@ -65,5 +65,17 @@ namespace Splitzies.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Expense expense)
+        {
+            if (id != expense.Id)
+            {
+                return BadRequest();
+            }
+
+            _expenseRepository.Update(expense);
+            return NoContent();
+        }
+
     }
 }

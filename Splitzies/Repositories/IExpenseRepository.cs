@@ -10,5 +10,6 @@ namespace Splitzies.Repositories
         List<Expense> GetAllExpenses();
         List<Expense> GetAllExpensesBySplitzId(int id);
         Expense GetById(int id);
+        void Update(Expense expense);
     }
 }

@@ -214,5 +214,35 @@ namespace Splitzies.Repositories
 
 
 
+        public void Update(Expense expense)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Expense  
+                            SET ExpenseName = @expenseName,
+                                Amount = @amount,
+                                UserWhoPaidId = @userWhoPaidId,
+                                CategoryId = @categoryId
+                            WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", expense.Id);
+                    DbUtils.AddParameter(cmd, "@expenseName", expense.ExpenseName);
+                    DbUtils.AddParameter(cmd, "@amount", expense.Amount);
+                    DbUtils.AddParameter(cmd, "@categoryId", expense.CategoryId);
+                    DbUtils.AddParameter(cmd, "@userWhoPaidId", expense.UserWhoPaidId);
+
+                    cmd.ExecuteNonQuery();
+
+                    
+                }
+            }
+        }
+
+
+
     }
 }

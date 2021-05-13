@@ -65,6 +65,20 @@ export const ExpenseProvider = (props) => {
         )
     };
 
+    const editExpense = (expense) => {
+        return getToken()
+            .then((token) =>
+                fetch(`/api/Expense/${expense.id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(expense),
+                })
+            )
+    };
+
     return (
         <ExpenseContext.Provider
             value={{
@@ -74,7 +88,8 @@ export const ExpenseProvider = (props) => {
                 setExpenses,
                 getExpenseById,
                 addExpense,
-                deleteExpense
+                deleteExpense,
+                editExpense
             }}
         >
             {props.children}
