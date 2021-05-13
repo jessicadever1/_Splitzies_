@@ -10,7 +10,7 @@ export const Splitz = ({ splitz }) => {
     const date = dateFormat(splitz.date, "mmmm dS, yyyy")
 
     return splitz ? (
-        <Card className="m-2">
+        <Card className="m-2" key={splitz.id}>
             <CardBody id="margForCard" className="row">
                 <CardImg className="picSize" top src={splitz.splitzPic} alt={splitz.splitzName} />
 

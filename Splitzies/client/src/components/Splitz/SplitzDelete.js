@@ -9,7 +9,6 @@ export const SplitzDelete = () => {
     const { deleteSplitz } = useContext(SplitzContext)
     const splitzId = parseInt(useParams().id);
     const history = useHistory();
-    console.log("splitzId", splitzId)
 
     const handleDeleteClick = () => {
         deleteSplitz(splitzId)

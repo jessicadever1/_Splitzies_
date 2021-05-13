@@ -39,7 +39,7 @@ export const ExpenseList = () => {
 
     return usersOnSplitz ? (
         <>
-            <div className="p bkgwhite">
+            <div className="p bkgwhite padBot">
                 <h2 className="center purple margBot">How are these expenses looking?</h2>
                 <div className="container mw">
                     <div className="row justify-content-center margBot">
