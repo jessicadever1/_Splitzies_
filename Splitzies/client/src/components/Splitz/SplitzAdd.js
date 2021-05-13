@@ -157,7 +157,7 @@ export const SplitzAdd = () => {
                 ><FontAwesomeIcon className="" icon={faSearch} /></Button>
             </div>
             <div>
-                <h6 className="purple center">Joining you on this foray: </h6>
+                <p className="blue center font8">***Note: When You click on a photo, that user is added to your splitz. We know not having a list of who you have selected isn't ideal. Thank you for your patience!*** </p>
             </div>
             <div className="center">
 
