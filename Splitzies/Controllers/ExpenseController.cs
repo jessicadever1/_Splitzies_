@@ -58,5 +58,12 @@ namespace Splitzies.Controllers
             return CreatedAtAction("GetById", new { id = expense.Id }, expense);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _expenseRepository.Delete(id);
+            return NoContent();
+        }
+
     }
 }

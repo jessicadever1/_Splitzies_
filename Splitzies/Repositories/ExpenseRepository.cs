@@ -168,7 +168,7 @@ namespace Splitzies.Repositories
                                                 e.DeletedDate
                                               
                                          FROM Expense e
-                                         
+                                         WHERE e.DeletedDate IS NULL
                                          ORDER BY e.Amount";
 
                     var reader = cmd.ExecuteReader();
@@ -188,6 +188,26 @@ namespace Splitzies.Repositories
                     }
                     reader.Close();
                     return expenses;
+                }
+            }
+        }
+
+
+
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE Expense
+                                        SET DeletedDate = @deletedDate
+                                        WHERE Id = @Id;";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    DbUtils.AddParameter(cmd, "@deletedDate", DateTime.Now);
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
