@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Card, CardBody } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { CategoryContext } from "../providers/CategoryProvider";
 import { UserProfileContext } from "../providers/UserProfileProvider";
