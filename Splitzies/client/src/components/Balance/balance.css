@@ -18,16 +18,21 @@
 }
 
 .picSize {
-    width: 6rem;
-    height: 6rem;
+    width: 7rem;
+    height: 7rem;
     border-radius: 5px;
-    margin-left: .75rem;
+    margin-left: 0;
+}
+
+.font8 {
+    font-size: 8px;
 }
 
 .flexRowLeft {
     display: flex;
     flex-direction: row;
     align-content: left;
+    margin-left: 0;
 }
 
 .flexColumnLeft {
@@ -42,4 +47,13 @@
 
 .left {
     text-align: left;
+}
+
+.copyPaste {
+    color: rgb(131, 56, 236);
+    font-size: 29px;
+    border: 1px solid rgb(131, 56, 236);
+    border-radius: 5px;
+    min-width: 145px;
+    padding: .5rem;
 }

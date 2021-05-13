@@ -56,8 +56,8 @@ export const Balance = () => {
                                             <img className="picSize" src={splitz.splitzPic} alt={splitz.splitzName}></img>
                                             <div className="margLeft1 flexColumn">
                                                 <Link className="left" to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
-                                                <div className="left">{dateFormat(splitz.date, "mmmm dS, yyyy")}</div>
-                                                <div className="copy/paste">
+                                                <div className="left font8">{dateFormat(splitz.date, "mmmm dS, yyyy")}</div>
+                                                <div className="copyPaste">
                                                     ${array.map((x) => {
                                                     const usersOnSplitz = splitz.userProfiles
                                                     const user = usersOnSplitz.find(u => u.id === currentUser.id)
@@ -76,7 +76,7 @@ export const Balance = () => {
                                                     const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
                                                     const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
                                                     if (total < 0) {
-                                                        return 0
+                                                        return 0.00
                                                     } else if (total >= 0) { return total }
                                                     console.log(total)
                                                     return total
