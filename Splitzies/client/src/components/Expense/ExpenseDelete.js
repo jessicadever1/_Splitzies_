@@ -6,14 +6,23 @@ import "./expense.css";
 
 export const ExpenseDelete = () => {
 
-    const { deleteExpense } = useContext(ExpenseContext)
+    const { expenses, deleteExpense, getAllExpenses } = useContext(ExpenseContext)
     const expenseId = parseInt(useParams().id);
     const history = useHistory();
+
+    useEffect(() => {
+        getAllExpenses()
+    }, [])
+
+
+    const splitzId = expenses.find(e => e.id === expenseId)?.splitzId
+
+    console.log("this", splitzId)
 
     const handleDeleteClick = () => {
         deleteExpense(expenseId)
             .then(() => {
-                history.push(`/mySplitz`)
+                history.push(`/expense/${splitzId}`)
             });
     }
 
@@ -24,7 +33,7 @@ export const ExpenseDelete = () => {
                 <div className="flexRow">
                     <Button className="b" onClick={handleDeleteClick}>Yes, Final Answer</Button>
                     <Button className="b">
-                        <Link className="b" to="/mySplitz">Nevermind, my bad</Link>
+                        <Link className="b" to={`/expense/${splitzId}`}>Nevermind, my bad</Link>
                     </Button>
                 </div>
             </div>
