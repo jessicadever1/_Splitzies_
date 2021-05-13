@@ -54,6 +54,17 @@ export const ExpenseProvider = (props) => {
             .then(setExpenses)
     };
 
+    const deleteExpense = (id) => {
+        return getToken().then((token) =>
+            fetch(`/api/Expense/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+        )
+    };
+
     return (
         <ExpenseContext.Provider
             value={{
@@ -62,7 +73,8 @@ export const ExpenseProvider = (props) => {
                 GetAllExpensesBySplitzId,
                 setExpenses,
                 getExpenseById,
-                addExpense
+                addExpense,
+                deleteExpense
             }}
         >
             {props.children}
