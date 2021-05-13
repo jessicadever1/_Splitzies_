@@ -33,7 +33,7 @@ export const ExpenseCard = ({ expense }) => {
                         <div className="widthName">{expense.expenseName}</div>
                         <div>${expense.amount}</div>
                         <div><img className="picIcon" src={uWhoPaid.profilePic} alt={uWhoPaid.firstName}></img></div>
-                        <Link to={`/expenseDelete/${expense.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
+                        <Link to={`/deleteExpense/${expense.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>
 
                     </div>
                 </CardBody>
