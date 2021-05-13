@@ -151,5 +151,48 @@ namespace Splitzies.Repositories
 
 
 
+        public List<Expense> GetAllExpenses()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                         SELECT e.Id as ExpenseId, 
+                                                e.ExpenseName, 
+                                                e.CategoryId, 
+                                                e.Amount, 
+                                                e.UserWhoPaidId, 
+                                                e.SplitzId, 
+                                                e.DeletedDate
+                                              
+                                         FROM Expense e
+                                         
+                                         ORDER BY e.Amount";
+
+                    var reader = cmd.ExecuteReader();
+                    var expenses = new List<Expense>();
+                    while (reader.Read())
+                    {
+                        expenses.Add(new Expense()
+                        {
+                            Id = DbUtils.GetInt(reader, "ExpenseId"),
+                            ExpenseName = DbUtils.GetString(reader, "ExpenseName"),
+                            CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                            Amount = DbUtils.GetInt(reader, "Amount"),
+                            UserWhoPaidId = DbUtils.GetInt(reader, "UserWhoPaidId"),
+                            SplitzId = DbUtils.GetInt(reader, "SplitzId"),
+                            DeletedDate = DbUtils.IsDbNull(reader, "DeletedDate") ? null : DbUtils.GetDateTime(reader, "DeletedDate"),
+                        });
+                    }
+                    reader.Close();
+                    return expenses;
+                }
+            }
+        }
+
+
+
     }
 }

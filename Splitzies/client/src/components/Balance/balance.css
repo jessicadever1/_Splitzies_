@@ -1,0 +1,59 @@
+.bkground {
+    background-color: white;
+    border-radius: 5px;
+    min-height: 567px;
+}
+
+.stupid {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.font20 {
+    font-size: 2rem;
+}
+
+.margin {
+    margin: 1rem;
+}
+
+.picSize {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 5px;
+    margin-left: 0;
+}
+
+.font8 {
+    font-size: 8px;
+}
+
+.flexRowLeft {
+    display: flex;
+    flex-direction: row;
+    align-content: left;
+    margin-left: 0;
+}
+
+.flexColumnLeft {
+    display: flex;
+    flex-direction: column;
+    align-content: left;
+}
+
+.margLeft1 {
+    margin-left: 1rem;
+}
+
+.left {
+    text-align: left;
+}
+
+.copyPaste {
+    color: rgb(131, 56, 236);
+    font-size: 29px;
+    border: 1px solid rgb(131, 56, 236);
+    border-radius: 5px;
+    min-width: 145px;
+    padding: .5rem;
+}

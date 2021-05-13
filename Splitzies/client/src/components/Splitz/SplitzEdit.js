@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Button, Form, Input } from 'reactstrap';
 import { Link } from "react-router-dom";
 import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import AddUser from "../images/AddUser.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./splitz.css"
 
@@ -16,7 +17,7 @@ export const SplitzEdit = () => {
     const sId = parseInt(splitzId)
     const {
         userProfiles,
-        setUserProfiles,
+        getUserProfileById,
         getAllUserProfiles,
         searchUsersByName,
         searchedName,
@@ -24,6 +25,7 @@ export const SplitzEdit = () => {
         searchResults,
         setSearchResults
     } = useContext(UserProfileContext)
+
 
     useEffect(() => {
         if (searchedName !== "") {
@@ -48,6 +50,7 @@ export const SplitzEdit = () => {
     })
 
     const [splitzUsers, setSplitzUsers] = useState([])
+    const [userProfile, setUserProfile] = useState([])
 
     useEffect(() => {
 
@@ -55,7 +58,7 @@ export const SplitzEdit = () => {
             .then(splitz => {
                 setSplitz(splitz)
             })
-    }, [])
+    }, [splitzUsers])
 
     const handleClickSaveSplitz = () => {
         if (sId) {
@@ -83,23 +86,34 @@ export const SplitzEdit = () => {
         setSplitz(newSplitz)
     }
 
+
+
     const handleAddUserToSplitz = (event) => {
         const users = [...splitzUsers]
         users.push(parseInt(event.target.id))
         setSplitzUsers(users)
     }
 
+
     let usersOnSplitz = splitz.userProfiles
+    console.log("users on splitz", usersOnSplitz)
 
     useEffect(() => {
-        console.log(splitzUsers)
+        console.log("this is SplitzUsers", splitzUsers)
+        const userId = splitzUsers[0]
+        console.log("this is the userId", userId)
+        getUserProfileById(userId).then(setUserProfile)
+
     }, [splitzUsers])
 
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+    useEffect(() => { }, [usersOnSplitz])
+    //usersOnSplitz.push(userProfile)
 
+    console.log("userprofile?", userProfile)
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
     const nonCurrentUserProfiles = userProfiles.filter((userProfile) => userProfile.id !== currentUser.id)
 
-    return usersOnSplitz ? (
+    return usersOnSplitz && splitzUsers && userProfile ? (
         <div className="bkgwhiteRad">
             <Form className="padding seeBot  purple center">
                 <h1>Ready to Help You Make Changes!</h1>
@@ -142,13 +156,15 @@ export const SplitzEdit = () => {
                         <div className="cards-column flexRow">
                             {nonCurrentUserProfiles.map((userProfile) => (
 
-                                <details key={userProfile.id}>
-                                    <summary className="white"><img className="a" src={userProfile.profilePic} alt={userProfile.firstName}></img></summary>
-                                    <div className="flexRow" >
-                                        <FontAwesomeIcon className="" id={userProfile.id} onClick={handleAddUserToSplitz} icon={faPlusCircle} />
-                                        <div>{userProfile.firstName}</div>
-                                    </div>
-                                </details>
+
+                                <div key={userProfile.id} onClick={handleAddUserToSplitz}>
+                                    <a>
+                                        <img className="a" id={userProfile.id} src={userProfile.profilePic} alt={userProfile.firstName}></img>
+                                        <img className="a addUserImg" id={userProfile.id} src={AddUser} alt={userProfile.firstName}></img>
+                                    </a>
+
+
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -173,12 +189,18 @@ export const SplitzEdit = () => {
                         }}
                     ><FontAwesomeIcon className="" icon={faSearch} /></Button>
                 </div>
-                <div className="flexRow">
+                <div>
+                    <h6 className="purple center margBot">Joining you on this foray: </h6>
+                </div>
+                <div className="flexColumn">
                     <div>
                         {usersOnSplitz.map((user) => {
                             return (
                                 <>
-                                    <img className="a" key={user.id} src={user.profilePic}></img>
+                                    <div className="flexRowLeft">
+                                        <img className="a margRight" key={user.id} src={user.profilePic}></img>
+                                        <p>{user.displayName}</p>
+                                    </div>
                                 </>
                             )
                         })}

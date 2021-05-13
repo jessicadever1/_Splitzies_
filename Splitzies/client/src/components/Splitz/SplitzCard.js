@@ -16,16 +16,16 @@ export const Splitz = ({ splitz }) => {
             <CardBody className="row">
                 <CardImg className="picSize" top src={splitz.splitzPic} alt={splitz.splitzName} />
 
-                <div>
+                <div className="margL flexColumn">
                     <Link className="wrapText" to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
                     <p>{date}</p>
-                    <div>
+                    <div className="overflow flexRow">
                         {usersOnSplitz.map((user) => {
                             return (
                                 <>
-
-                                    <img className="a" key={user.id} src={user.profilePic} alt={user.firstName}></img>
-
+                                    <div key={user.id}>
+                                        <img className="a" src={user.profilePic} alt={user.firstName}></img>
+                                    </div>
                                 </>
                             )
                         })}

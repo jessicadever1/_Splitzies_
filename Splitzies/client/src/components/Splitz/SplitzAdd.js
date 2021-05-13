@@ -5,6 +5,7 @@ import { Button, Form, Input } from 'reactstrap'
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import AddUser from "../images/AddUser.png"
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import './splitz.css';
 
@@ -74,6 +75,7 @@ export const SplitzAdd = () => {
         const users = [...splitzUsers]
         users.push(parseInt(event.target.id))
         setSplitzUsers(users)
+        console.log("users", users)
     }
 
     useEffect(() => {
@@ -122,13 +124,14 @@ export const SplitzAdd = () => {
                     <div className="cards-column flexRow">
                         {nonCurrentUserProfiles.map((userProfile) => (
 
-                            <details key={userProfile.id}>
-                                <summary className="white"><img className="a" src={userProfile.profilePic} alt={userProfile.firstName}></img></summary>
-                                <div className="flexRow" >
-                                    <FontAwesomeIcon className="" id={userProfile.id} onClick={handleAddUserToSplitz} icon={faPlusCircle} />
-                                    <div>{userProfile.firstName}</div>
-                                </div>
-                            </details>
+                            <div key={userProfile.id} onClick={handleAddUserToSplitz}>
+                                <a className="white">
+                                    <img className="a imgAdd" id={userProfile.id} src={userProfile.profilePic} alt={userProfile.firstName}></img>
+                                    <img className="a" id={userProfile.id} src={AddUser} alt={userProfile.firstName}></img>
+                                </a>
+
+
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -153,7 +156,12 @@ export const SplitzAdd = () => {
                     }}
                 ><FontAwesomeIcon className="" icon={faSearch} /></Button>
             </div>
+            <div>
+                <h6 className="purple center">Joining you on this foray: </h6>
+            </div>
+            <div className="center">
 
+            </div>
 
 
             <div className="center">

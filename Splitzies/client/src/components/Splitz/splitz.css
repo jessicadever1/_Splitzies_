@@ -169,11 +169,41 @@ main {
 
   .bkgwhiteRad {
       background-color: white;
-      border-radius: 2.5%;
+      border-radius: 5px;
   }
 
   .note {
       font-size: 8px;
       color: rgb(58, 134, 255);
       text-align: center;
+  }
+
+  .flexRowLeft {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      margin-left: 1rem;
+  }
+
+  .margRight {
+      margin-right: .5rem;
+  }
+
+  a img:last-child {
+    display: none;  
+  }
+  a:hover img:last-child {
+    display: block;  
+  }
+  a:hover img:first-child {
+    display: none;  
+  }
+
+  .overflow {
+      overflow: scroll;
+      max-width: 140px;
+  }
+
+  .margL {
+      margin-left: .5rem;
   }
