@@ -2,8 +2,6 @@ import React from "react";
 import { Card, CardBody, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./splitz.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 import dateFormat from 'dateformat';
 
 export const Splitz = ({ splitz }) => {
@@ -13,13 +11,13 @@ export const Splitz = ({ splitz }) => {
 
     return splitz ? (
         <Card className="m-2">
-            <CardBody className="row">
+            <CardBody id="margForCard" className="row">
                 <CardImg className="picSize" top src={splitz.splitzPic} alt={splitz.splitzName} />
 
                 <div className="margL flexColumn">
                     <Link className="wrapText" to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
                     <p>{date}</p>
-                    <div className="overflow flexRow">
+                    <div className="overflow flexRowLeft">
                         {usersOnSplitz.map((user) => {
                             return (
                                 <>
@@ -31,7 +29,7 @@ export const Splitz = ({ splitz }) => {
                         })}
                     </div>
                 </div>
-                <FontAwesomeIcon className="marg blue" icon={faCommentsDollar} />
+
             </CardBody>
         </Card>
     ) : null;

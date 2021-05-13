@@ -1,7 +1,7 @@
 .row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: left;
 }
 
 .picIcon {
@@ -47,4 +47,17 @@
     border-radius: 5%;
     min-height: 567px;
     margin-top: 1rem;
+}
+
+.se {
+    justify-content: space-evenly;
+}
+
+.iconSize {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.widthName {
+    min-width: 3.5rem;
 }

@@ -20,7 +20,8 @@ namespace Splitzies.Repositories
                 {
                     cmd.CommandText = @"SELECT 
                                         c.Id, 
-                                        c.CategoryName
+                                        c.CategoryName,
+                                        c.Icon
                                         FROM Category c
                                         ORDER BY c.CategoryName ASC;";
 
@@ -31,7 +32,8 @@ namespace Splitzies.Repositories
                         categories.Add(new Category()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
-                            CategoryName = DbUtils.GetString(reader, "CategoryName")
+                            CategoryName = DbUtils.GetString(reader, "CategoryName"),
+                            Icon = DbUtils.GetString(reader, "Icon")
                         });
                     }
                     reader.Close();

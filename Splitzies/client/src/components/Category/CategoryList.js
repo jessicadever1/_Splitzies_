@@ -10,6 +10,8 @@ export const CategoryList = () => {
         getAllCategories();
     }, []);
 
+
+
     return (
         <>
 
