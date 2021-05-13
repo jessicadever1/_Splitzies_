@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { CategoryContext } from "../providers/CategoryProvider";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import './expense.css'
+import lodging from "../images/Lodging.png"
 
 export const ExpenseCard = ({ expense }) => {
 
@@ -23,14 +24,13 @@ export const ExpenseCard = ({ expense }) => {
     let userWhoPaid = userProfiles.filter((up => up.id === expense.userWhoPaidId))
     let uWhoPaid = userWhoPaid[0]
 
-
     return catSeletected && uWhoPaid ? (
         <>
             <Card className="margBot sp">
                 <CardBody>
-                    <div className="row">
-                        <div>{expense.expenseName}</div>
-                        <div>{catSeletected.categoryName}</div>
+                    <div className="row se">
+                        <img className="iconSize" src={catSeletected.icon} alt="icon"></img>
+                        <div className="widthName">{expense.expenseName}</div>
                         <div>${expense.amount}</div>
                         <div><img className="picIcon" src={uWhoPaid.profilePic} alt={uWhoPaid.firstName}></img></div>
                         <Link to={`/expenseDelete/${expense.id}`}><FontAwesomeIcon className="" icon={faTrashAlt} /></Link>

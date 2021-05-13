@@ -95,3 +95,6 @@ FROM UserSplitz US
 WHERE UP.FirebaseId = VfL1t0g0O2eV3Lyttnj3b54ydu82
 ORDER BY S.Date DESC
 
+ALTER TABLE Category
+    ADD Icon nvarchar (2050)
+    DEFAULT NULL;

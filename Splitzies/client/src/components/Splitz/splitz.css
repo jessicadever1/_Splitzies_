@@ -207,3 +207,8 @@ main {
   .margL {
       margin-left: .5rem;
   }
+
+  #margForCard {
+    margin-left: 2px;
+    margin-right: 1px;
+  }
