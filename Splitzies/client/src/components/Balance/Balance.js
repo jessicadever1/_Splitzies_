@@ -57,24 +57,32 @@ export const Balance = () => {
                                             <div className="margLeft1 flexColumn">
                                                 <Link className="left" to={`/splitzDetails/${splitz.id}`}>{splitz.splitzName}</Link>
                                                 <div className="left">{dateFormat(splitz.date, "mmmm dS, yyyy")}</div>
-                                                <div>{array.map((x) => {
-                                                    let usersOnThisSplitz = splitz.userProfiles;
-                                                    let user = usersOnThisSplitz.find((u) => u.id === currentUserId)
-                                                    let userPaidThese = expenses.filter((e) => e.userWhoPaidId === currentUserId)
-                                                    let forThisSplitzUserPaid = userPaidThese.filter((e) => e.splitzId === splitz.id)
-                                                    let amtArray = forThisSplitzUserPaid.map((a) => a.amount)
-                                                    let logggedInUserPaid = amtArray.reduce(add, 0)
-                                                    let expensesForThisSplitz1 = expenses.filter((e) => e.splitzId === splitz.id)
-                                                    let expensesForThisSplitz = expensesForThisSplitz1.filter((e) => e.userWhoPaidId !== 0)
-                                                    let expenseAmtArray = expensesForThisSplitz.map((a) => a.amount)
-                                                    let sumOfExpenseAmts = expenseAmtArray.reduce(add, 0)
-                                                    let numOfUsersOnThisSplitz = usersOnThisSplitz.length
-                                                    let portionOwed = parseFloat(sumOfExpenseAmts / numOfUsersOnThisSplitz).toFixed(2)
-                                                    let portionOwedMinusPortionPaid = portionOwed - logggedInUserPaid
-                                                    console.log("this", logggedInUserPaid)
-
-                                                    return ""
+                                                <div className="copy/paste">
+                                                    ${array.map((x) => {
+                                                    const usersOnSplitz = splitz.userProfiles
+                                                    const user = usersOnSplitz.find(u => u.id === currentUser.id)
+                                                    const expensesOwed = expenses.filter(e => e.userWhoPaidId !== user.id)
+                                                    const filteredExpensesOwed = expensesOwed.filter(e => e.userWhoPaidId !== 0)
+                                                    const filteredBySplitz = expensesOwed.filter(e => e.splitzId === splitz.id && e.userWhoPaidId !== 0)
+                                                    const amtsOwed = filteredBySplitz.map(a => a.amount)
+                                                    const sumOfamtsOwed = amtsOwed.reduce(add, 0)
+                                                    let filter = usersOnSplitz.filter(val => val.id)
+                                                    let numOfSplitzers = filter.length;
+                                                    const portionofSumOwed = parseFloat(sumOfamtsOwed / numOfSplitzers).toFixed(2)
+                                                    const expensesPaid = expenses.filter(e => e.userWhoPaidId === user.id && e.splitzId === splitz.id)
+                                                    const amtsPaid = expensesPaid.map(a => a.amount)
+                                                    console.log("this", amtsPaid)
+                                                    const sumOfamtsPaid = amtsPaid.reduce(add, 0)
+                                                    const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
+                                                    const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
+                                                    if (total < 0) {
+                                                        return 0
+                                                    } else if (total >= 0) { return total }
+                                                    console.log(total)
+                                                    return total
                                                 })}</div>
+
+
                                             </div>
                                         </div>
                                     </CardBody>
@@ -92,21 +100,3 @@ export const Balance = () => {
 export default Balance;
 
 
-/*
-
-const user = usersOnThisSplitz.find(u => u.id === currentUserId)
-                                                    const expensesOwed = expenses.filter((e) => e.userWhoPaidId !== user.id)
-                                                    const amtsOwed = expensesOwed.map((e) => e.amount)
-                                                    const sumOfamtsOwed = amtsOwed.reduce(add, 0);
-                                                    let filter = usersOnThisSplitz.filter(val => val.id)
-                                                    let numOfSplitzers = filter.length;
-                                                    const portionOfSumOwed = parseFloat(sumOfamtsOwed / numOfSplitzers).toFixed(2)
-                                                    const expensesPaid = expenses.filter(e => e.userWhoPaidId === user.id)
-                                                    const amtsPaid = expensesPaid.map(a => a.amount)
-                                                    const sumOfamtsPaid = amtsPaid.reduce(add, 0)
-                                                    const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
-                                                    const total = parseFloat(portionOfSumOwed - portionofSumPaid).toFixed(2)
-                                                    if (total < 0) {
-                                                        return 0
-                                                    } else if (total >= 0) { return total }
-*/
