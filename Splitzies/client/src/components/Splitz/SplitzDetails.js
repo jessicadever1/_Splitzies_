@@ -101,12 +101,13 @@ export const SplitzDetails = () => {
                                 const sumOfamtsOwed = amtsOwed.reduce(add, 0)
                                 let filter = usersOnSplitz.filter(val => val.id)
                                 let numOfSplitzers = filter.length;
-                                const portionofSumOwed = parseFloat(sumOfamtsOwed / numOfSplitzers).toFixed(2)
                                 const expensesPaid = expenses.filter(e => e.userWhoPaidId === user.id)
                                 const amtsPaid = expensesPaid.map(a => a.amount)
                                 const sumOfamtsPaid = amtsPaid.reduce(add, 0)
                                 const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
-                                const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
+                                console.log("this", sumOfamtsPaid)
+                                const portionOfSum = sum / numOfSplitzers
+                                const total = parseFloat(portionOfSum - sumOfamtsPaid).toFixed(2)
                                 if (total < 0) {
                                     return 0
                                 } else if (total >= 0) { return total }
