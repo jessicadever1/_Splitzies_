@@ -18,6 +18,13 @@ export const Balance = () => {
             .then(getAllExpenses)
     }, []);
 
+    let justNumbers = []
+    expenses.map((expense) => {
+        justNumbers.push(expense.amount)
+    })
+
+    const sum = justNumbers.reduce(add, 0);
+
 
     function add(accumulator, a) {
         return accumulator + a;
@@ -44,8 +51,8 @@ export const Balance = () => {
                                                     ${array.map((x) => {
                                                     const usersOnSplitz = splitz.userProfiles
                                                     const user = usersOnSplitz.find(u => u.id === currentUser.id)
-                                                    const expensesOwed = expenses.filter(e => e.userWhoPaidId !== user.id)
-                                                    const filteredBySplitz = expensesOwed.filter(e => e.splitzId === splitz.id && e.userWhoPaidId !== 0)
+                                                    //const expensesOwed = expenses.filter(e => e.userWhoPaidId !== user.id)
+                                                    const filteredBySplitz = expenses.filter(e => e.splitzId === splitz.id && e.userWhoPaidId !== 0)
                                                     const amtsOwed = filteredBySplitz.map(a => a.amount)
                                                     const sumOfamtsOwed = amtsOwed.reduce(add, 0)
                                                     let filter = usersOnSplitz.filter(val => val.id)
@@ -54,8 +61,8 @@ export const Balance = () => {
                                                     const expensesPaid = expenses.filter(e => e.userWhoPaidId === user.id && e.splitzId === splitz.id)
                                                     const amtsPaid = expensesPaid.map(a => a.amount)
                                                     const sumOfamtsPaid = amtsPaid.reduce(add, 0)
-                                                    const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
-                                                    const total = parseFloat(portionofSumOwed - portionofSumPaid).toFixed(2)
+                                                    //const portionofSumPaid = parseFloat(sumOfamtsPaid / numOfSplitzers).toFixed(2)
+                                                    const total = parseFloat(portionofSumOwed - sumOfamtsPaid).toFixed(2)
                                                     if (total < 0) {
                                                         return 0.00
                                                     } else if (total >= 0) { return total }
