@@ -39,7 +39,7 @@ that have opted into Find A Farmer. The are given the option to find a farm
 in their preferred county, and then shown a list of only farms in that area.
 They can then choose an individual farm to learn more about.
 
-<a href="https://youtu.be/5kBMo1OtAyE"><img src="FarmList.png" alt="Farm List Screen Shot" width="100%"></img></a>
+<a href="https://youtu.be/5kBMo1OtAyE"><img src="FarmList.png" alt="Farm List Screen Shot" width="50%"></img></a>
 
 ### Farm Details
 When the user has selected a farm, they are shown the farm's address, the
