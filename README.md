@@ -1,18 +1,16 @@
 # Splitzies
 
-Find A Farmer is designed for those in Middle TN who want to address the 
-environmental issues around food waste, but for any number of reasons 
-cannot compost some, or any of their food waste. It will share the 
-locations of farmers who (1) opted in to the program and (2) have pigs 
-that can eat just about anything. The environmentally savvy users will 
-have the option to feed their waste to the pigs, thus keeping food waste 
-from going to landfills, while helping the farmer supply the pigs with a 
-nutritious diet.
+Splitzies was created for those of us who like to do things with friends that cost
+money! More specifically, it will calculate how much you owe, and who you owe it to
+for any event or trip that you take with friends, where you have shared costs. 
+Splitzies calucates the total cost for the Splitz, ie. the trip or event, how much
+the logged in user owes in total, as well as how much they owe to each person who
+participated.
 
 ## Table of Contents
 * [Project Requirements and Features List](#project-requirements-and-features-list)
 * [Technologies Used](#technologies-used)
-* [Installing and Launching Find A Farmer](#instructions-for-installing-find-a-farmer)
+* [Installing and Launching Splitzies](#instructions-for-installing-splitzies)
 * [Appendix 1: Planning Documentation](#appendix-1-planning-documentation)
     * [Entity Relationship Diagrams](#entity-relationship-diagram)
     * [Wireframes](#wireframes)
@@ -22,7 +20,7 @@ nutritious diet.
 
 ### Capstone Proposal 
 
-<a href="https://docs.google.com/document/d/1_DBYvVhPBYSS-iqIhTRL5AhblDsksLGiowp0H7CbCWU/edit">Proposal</a>
+<a href="https://docs.google.com/document/d/1xNc_EPJXexNj9wtw2TNjatTmBaHJCRshGoSl21IoWag/edit">Proposal</a>
 
 ### Two Types of Users
 
