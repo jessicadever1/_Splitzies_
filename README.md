@@ -30,9 +30,7 @@ As a farmer, they also are required to fill out information on their farm,
 including the address, website (if applicable), and their farm's name.
 ###### Click picture to watch features
 
-<a href="https://www.youtube.com/watch?v=bFiWECmYMVs"><img src="NonFarmerReg.png" alt="Non Farmer Screen Shot" width="100%"></img></a>
-                           
-<a href="https://youtu.be/lLhfd0g3Udo"><img src="FarmerReg.png" alt="Non Farmer Screen Shot" width="100%"></img></a>
+<a href=""><img src="SplitziesLogin.png" alt="login" width="100%"></img></a>
 
 ### Get Started
 When a user registers an account, or logs in from a previously registered
