@@ -31,7 +31,7 @@ When a user registers an account, or logs in from a previously registered
 account, they are shown a list of all of their Splitz - ie. all of the events
 or trips that they have participated in. 
 
-<a href=""><img src="MySplitz.PNG" alt="MySpitz List Screen Shot" width="50%"></img></a>
+<a href=""><img src="MySplitz.PNG" alt="MySpitz List Screen Shot" width="33%"></img></a>
 
 ### Farm Details
 When the user has selected a farm, they are shown the farm's address, the
