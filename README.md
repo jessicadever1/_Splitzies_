@@ -22,24 +22,16 @@ participated.
 
 <a href="https://docs.google.com/document/d/1xNc_EPJXexNj9wtw2TNjatTmBaHJCRshGoSl21IoWag/edit">Proposal</a>
 
-### Two Types of Users
-
-Users are offered two registration options. If they are not a farmer, they
-register with just their name, username, email, profile picture and zip code.
-As a farmer, they also are required to fill out information on their farm,
-including the address, website (if applicable), and their farm's name.
 ###### Click picture to watch features
 
-<a href=""><img src="SplitziesLogin.PNG" alt="login" width="50%"></img></a>
+<a href=""><img src="SplitziesLogin.PNG" alt="login" width="33%"></img></a>
 
 ### Get Started
 When a user registers an account, or logs in from a previously registered
-account, they are shown a list of all of the farms in the Middle TN area
-that have opted into Find A Farmer. The are given the option to find a farm
-in their preferred county, and then shown a list of only farms in that area.
-They can then choose an individual farm to learn more about.
+account, they are shown a list of all of their Splitz - ie. all of the events
+or trips that they have participated in. 
 
-<a href="https://youtu.be/5kBMo1OtAyE"><img src="FarmList.png" alt="Farm List Screen Shot" width="50%"></img></a>
+<a href=""><img src="MySplitz.png" alt="MySpitz List Screen Shot" width="50%"></img></a>
 
 ### Farm Details
 When the user has selected a farm, they are shown the farm's address, the
