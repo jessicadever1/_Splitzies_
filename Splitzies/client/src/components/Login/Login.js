@@ -24,18 +24,18 @@ export default function Login() {
             <img className="logoSize" src={logo}></img>
             <Form onSubmit={loginSubmit} className="p backgroundWhite">
                 <fieldset id="border" className="ptb">
-                    <FormGroup className="p">
+                    <FormGroup className="pt">
                         <Label for="email">Email</Label>
                         <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
                     </FormGroup>
-                    <FormGroup className="p">
+                    <FormGroup className="pt">
                         <Label for="password">Password</Label>
                         <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
                     </FormGroup>
                     <FormGroup id="noMarg" className="p jcc ">
                         <Button id="btn">Login</Button>
                     </FormGroup>
-                    <em className="p">
+                    <em className="pt">
                         <div className="jcc">Are you new here? Let's get you</div>
                         <Link to="register" className="jcc mb">Registered!</Link>
                     </em>
