@@ -4,13 +4,16 @@ import { CategoryContext } from '../providers/CategoryProvider';
 import './category.css';
 
 export const CategoryList = () => {
+
+    /*---------------------- Used to access data from backend of all things categories -------------------------- */
+
     const { categories, getAllCategories } = useContext(CategoryContext);
 
     useEffect(() => {
         getAllCategories();
     }, []);
 
-
+    /*---------------------- Displays a variety of expense categories for users to choose from -------------------------- */
 
     return (
         <>

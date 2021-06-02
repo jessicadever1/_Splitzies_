@@ -7,6 +7,9 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import './expense.css';
 
 export const ExpenseAdd = () => {
+
+    /*---------------------- Access to expenses, categories, splitz and previously visited URLs -------------------------- */
+
     const { addExpense } = useContext(ExpenseContext)
     const { categories, getAllCategories } = useContext(CategoryContext);
     const splitzId = parseInt(useParams().id)
@@ -21,6 +24,8 @@ export const ExpenseAdd = () => {
         splitzId: 0,
         amount: 0
     })
+
+    /*---------------------- when user fills out form, the name, id, userId, amt and splitzId are saved to database, then user is redirected to the list of expenses -------------------------- */
 
     const handleClickSaveExpense = (event) => {
         event.preventDefault()
