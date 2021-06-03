@@ -33,7 +33,11 @@ namespace Splitzies.Controllers
             {
                 return NotFound();
             }
-            return Ok(userProfile);
+
+            else 
+            {
+                return Ok(userProfile);
+            }
 
         }
 
