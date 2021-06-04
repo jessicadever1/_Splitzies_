@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using Splitzies.Models;
 using Splitzies.Utils;
+using System;
 
 namespace Splitzies.Repositories
 {
@@ -131,6 +132,7 @@ namespace Splitzies.Repositories
                             Email = DbUtils.GetString(reader, "Email"),
                             ProfilePic = DbUtils.GetString(reader, "ProfilePic")
                         };
+
                     }
                     reader.Close();
                     return userProfile;

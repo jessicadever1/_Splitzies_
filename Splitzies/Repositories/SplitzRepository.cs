@@ -95,7 +95,8 @@ namespace Splitzies.Repositories
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
                                 ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
                                 DisplayName = DbUtils.GetString(reader, "DisplayName")
-                            });
+                            }
+                            );
                             
                         }
                     }
@@ -189,7 +190,7 @@ namespace Splitzies.Repositories
                                 ProfilePic = DbUtils.GetString(reader, "ProfilePic"),
                                 DisplayName = DbUtils.GetString(reader, "DisplayName")
                             });
-
+                            
                         }
                     }
                     reader.Close();

@@ -10,12 +10,16 @@ export const SplitzDelete = () => {
     const splitzId = parseInt(useParams().id);
     const history = useHistory();
 
+    /*---------Does a soft delete from the database, and then sends the user back to their list of splitz ----*/
+
     const handleDeleteClick = () => {
         deleteSplitz(splitzId)
             .then(() => {
                 history.push(`/mySplitz`)
             });
     }
+
+    /*----- Confirms for the user that they do want to delete the splitz, before soft delete ------*/
 
     return (
         <>
