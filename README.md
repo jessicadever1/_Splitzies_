@@ -33,28 +33,22 @@ or trips that they have participated in.
 
 <a href=""><img src="MySplitz.PNG" alt="MySpitz List Screen Shot" width="33%"></img></a>
 
-### Farm Details
-When the user has selected a farm, they are shown the farm's address, the
-instructions provided for dropping off their food waste, a list of items 
-they are welcome to include, and a list of items they are asked to exclude.
-They are given reviews for that farm, listed from most recent to least 
-recent, and the option to add their own review. Last, they are also given 
-the option to go back to the list of all of the farms.
+### Splitz Details
+When the user has selected a splitz, they are taken to the details view of the splitz.
+Here, they are given the image associated with the event, the title and date, people who 
+are on the splitz, the option to edit or delete a splitz, the option to see all expenses 
+or add an expense, the total cost of the splitz and total amount each person needs to contribute
+and a list of how much is owed to each person by whom. 
 
 <a href="https://youtu.be/zyerSAX9VIQ"><img src="FarmDeails.png" alt="Farm Details Screen Shot" width="100%"></img></a>
 
-### Farm Review
-When the user has clicked on the 'Add Review' button (on either the farm
-details page, or from the list of farms), they are taken to a form that
-allows them to write their own review. The title of the review includes
-the name of the farm, so they can confirm they're reviewing the correct
-farm. They are asked to give their review a title, the date they visited,
-and the review itself. Once they submit their review, they are redirected
-to the details page of the farm they have just reviewed.
+### Add An Expense
+### See all Expenses
+
 
 <a href="https://youtu.be/wHq62cJCvT0"><img src="AddReview.png" alt="Farm Review Screen Shot" width="100%"></img></a>
 
-### Edit and Delete Review
+### Edit and Delete Splitz
 Users are given the option to edit or delete the reviews that they have
 written.
 
