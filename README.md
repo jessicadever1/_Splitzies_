@@ -56,6 +56,9 @@ written.
 ### Add A Splitz
 ### Balance
 
+### What To Expect Next
+Available in 2.0, will be the functionality to mark an expense owed as paid.
+
 ## Technologies Used
 
 ### Development Languages and Libraries
