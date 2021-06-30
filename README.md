@@ -107,7 +107,7 @@ and access the application
 ## Appendix 1: Planning Documentation
 
   ### Entity Relationship Diagram
-  ![Find A Farmer ERD](/src/components/images/FindAFarmer_ERD.png)
+  <img src="Splitzies dbDiagram.png" alt="dbDiagram" width="200">
 
   ### Wireframes
   <img src="./src/components/images/MVP WireFrame.png" width="90%"></img> 
