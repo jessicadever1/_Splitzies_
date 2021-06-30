@@ -107,7 +107,7 @@ and access the application
 ## Appendix 1: Planning Documentation
 
   ### Entity Relationship Diagram
-  <img src="Splitzies dbDiagram.png" alt="dbDiagram" width="200">
+  <img src="Splitzies dbDiagram.png" alt="dbDiagram" width="500">
 
   ### Wireframes
   <img src="./src/components/images/MVP WireFrame.png" width="90%"></img> 
