@@ -62,7 +62,9 @@ Available in 2.0, will be the functionality to mark an expense owed as paid.
 ## Technologies Used
 
 ### Development Languages and Libraries
-<img src="https://miro.medium.com/max/1000/1*Yafu7ihc1LFuP4azerAa4w.png" alt="react logo" width="200"/><img src="https://www.logolynx.com/images/logolynx/ee/ee6197d1b17644329226e0587dce4a9c.png" alt="CSS Logo" width="200"/><img src="https://www.split.io/wp-content/uploads/2017/12/net-logo.png" alt=".Net Logo"  width="200"/><img src="https://iconshots.com/wp-content/uploads/2015/08/iconfinder_HTML_Logo_65687.png" alt="HTML Logo"  width="200"/>
+<img src="https://miro.medium.com/max/1000/1*Yafu7ihc1LFuP4azerAa4w.png" alt="react logo" width="200"/><img src="https://1000logos.net/wp-content/uploads/2020/09/JavaScript-Logo.png" alt="JavaScript Logo" width="200"/><img src="https://iconshots.com/wp-content/uploads/2015/08/iconfinder_HTML_Logo_65687.png" alt="HTML Logo"  width="200"/><img src="https://www.logolynx.com/images/logolynx/ee/ee6197d1b17644329226e0587dce4a9c.png" alt="CSS Logo" width="200"/>
+
+<img src="https://www.split.io/wp-content/uploads/2017/12/net-logo.png" alt=".Net Logo"  width="200"/>
 
 <img src="https://www.generalcatalyst.com/wp-content/uploads/2019/05/canva-logo-1.jpg" alt="Canva Logo"  width="200"/><img src="https://i0.wp.com/publicmediastack.com/wp-content/uploads/2020/04/FIGMA.png?fit=1200%2C675&ssl=1" alt="Figma Logo"  width="200"/>
 
