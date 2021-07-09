@@ -62,7 +62,7 @@ Available in 2.0, will be the functionality to mark an expense owed as paid.
 ## Technologies Used
 
 ### Development Languages and Libraries
-<img src="https://miro.medium.com/max/1000/1*Yafu7ihc1LFuP4azerAa4w.png" alt="react logo" width="200"/><img src="https://1000logos.net/wp-content/uploads/2020/09/JavaScript-Logo.png" alt="JavaScript Logo" width="200"/><img src="https://iconshots.com/wp-content/uploads/2015/08/iconfinder_HTML_Logo_65687.png" alt="HTML Logo"  width="200"/><img src="https://www.logolynx.com/images/logolynx/ee/ee6197d1b17644329226e0587dce4a9c.png" alt="CSS Logo" width="200"/>
+<img src="https://miro.medium.com/max/1000/1*Yafu7ihc1LFuP4azerAa4w.png" alt="react logo" width="200"/><img src="https://1000logos.net/wp-content/uploads/2020/09/JavaScript-Logo.png" alt="JavaScript Logo" width="200"/><img src="https://iconshots.com/wp-content/uploads/2015/08/iconfinder_HTML_Logo_65687.png" alt="HTML Logo"  width="400"/><img src="https://www.logolynx.com/images/logolynx/ee/ee6197d1b17644329226e0587dce4a9c.png" alt="CSS Logo" width="200"/>
 
 <img src="https://www.split.io/wp-content/uploads/2017/12/net-logo.png" alt=".Net Logo"  width="200"/>
 
@@ -71,7 +71,7 @@ Available in 2.0, will be the functionality to mark an expense owed as paid.
 
 ### Development Tools
 
- <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"  width="200"/> <img src="https://secrethub.io/img/vs-code.svg" alt="VS Code Logo" width="200" /> <img src="https://1000logos.net/wp-content/uploads/2020/08/Visual-Studio-Logo.png" alt="VS Logo" width="200" /> <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt="Git Logo" width="200" />
+ <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"  width="200"/> <img src="https://secrethub.io/img/vs-code.svg" alt="VS Code Logo" width="200" /> <img src="https://1000logos.net/wp-content/uploads/2020/08/Visual-Studio-Logo.png" alt="VS Logo" width="400" /> <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt="Git Logo" width="200" />
  
  <img src="http://blog.dbdiagram.io/content/images/2020/04/dbdiagram_logo_text_720.png" alt="dbDiagram Logo"  width="200"/> <img src="https://mms.businesswire.com/media/20190619005152/en/728506/23/pm-logo-vert%402x-100.jpg" alt="Postman Logo" width="200" />
 
