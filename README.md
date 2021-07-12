@@ -84,12 +84,12 @@ installing them in the Appendix.
 
 Clone this repo on you personal machine using the following command
 ```sh
-  git clone git@github.com:jessicadever1/findAFarmer.git
+  git clone git@github.com:jessicadever1/_Splitzies_.git
  ```
   
 Install the NPM dependencies for this project using the following commands
 ```sh
-  cd find-a-farmer
+  cd _Splitzies_
   npm install
  ```
  
@@ -103,7 +103,7 @@ and access the application
 ```sh
   http://localhost:8014/
 ```
-### Congratulations you are now experiencing Find A Farmer!
+### Congratulations you are now experiencing Splitzies!
 
 
 ## Appendix 1: Planning Documentation
