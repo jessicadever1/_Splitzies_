@@ -45,13 +45,13 @@ and a list of how much is owed to each person by whom.
 ### Add An Expense
 ### See all Expenses
 
-<a href="https://youtu.be/wHq62cJCvT0"><img src="AddReview.png" alt="Farm Review Screen Shot" width="100%"></img></a>
+<a href="https://youtu.be/wHq62cJCvT0"><img src="AddReview.png" alt="See All Expenses Screen Shot" width="100%"></img></a>
 
 ### Edit and Delete Splitz
 Users are given the option to edit or delete the reviews that they have
 written.
 
-<a href="https://youtu.be/PRfWl9qae9Q"><img src="EditDeleteReview.png" alt="Farm Edit/Delete Review Screen Shot" width="100%"></img></a>
+<a href="https://youtu.be/PRfWl9qae9Q"><img src="EditDeleteReview.png" alt="Splitz Edit/Delete Review Screen Shot" width="100%"></img></a>
 
 ### Add A Splitz
 ### Balance
