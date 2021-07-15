@@ -67,6 +67,8 @@ Available in 2.0, will be the functionality to mark an expense owed as paid.
 <img src="https://www.split.io/wp-content/uploads/2017/12/net-logo.png" alt=".Net Logo"  width="200"/>
 
 <img src="https://www.generalcatalyst.com/wp-content/uploads/2019/05/canva-logo-1.jpg" alt="Canva Logo"  width="200"/><img src="https://i0.wp.com/publicmediastack.com/wp-content/uploads/2020/04/FIGMA.png?fit=1200%2C675&ssl=1" alt="Figma Logo"  width="200"/>
+<img src="https://coolors.co/assets/img/ios_icon.png" alt="Coolors Logo"  width="200"/>
+
 
 
 ### Development Tools
