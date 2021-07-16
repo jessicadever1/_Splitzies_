@@ -78,8 +78,8 @@ Available in 2.0, will be the functionality to mark an expense owed as paid.
  <img src="http://blog.dbdiagram.io/content/images/2020/04/dbdiagram_logo_text_720.png" alt="dbDiagram Logo"  width="200"/> <img src="https://mms.businesswire.com/media/20190619005152/en/728506/23/pm-logo-vert%402x-100.jpg" alt="Postman Logo" width="200" />
 
 
-## Instructions for Installing Find A Farmer
-To launch the Simplified Supper app, you will need to have access to 
+## Instructions for Installing Splitzies
+To launch the Splitzies app, you will need to have access to 
 command line tools, node package manager, JSON Server. If you do not 
 have access to any of these tools, you can find instructions for 
 installing them in the Appendix.
